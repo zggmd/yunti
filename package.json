@@ -1,0 +1,89 @@
+{
+  "name": "yunti",
+  "version": "0.1.0",
+  "description": "A low-code platform.",
+  "keywords": [
+    "low-code",
+    "low-code engine",
+    "yunti-ui"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "dumi build",
+    "dev": "dumi dev",
+    "lint": "npm run lint:es && npm run lint:style && nr lint:md",
+    "lint-fix": "npm run lint-fix:es && npm run lint-fix:style",
+    "lint-fix:es": "eslint \"{docs,packages}/**/*.{js,jsx,ts,tsx}\" --fix",
+    "lint-fix:style": "stylelint \"{docs,packages}/**/*.{css,less,js,jsx,ts,tsx}\" --fix",
+    "lint:es": "eslint \"{docs,packages}/**/*.{js,jsx,ts,tsx}\"",
+    "lint:md": "remark . --quiet --output",
+    "lint:style": "stylelint \"{docs,packages}/**/*.{css,less,js,jsx,ts,tsx}\"",
+    "prepare": "husky install",
+    "prettier": "prettier -c --write \"**/**\"",
+    "release": "multi-semantic-release",
+    "release:local": "multi-semantic-release --no-ci",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "lint-staged": {
+    "*.md": [
+      "remark --quiet --output --",
+      "prettier --write --no-error-on-unmatched-pattern"
+    ],
+    "*.json": [
+      "prettier --write --no-error-on-unmatched-pattern"
+    ],
+    "*.{css,less}": [
+      "stylelint --fix",
+      "prettier --write"
+    ],
+    "*.{js,jsx}": [
+      "stylelint --fix",
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{ts,tsx}": [
+      "stylelint --fix",
+      "eslint --fix",
+      "prettier --parser=typescript --write"
+    ]
+  },
+  "devDependencies": {
+    "@types/jest": "^27",
+    "@types/react": "^17",
+    "@types/react-dom": "^17",
+    "@umijs/test": "^4",
+    "@yuntijs/lint": "^1.5.2",
+    "@yuntijs/ui": "^1.0.0-beta.7",
+    "commitlint": "^18",
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "dumi": "^2.2.16",
+    "eslint": "^8.52.0",
+    "father": "^4.3.8",
+    "husky": "^8",
+    "jest": "^27",
+    "lint-staged": "^15",
+    "multi-semantic-release": "^3",
+    "prettier": "^3",
+    "react": "^17",
+    "react-dom": "^17",
+    "remark": "^14",
+    "remark-cli": "^11",
+    "remark-gfm": "^3",
+    "semantic-release": "^21",
+    "stylelint": "^15",
+    "ts-node": "^10",
+    "typescript": "^5"
+  },
+  "packageManager": "pnpm@8.15.5",
+  "engines": {
+    "node": ">=18.12.0",
+    "pnpm": ">=8.1.0"
+  },
+  "authors": [
+    {
+      "name": "Carrotzpc",
+      "email": "zhang.pc3@gmail.com"
+    }
+  ]
+}
