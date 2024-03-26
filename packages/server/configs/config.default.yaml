@@ -24,7 +24,7 @@ db:
   host: 0.0.0.0
   port: 13306
   username: root
-  password: tenxcloud
+  password: yunti
   database: yunti
   logging: false
   timezone: Z
@@ -98,9 +98,16 @@ npm:
     mirror: https://jsd.onmicrosoft.cn
   unpkg: http://dev-unpkg.tenxcloud.net
 kubernetes:
-  name: kube-oidc-proxy
-  server: https://172.22.96.133:6443
-  skipTLSVerify: true
+  # k8s 集群配置
+  cluster:
+    name: kube-oidc-proxy
+    server: https://172.22.96.133:6443
+    skipTLSVerify: true
+  # k8s 集群 ServiceAccount token
+  saToken: ''
+  options:
+    # 超时时间，单位秒
+    timeout: 10
 minio:
   client:
     endPoint: ''

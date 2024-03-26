@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "该模块是对 [@kubernetes/client-node](https://github.com/kubernetes-client/javascript) 的二次封装，从资源的维度重新组织了 api。",
   "keywords": [],
-  "author": "zhangpc",
+  "author": "Carrotzpc <zhang.pc3@gmail.com>",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",

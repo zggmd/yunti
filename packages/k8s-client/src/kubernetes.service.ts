@@ -2,14 +2,13 @@
 import * as K8s from '@kubernetes/client-node';
 import { dumpYaml, loadAllYaml } from '@kubernetes/client-node';
 import { WebSocketHandler } from '@kubernetes/client-node/dist/web-socket-handler';
-import { Injectable, Logger } from '@nestjs/common';
+import { Inject, Injectable, Logger } from '@nestjs/common';
 import { WebSocket } from 'ws';
 
+import { K8S_CLIENT_CONFIG } from './kubernetes.constants';
 import * as lib from './lib';
 import { ClientOptions } from './lib/interfaces';
-import { IS_PROD } from './utils';
 
-const { env } = process;
 const K8S_WS_PROTOCOLS = [
   'base64.channel.k8s.io', // 增加了 base64 channel
   'v4.channel.k8s.io',
@@ -22,36 +21,35 @@ interface K8sUser extends K8s.User {
   ip?: string;
 }
 
-const k8sApiTimeout = process.env.K8S_API_TIMEOUT || '12';
-const defaultInterceptor: K8s.Interceptor = requestOptions => {
-  requestOptions.timeout = Number.parseFloat(k8sApiTimeout) * 1000;
-};
-
 type KubernetesClientBase = Awaited<ReturnType<KubernetesService['getClientBase']>>;
 export interface KubernetesClient extends KubernetesClientBase {
   /** _sa 下的资源会使用 server 自己的 service account 来作为调用 k8s api 的凭证，且只能操作管理集群的资源*/
   _sa?: Awaited<KubernetesClientBase>;
 }
 
-// @Todo: 需要改为注入 module 时传入
 export interface K8sConfig {
-  cluster: K8s.Cluster;
-  saToken: string;
+  cluster?: K8s.Cluster;
+  /** ServiceAccount 类型的 token */
+  saToken?: string;
+  options?: {
+    /** 超时时间，单位 s，默认为 12 */
+    timeout?: number;
+  };
 }
 
 @Injectable()
 export class KubernetesService {
-  k8sConfig: K8sConfig = {
-    cluster: {
-      name: env.K8S_SERVER_NAME || 'k8s-cluster',
-      server: env.K8S_OIDC_PROXY_URL || 'https://172.22.96.133:6443',
-      skipTLSVerify: true,
-    },
-    saToken:
-      'eyJhbGciOiJSUzI1NiIsImtpZCI6InhUWE1zQUJBd3lvUG1nYUlqc19DaHUtTUM0alVBOERVdWthX19rR2Z4NjQifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJ5dW50aS1zeXN0ZW0iLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlY3JldC5uYW1lIjoieXVudGktc2VydmVyIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQubmFtZSI6Inl1bnRpLXNlcnZlciIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjRiYTU1OGJhLTJlNDYtNDJjMi05MDRkLTdjY2EwZWRmMzdiYyIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDp5dW50aS1zeXN0ZW06eXVudGktc2VydmVyIn0.E6kwkN-g7vbRe2GKU3NsjkLMXjA8Ff7LMzNfcIP1Evb4wJBMWfqPgtFJpJCKTjlroZiRED-Xkjmw9rGoRTkCMjpgLNTnoWda6X5ECK_Od781mUMLnGVCJtzINTlVumxa9GekK7c9-JKdUD0HfFwm_pfyaKMVpBqT8rYSbSc4TX1QtoQ935FVcOts7o3U2vMXIEDDf1joeLHLHF-9Kszo04O6x1OlULOyUpcXYR7fGrFvmkbBZzhOdT6m7Y2jbEpMukwaRGpGhtQSmZuriFndtpJW-8HLGnkeNimaR8OfbW3Gifkr0J3xZspooRNjmBnwMN9KLvXDL9TUPfXux46YCQ',
-  };
+  private readonly k8sConfig: K8sConfig;
+  private readonly defaultInterceptor: K8s.Interceptor;
 
   private logger = new Logger('KubernetesService');
+
+  constructor(@Inject(K8S_CLIENT_CONFIG) private config: K8sConfig) {
+    this.k8sConfig = config;
+    this.defaultInterceptor = requestOptions => {
+      requestOptions.timeout = (this.k8sConfig.options?.timeout || 12) * 1000;
+    };
+  }
 
   createKubeConfig(cluster: K8s.Cluster, user: K8s.User) {
     const kubeConfig = new K8s.KubeConfig();
@@ -85,14 +83,6 @@ export class KubernetesService {
     if (!options._sa) {
       return client;
     }
-    if (IS_PROD) {
-      try {
-        // @Todo: 暂时去掉
-        // this.k8sConfig.saToken = readFileSync(K8S_SA_TOKEN_PATH).toString();
-      } catch (error) {
-        this.logger.error('read service account token failed', error);
-      }
-    }
     const saClient = await this.getClientBase(
       { name: 'sa-client', token: this.k8sConfig.saToken, ip: user.ip },
       // 只支持管理集群，不支持指定其他集群
@@ -109,6 +99,10 @@ export class KubernetesService {
    *
    */
   async getSaClient() {
+    if (!this.k8sConfig.saToken) {
+      this.logger.warn('getSaClient', 'saToken is required');
+      return;
+    }
     const saClient = await this.getClientBase({
       name: 'sa-client',
       token: this.k8sConfig.saToken,
@@ -167,7 +161,7 @@ export class KubernetesService {
   }
 
   private async getClientBase(user: K8sUser, options: ClientOptions = {}) {
-    const { cluster: specifiedCluster, interceptor = defaultInterceptor } = options;
+    const { cluster: specifiedCluster, interceptor = this.defaultInterceptor } = options;
     const defaultHeadersInterceptor: K8s.Interceptor = requestOptions => {
       this.logger.debug(
         `[${requestOptions.method}] ${(requestOptions as any).uri}`,

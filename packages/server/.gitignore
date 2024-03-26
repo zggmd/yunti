@@ -39,3 +39,4 @@ lerna-debug.log*
 # dev
 /dolt/databases
 /deploy/k8s
+dolt/db/query.sql

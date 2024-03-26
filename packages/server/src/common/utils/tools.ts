@@ -1,4 +1,4 @@
-import { K8s } from '@yuntijs/k8s-client/lib';
+import { K8s } from '@yuntijs/k8s-client';
 import { isObject } from 'lodash';
 import { customAlphabet } from 'nanoid';
 import { lowercase, numbers } from 'nanoid-dictionary';

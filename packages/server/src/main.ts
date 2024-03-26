@@ -12,13 +12,13 @@ import { join } from 'node:path';
 import { AppModule } from './app.module';
 import { LoggerMiddleware } from './common/middleware/logger.middleware';
 import { IS_PROD } from './common/utils';
-import { serverConfig } from './config/server.config';
+import { SERVER_CONFIG } from './config/server.config';
 
 import ejs = require('ejs');
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
-    logger: IS_PROD ? serverConfig.log.levels.split(',') : undefined,
+    logger: IS_PROD ? SERVER_CONFIG.log.levels.split(',') : undefined,
   });
 
   app.enableCors({
@@ -32,8 +32,8 @@ async function bootstrap() {
   app.set('trust proxy', true);
 
   // 启用 gzip 压缩
-  if (serverConfig.compression?.enabled) {
-    app.use(compression(serverConfig.compression));
+  if (SERVER_CONFIG.compression?.enabled) {
+    app.use(compression(SERVER_CONFIG.compression));
   }
 
   // ~ set ejs
@@ -44,7 +44,7 @@ async function bootstrap() {
   app.setBaseViewsDir(join(__dirname, '../../../', 'public'));
   app.setViewEngine('html');
 
-  app.use(json(serverConfig.bodyParser.json));
+  app.use(json(SERVER_CONFIG.bodyParser.json));
 
   app.use(
     helmet({
@@ -57,15 +57,15 @@ async function bootstrap() {
   app.use(
     session({
       store: new RedisStore({
-        client: new Redis(serverConfig.redis),
+        client: new Redis(SERVER_CONFIG.redis),
       }),
-      ...serverConfig.session,
+      ...SERVER_CONFIG.session,
     })
   );
 
   app.use(LoggerMiddleware);
 
-  await app.listen(serverConfig.web.port);
+  await app.listen(SERVER_CONFIG.web.port);
 
   // eslint-disable-next-line no-console
   console.log(`bff-server is running on: ${await app.getUrl()}`);

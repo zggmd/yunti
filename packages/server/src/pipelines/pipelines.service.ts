@@ -1,7 +1,6 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { ConfigType } from '@nestjs/config';
-import { KubernetesService } from '@yuntijs/k8s-client/kubernetes.service';
-import { CRD, K8s } from '@yuntijs/k8s-client/lib';
+import { type CRD, K8s, KubernetesService } from '@yuntijs/k8s-client';
 
 import { extractPipelineRunStatus } from '@/common/utils';
 import serverConfig from '@/config/server.config';
@@ -150,6 +149,9 @@ export class PipelinesService {
   async makePipeLineRunInformer(namespace: string, pipeline: string) {
     const method = 'makePipeLineRunInformer';
     const k8s = await this.k8sService.getSaClient();
+    if (!k8s) {
+      return;
+    }
     const labelSelector = `tekton.dev/pipeline=${pipeline}`;
     const listFn = () => k8s.pipelineRun.list(namespace, { labelSelector });
     const { group, version, name } = k8s.pipelineRun;

@@ -21,7 +21,7 @@
     "resolveJsonModule": true,
     "paths": {
       "@/*": ["src/*"],
-      "@yuntijs/k8s-client/*": ["../k8s-client/src/*"]
+      "@yuntijs/k8s-client": ["../k8s-client/src"]
     }
   },
   "exclude": ["dist"]

@@ -1,7 +1,7 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { ConfigType } from '@nestjs/config';
 import { Timeout } from '@nestjs/schedule';
-import { CRD } from '@yuntijs/k8s-client/lib';
+import { CRD } from '@yuntijs/k8s-client';
 import { Like } from 'typeorm';
 
 import { AppsMembersService } from '@/apps-members/apps-members.service';
@@ -368,8 +368,12 @@ export class PublishRecordsService {
       pipeline?.namespace,
       pipeline?.publish?.name
     );
+    if (!informer) {
+      this.logger.warn(`[${method}] ⚠ informer start failed ⚠`);
+      return;
+    }
     const startInformer = () =>
-      informer.start().then(() => this.logger.log(`[${method}] informer stated ...`));
+      informer.start().then(() => this.logger.log(`[${method}] informer started ...`));
 
     // informer.on('add', (pr: CRD.PipelineRun) => {
     //   console.log(`Added: ${pr.metadata!.name}`);

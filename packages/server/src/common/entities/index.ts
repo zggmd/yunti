@@ -1,7 +1,7 @@
 import { registerAs } from '@nestjs/config';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
-import { serverConfig } from '../../config/server.config';
+import { SERVER_CONFIG } from '../../config/server.config';
 import { AppMember } from './apps-members.entity';
 import { App } from './apps.entity';
 import { Block } from './blocks.entity';
@@ -22,7 +22,7 @@ import { PublishChannel } from './publish-channels.entity';
 import { PublishRecord } from './publish-records.entity';
 import { User } from './users.entity';
 
-const { maxDataSources: maxDs, ...config } = serverConfig.db;
+const { maxDataSources: maxDs, ...config } = SERVER_CONFIG.db;
 
 /** yunti-server 与数据库建立的最大连接数 */
 export const maxDataSources = maxDs;

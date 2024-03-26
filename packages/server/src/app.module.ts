@@ -6,6 +6,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ScheduleModule } from '@nestjs/schedule';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { KubernetesModule } from '@yuntijs/k8s-client';
 import { Response } from 'express';
 import { DirectiveLocation, GraphQLDirective } from 'graphql';
 import { join } from 'node:path';
@@ -32,7 +33,7 @@ import { GRAPHQL_PATH } from './common/utils';
 import { ComponentsMembersModule } from './components-members/components-members.module';
 import { ComponentsVersionsModule } from './components-versions/components-versions.module';
 import { ComponentsModule } from './components/components.module';
-import serverConfig from './config/server.config';
+import serverConfig, { SERVER_CONFIG } from './config/server.config';
 import { GitModule } from './git/git.module';
 import { MergeRequestModule } from './merge-requests/merge-requests.module';
 import { MinioModule } from './minio/minio.module';
@@ -117,6 +118,7 @@ import { UsersModule } from './users/users.module';
         },
       },
     }),
+    KubernetesModule.forRoot(SERVER_CONFIG.kubernetes),
     UsersModule,
     PagesModule,
     AppsModule,

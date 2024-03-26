@@ -1,10 +1,22 @@
-import { Global, Module } from '@nestjs/common';
+import { DynamicModule, Global, Module } from '@nestjs/common';
 
-import { KubernetesService } from './kubernetes.service';
+import { K8S_CLIENT_CONFIG } from './kubernetes.constants';
+import { K8sConfig, KubernetesService } from './kubernetes.service';
 
 @Global()
-@Module({
-  providers: [KubernetesService],
-  exports: [KubernetesService],
-})
-export class KubernetesModule {}
+@Module({})
+export class KubernetesModule {
+  static forRoot(config: K8sConfig): DynamicModule {
+    return {
+      module: KubernetesModule,
+      providers: [
+        {
+          provide: K8S_CLIENT_CONFIG,
+          useValue: config,
+        },
+        KubernetesService,
+      ],
+      exports: [KubernetesService],
+    };
+  }
+}

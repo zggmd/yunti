@@ -6,7 +6,7 @@ behavior:
 
 user:
   name: root
-  password: 'tenxcloud'
+  password: 'yunti'
 
 listener:
   host: 0.0.0.0
