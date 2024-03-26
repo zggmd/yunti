@@ -41,7 +41,7 @@ async function bootstrap() {
   ejs.openDelimiter = '[';
   ejs.closeDelimiter = ']';
   app.engine('html', ejs.renderFile);
-  app.setBaseViewsDir(join(__dirname, '../../', 'public'));
+  app.setBaseViewsDir(join(__dirname, '../../../', 'public'));
   app.setViewEngine('html');
 
   app.use(json(serverConfig.bodyParser.json));

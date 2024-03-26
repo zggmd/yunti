@@ -58,7 +58,7 @@ import { UsersModule } from './users/users.module';
       inject: [ConfigService],
     }),
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '../..', 'public'),
+      rootPath: join(__dirname, '../../../', 'public'),
       exclude: [GRAPHQL_PATH],
       serveStaticOptions: {
         setHeaders: (res: Response) => {
