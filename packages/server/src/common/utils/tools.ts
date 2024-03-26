@@ -1,9 +1,10 @@
+import { Logger } from '@nestjs/common';
 import { K8s } from '@yuntijs/k8s-client';
 import { isObject } from 'lodash';
 import { customAlphabet } from 'nanoid';
 import { lowercase, numbers } from 'nanoid-dictionary';
 import * as crypto from 'node:crypto';
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import * as semver from 'semver';
 import { parse } from 'yaml';
 
@@ -12,7 +13,13 @@ import { MemberRole } from '../models/member-role.enum';
 import { RELEASE_BRANCH_PREFIX, TREE_DEFAULT } from './constants';
 import { CustomException } from './errors';
 
+const logger = new Logger('utils');
+
 export const getConfigByPath = (configPath: string) => {
+  if (!existsSync(configPath)) {
+    logger.warn(`[getConfigByPath] '${configPath}' not exist.`);
+    return {};
+  }
   const fileContent = readFileSync(configPath);
   return parse(fileContent.toString()) as Record<string, any>;
 };

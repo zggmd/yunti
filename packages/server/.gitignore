@@ -40,3 +40,4 @@ lerna-debug.log*
 /dolt/databases
 /deploy/k8s
 dolt/db/query.sql
+configs/config.dev.yaml

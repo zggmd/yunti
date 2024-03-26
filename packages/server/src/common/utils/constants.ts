@@ -10,6 +10,8 @@ export const SERVER_DEFAULT_CONFIG_PATH = join(
 );
 /** 运行时配置的路径 */
 export const SERVER_CONFIG_PATH = join(__dirname, '../../../../../', 'configs/config.yaml');
+/** 开发时配置的路径 */
+export const SERVER_DEV_CONFIG_PATH = join(__dirname, '../../../../../', 'configs/config.dev.yaml');
 
 export const GRAPHQL_PATH = '/-/yunti/api';
 

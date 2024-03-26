@@ -95,9 +95,10 @@ $ nr test:cov
 
 ## config
 
-配置详见 [configs/config.default.yaml](configs/config.default.yaml)，下面对 config.default.yaml 和 config.yaml 进行简要说明：
+配置详见 [configs/config.default.yaml](configs/config.default.yaml)，下面对 config.default.yaml、config.dev.yaml 和 config.yaml 进行简要说明：
 
 - config.default.yaml 是默认配置
+- config.dev.yaml 是开发配置，仅开发时生效，配置后配置项会覆盖默认配置 config.default.yaml
 - config.yaml 是运行时配置，配置后配置项会覆盖默认配置 config.default.yaml
 
 **注意：新增配置都应在 config.default.yaml 中进行，config.yaml 的主要用途是在实际运行时可以通过挂载 configMap 的方式来进行配置自定义。**

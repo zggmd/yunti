@@ -110,7 +110,7 @@ kubernetes:
     timeout: 10
 minio:
   client:
-    endPoint: ''
+    endPoint: 'my-minio.kubebb-addons.svc.cluster.local'
     accessKey: ''
     secretKey: ''
     useSSL: false
