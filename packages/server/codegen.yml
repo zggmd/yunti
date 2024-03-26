@@ -1,0 +1,14 @@
+schema: http://localhost:8034/-/yunti/api
+documents: 'src/**/*.gql'
+generates:
+  packages/yunti-bff-client/src/sdk.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-graphql-request
+      - plugin-typescript-swr
+config:
+  autogenSWRKey: true
+  useSWRInfinite:
+    - getPageCommits
+    - getComponentCommits

@@ -1,0 +1,152 @@
+# 创建合并分支请求
+mutation createMergeRequest($mergeRequestInput: MergeRequestInput!) {
+  createMergeRequest(mergeRequestParam: $mergeRequestInput) {
+    id,
+    sourceBranchName,
+    targetBranchName,
+    title,
+    description,
+    mergeRequestStatus,
+    createAt,
+    updateAt,
+  }
+}
+
+# 查看对比内容
+query getBranchesDiff($sourceBranch: String!, $targetBranch: String!) {
+  getBranchesDiff(sourceBranch: $sourceBranch, targetBranch: $targetBranch) {
+		commits {
+      hash,
+      committer,
+      message,
+      date,
+      email,
+    },
+    diffData {
+      dataDiff {
+        tableName,
+        our,
+        their,
+      },
+      schemaDiff {
+        tableName,
+        our,
+        their,
+      }
+    }
+  }
+}
+
+# 查看合并请求
+query getMergeRequests($searchParam: MergeRequestSearchInput!) {
+  getMergeRequests(searchParam: $searchParam) {
+		id,
+    author {
+      name
+    },
+    assignee {
+      name
+    },
+    sourceBranchName,
+    sourceBranch {
+      hash,
+      message,
+      name,
+      date,
+    },
+    targetBranchName,
+    targetBranch {
+      hash,
+      message,
+      name,
+      date,
+    }
+    mergeRequestSourceType,
+    mergeRequestSourceId,
+    title,
+    description,
+    mergeRequestStatus,
+    createAt,
+    updateAt,
+  }
+}
+
+# 取消合并
+mutation closeMergeRequests($id: Float!) {
+  closeMergeRequests(id: $id)
+}
+
+# 查看合并请求
+query getDetailMergeRequest($id: Float!) {
+  getMergeRequest(id: $id) {
+		id,
+    author {
+      name
+    },
+    assignee {
+      name
+    },
+    sourceBranchName,
+    sourceBranch {
+      hash,
+      message,
+      name,
+      date
+    },
+    targetBranchName,
+    targetBranch {
+      hash,
+      message,
+      name,
+      date
+    },
+    commits {
+      hash,
+      committer,
+      message,
+      date,
+      email
+    },
+    diffData {
+      dataDiff {
+        tableName,
+        our,
+        their,
+      },
+      schemaDiff {
+        tableName,
+        our,
+        their,
+      }
+    },
+    conflictData {
+      dataConflicts {
+        tableName,
+        our,
+        their,
+      },
+      schemaConflicts {
+        tableName,
+        our,
+        their,
+      }
+    },
+    mergeRequestSourceType,
+    mergeRequestSourceId,
+    title,
+    description,
+    mergeRequestStatus,
+    createAt,
+    updateAt,
+  }
+}
+
+# 冲突解决
+mutation resolveConflict($conflictResolveInput: ConflictResolveInput!) {
+  resolveConflict(conflictResolveInput: $conflictResolveInput)
+}
+
+# 合并
+mutation mergeRequests($id: Float!) {
+  mergeRequests(id: $id)
+}

@@ -1,0 +1,214 @@
+# 创建应用
+mutation createApp($app: NewAppInput!) {
+  appCreate(app: $app) {
+    id
+    name
+    namespace
+    description
+    assets
+    schema
+    createAt
+    updateAt
+    members {
+      appId
+      userId
+      role
+    }
+  }
+}
+
+# 更新应用
+mutation updateApp($app: UpdateAppInput!) {
+  appUpdate(app: $app) {
+    id
+    name
+    namespace
+    description
+    assets
+    schema
+    createAt
+    updateAt
+  }
+}
+
+# 更新应用国际化文案
+mutation updateAppI18n($id: String!, $i18n: JSON!) {
+  appUpdateI18n(id: $id, i18n: $i18n)
+}
+
+# 获取应用列表
+query getApps {
+  apps {
+    id
+    name
+    namespace
+    description
+    createAt
+    updateAt
+    members {
+      role
+      member {
+        id
+        name
+      }
+    }
+  }
+}
+
+# 获取应用详情
+query getApp($tree: String, $id: String!) {
+  app(tree: $tree, id: $id) {
+    id
+    name
+    namespace
+    description
+    assets
+    schema
+    i18nUsage
+    createAt
+    updateAt
+    members {
+      role
+      createAt
+      member {
+        id
+        name
+      }
+    }
+    pages {
+      id
+      title
+      pathname
+      createAt
+      updateAt
+      version
+    }
+    branches {
+      name
+      displayName
+      hash
+      committer
+      email
+      date
+      message
+    }
+  }
+}
+
+# 为应用创建分支
+mutation checkoutNewBranchForApp($branch: CheckoutAppNewBranch!) {
+  appCheckoutNewBranch(branch: $branch) {
+    name
+    displayName
+    hash
+    committer
+    email
+    date
+    message
+  }
+}
+
+# 为应用删除某个分支
+mutation deleteBranchForApp($name: String!) {
+  appDeleteBranch(name: $name)
+}
+
+# 获取应用的发布渠道列表
+query getAppPublishChannels($tree: String, $id: String!, $pubcOptions: PublishChannelsArgs) {
+  app(tree: $tree, id: $id) {
+    id
+    name
+    namespace
+    publishChannels(pubcOptions: $pubcOptions) {
+      id
+      name
+      builtIn
+      status
+      detail {
+        ... on PublishChannelHelm {
+          url
+          username
+          status
+        }
+        ... on PublishChannelGithub {
+          token
+        }
+      }
+      appId
+      updator {
+        id
+        name
+      }
+      createAt
+      updateAt
+    }
+  }
+}
+
+# 获取取应用的发布记录列表
+query getAppPublishRecords($tree: String, $id: String!, $pubrOptions: PublishRecordsArgs) {
+  app(tree: $tree, id: $id) {
+    id
+    name
+    namespace
+    paginatedPublishRecords(pubrOptions: $pubrOptions) {
+      page
+      pageSize
+      totalCount
+      hasNextPage
+      nodes {
+        id
+        name
+        buildId
+        appId
+        channelId
+        baseline
+        tree
+        version
+        status
+        detail {
+          name
+          displayName
+          commit {
+            hash
+            committer
+            date
+            message
+          }
+          channel
+          status {
+            progress
+            message
+          }
+        }
+        publisher {
+          id
+          name
+        }
+        createAt
+        updateAt
+      }
+    }
+  }
+}
+
+# 获取应用提交记录
+query getAppCommits($tree: String, $id: String!, $options: AppCommitsOptions) {
+  app(tree: $tree, id: $id) {
+    id
+    name
+    commits(options: $options) {
+      page
+      pageSize
+      totalCount
+      hasNextPage
+      nodes {
+        hash
+        committer
+        email
+        date
+        message
+      }
+    }
+  }
+}

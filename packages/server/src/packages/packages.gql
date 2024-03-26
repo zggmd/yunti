@@ -1,0 +1,64 @@
+# 获取/搜索 npm 包的列表
+query searchPackages($keyword: String) {
+  packages(keyword: $keyword) {
+    name
+    description
+    version
+    homepage
+    private
+  }
+}
+
+# 获取 npm 包详情
+query getPackageDetail($name: String!, $tree: String, $id: String) {
+  package(name: $name) {
+    name
+    description
+    version
+    versions {
+      version
+      publishTime
+    }
+    author
+    homepage
+    dependencies
+    license
+    private
+    umd(tree: $tree, id: $id) {
+      library
+      externals
+      externalsPkgs {
+        name
+        version
+      }
+      urls
+      meta {
+        url
+        exportName
+      }
+      editUrls
+    }
+  }
+}
+
+# 获取 npm 包 UMD 配置信息
+query getPackageUmdConfig($name: String!, $version: String, $tree: String, $id: String) {
+  package(name: $name, version: $version) {
+    name
+    version
+    umd(tree: $tree, id: $id) {
+      library
+      externals
+      externalsPkgs {
+        name
+        version
+      }
+      urls
+      meta {
+        url
+        exportName
+      }
+      editUrls
+    }
+  }
+}

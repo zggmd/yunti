@@ -1,0 +1,81 @@
+# 获取提交记录
+query getGitLogs($logArgs: CommitsArgs) {
+  git {
+    log(logArgs: $logArgs) {
+      page
+      pageSize
+      totalCount
+      hasNextPage
+      nodes {
+        hash
+        committer
+        email
+        date
+        message
+      }
+    }
+  }
+}
+
+# 获取分支和标签
+query getGitBranchesAndTags {
+  git {
+    branches {
+      name
+      hash
+      committer
+      email
+      date
+      message
+    }
+    tags {
+      name
+      hash
+      tagger
+      email
+      date
+      message
+    }
+  }
+}
+
+# 获取分支
+query getGitBranches {
+  git {
+    branches {
+      name
+      hash
+      committer
+      email
+      date
+      message
+    }
+  }
+}
+
+# 获取标签
+query getGitTags {
+  git {
+    tags {
+      name
+      hash
+      tagger
+      email
+      date
+      message
+    }
+  }
+}
+
+# 获取提交详情
+query getGitCommit($id: String!) {
+  git {
+    commit(id: $id) {
+      hash
+      committer
+      email
+      date
+      message
+    }
+  }
+}

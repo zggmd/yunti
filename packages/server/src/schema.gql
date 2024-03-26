@@ -1,0 +1,1715 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+directive @namespace on FIELD_DEFINITION
+
+directive @passwd on FIELD_DEFINITION
+
+directive @upper on FIELD_DEFINITION
+
+input AddAppMemberInput {
+  """应用 id"""
+  appId: String!
+
+  """角色"""
+  role: MemberRole!
+
+  """成员 id"""
+  userId: String!
+}
+
+"""应用"""
+type App {
+  """应用资产"""
+  assets: JSON
+
+  """分支列表"""
+  branches: [Branch!]
+
+  """提交记录"""
+  commits(options: AppCommitsOptions): PaginatedCommits!
+
+  """创建时间"""
+  createAt: Float
+
+  """应用描述"""
+  description: String
+
+  """包含页面的完整 schema，一般用于出码"""
+  fullSchema: JSON
+
+  """应用国际化文案使用情况"""
+  i18nUsage: JSON
+
+  """应用 id"""
+  id: ID!
+
+  """应用成员"""
+  members: [AppMember!]
+
+  """应用名称"""
+  name: String!
+
+  """
+  命名空间
+  
+  从 schema 的 `meta.namespace` 中获取，没有的话默认返回 name
+  """
+  namespace: String
+
+  """应用页面"""
+  pages: [Page!]
+
+  """分页的应用发布记录"""
+  paginatedPublishRecords(pubrOptions: PublishRecordsArgs): PaginatedPublishRecords
+
+  """应用发布渠道"""
+  publishChannels(pubcOptions: PublishChannelsArgs): [PublishChannel!]
+
+  """应用发布记录"""
+  publishRecords: [PublishRecord!]
+
+  """应用 schema: version, utils, constants, css, config, meta, i18n 等信息"""
+  schema: JSON
+
+  """标签列表"""
+  tags: [Tag!]
+
+  """创建时间"""
+  updateAt: Float
+}
+
+"""获取提交记录的参数"""
+input AppCommitsOptions {
+  """页码"""
+  page: Float = 1
+
+  """每页数量"""
+  pageSize: Float = 20
+
+  """提交 id 或 提交信息进行模糊搜索"""
+  q: String
+}
+
+"""应用成员"""
+type AppMember {
+  """应用"""
+  app: App
+
+  """应用 id"""
+  appId: String!
+
+  """创建时间"""
+  createAt: Float
+
+  """成员"""
+  member: User
+
+  """成员角色"""
+  role: MemberRole
+
+  """更新时间"""
+  updateAt: Float
+
+  """用户 id"""
+  userId: String!
+}
+
+"""区块"""
+type Block {
+  """创建时间"""
+  createAt: Float!
+
+  """创建者"""
+  creator: User
+
+  """创建者 id"""
+  creatorId: String!
+
+  """区块 id"""
+  id: ID!
+
+  """区块名称（英文）"""
+  name: String!
+
+  """区块相关包"""
+  packages: JSON
+
+  """区块内容"""
+  schema: JSON!
+
+  """区块截图"""
+  screenshot: String!
+
+  """区块标题（中文）"""
+  title: String!
+
+  """创建时间"""
+  updateAt: Float!
+
+  """版本"""
+  version: Float!
+}
+
+"""分支"""
+type Branch {
+  """提交人"""
+  committer: String!
+
+  """提交日期"""
+  date: Float!
+
+  """分支展示名"""
+  displayName: String
+
+  """提交人邮箱"""
+  email: String!
+
+  """提交 id"""
+  hash: String!
+
+  """提交信息"""
+  message: String!
+
+  """分支名"""
+  name: ID!
+}
+
+"""Chartmuseum 详情"""
+type Chartmuseum {
+  apiVersion: String
+  appVersion: String
+  created: String!
+  description: String
+  digest: String!
+
+  """官网地址"""
+  home: String
+  icon: String
+  keywords: [String!]
+
+  """维护者"""
+  maintainers: [ChartmuseumMaintainer!]
+
+  """名称"""
+  name: String!
+  sources: [String!]
+  urls: [String!]
+
+  """版本"""
+  version: String!
+}
+
+"""Chartmuseum 维护者"""
+type ChartmuseumMaintainer {
+  email: String
+  name: String!
+  url: String
+}
+
+input CheckoutAppNewBranch {
+  """应用 ID"""
+  appId: String!
+
+  """新分支名称"""
+  name: String!
+
+  """源分支名称"""
+  sourceName: String!
+}
+
+"""提交"""
+type Commit {
+  """提交人"""
+  committer: String!
+
+  """提交日期"""
+  date: Float!
+
+  """提交人邮箱"""
+  email: String
+
+  """提交 id"""
+  hash: ID
+
+  """提交信息"""
+  message: String!
+}
+
+type CommitEdge {
+  cursor: String!
+  node: Commit!
+}
+
+type CommitResult {
+  error: String
+  hash: String
+}
+
+"""获取提交记录的参数"""
+input CommitsArgs {
+  """页码"""
+  page: Float = 1
+
+  """每页数量"""
+  pageSize: Float = 20
+}
+
+"""组件"""
+type Component {
+  """组件资产"""
+  assets: JSON
+
+  """分支列表"""
+  branches: [Branch!]!
+
+  """提交记录"""
+  commits(commitsArgs: CommitsArgs): PaginatedCommits!
+
+  """创建时间"""
+  createAt: Float
+
+  """组件描述"""
+  description: String
+
+  """组件国际化文案使用情况"""
+  i18nUsage: JSON
+
+  """组件 id"""
+  id: ID!
+
+  """组件成员"""
+  members: [ComponentMember!]
+
+  """组件名称"""
+  name: String!
+
+  """
+  命名空间
+  
+  从 schema 的 `meta.namespace` 中获取，没有的话默认返回 name
+  """
+  namespace: String
+
+  """组件 schema: version, utils, constants, css, config, meta, i18n 等信息"""
+  schema: JSON
+
+  """创建时间"""
+  updateAt: Float
+
+  """组件版本"""
+  versions: [ComponentVersion!]
+}
+
+"""组件成员"""
+type ComponentMember {
+  """组件"""
+  component: Component
+
+  """组件 id"""
+  componentId: String!
+
+  """创建时间"""
+  createAt: Float
+
+  """成员"""
+  member: User
+
+  """成员角色"""
+  role: MemberRole
+
+  """更新时间"""
+  updateAt: Float
+
+  """用户 id"""
+  userId: String!
+}
+
+"""组件版本"""
+type ComponentVersion {
+  """版本对应的提交 id"""
+  commitId: String!
+
+  """组件"""
+  component: Component
+
+  """组件 id"""
+  componentId: String!
+
+  """创建时间"""
+  createAt: Float
+
+  """版本描述"""
+  description: String
+
+  """更新时间"""
+  updateAt: Float
+
+  """版本"""
+  version: String!
+}
+
+"""冲突数据类型"""
+type ConflictData {
+  """数据冲突"""
+  dataConflicts: [ConflictDiffData!]
+
+  """表结构冲突"""
+  schemaConflicts: [ConflictDiffSchema!]
+}
+
+"""冲突对比数据类型"""
+type ConflictDiffData {
+  """原有对象"""
+  our: JSON
+
+  """* 原表名 **"""
+  tableName: String
+
+  """合并对象"""
+  their: JSON
+}
+
+"""冲突对比数据类型"""
+type ConflictDiffSchema {
+  """原有对象"""
+  our: JSON
+
+  """* 原表名 **"""
+  tableName: String
+
+  """合并对象"""
+  their: JSON
+}
+
+input ConflictResolveInput {
+  """两个分支的冲突数据差异"""
+  conflictData: JSON!
+
+  """冲突的 merge request 表主键 id"""
+  id: Float!
+}
+
+"""对比数据类型"""
+type DataDiff {
+  """原有对象"""
+  our: JSON
+
+  """* 原表名 **"""
+  tableName: String
+
+  """合并对象"""
+  their: JSON
+}
+
+"""Date custom scalar type"""
+scalar Date
+
+"""对比数据类型"""
+type DiffData {
+  """数据对比"""
+  dataDiff: [DataDiff!]
+
+  """表结构对比"""
+  schemaDiff: [SchemaDiff!]
+}
+
+type ExternalsPkgItem {
+  """npm 包名"""
+  name: String!
+
+  """npm 包版本"""
+  version: String!
+}
+
+type Git {
+  """分支列表"""
+  branches: [Branch!]
+
+  """提交详情"""
+  commit(id: String!): Commit!
+
+  """提交日志"""
+  log(logArgs: CommitsArgs): PaginatedLog
+
+  """标签列表"""
+  tags: [Tag!]
+}
+
+"""历史应用"""
+type HistoryApp {
+  """提交"""
+  commit: Commit
+
+  """提交日期"""
+  commitDate: Float!
+
+  """应用描述"""
+  description: String!
+
+  """提交 id"""
+  hash: String!
+
+  """应用 id"""
+  id: ID!
+
+  """应用名称"""
+  name: String!
+}
+
+type HistoryAppEdge {
+  cursor: String!
+  node: HistoryApp!
+}
+
+"""历史页面"""
+type HistoryPage {
+  """应用 id"""
+  appId: String!
+
+  """提交"""
+  commit: Commit
+
+  """提交日期"""
+  commitDate: Float!
+
+  """提交 id"""
+  hash: String!
+
+  """页面 id"""
+  id: ID!
+
+  """页面路径"""
+  pathname: String!
+
+  """页面标题"""
+  title: String!
+}
+
+type HistoryPageEdge {
+  cursor: String!
+  node: HistoryPage!
+}
+
+scalar JSON
+
+scalar JSONObject
+
+"""提交日志"""
+type Log {
+  """提交人"""
+  committer: String!
+
+  """提交日期"""
+  date: Float!
+
+  """提交人邮箱"""
+  email: String!
+
+  """提交 id"""
+  hash: ID!
+
+  """提交信息"""
+  message: String!
+}
+
+type LogEdge {
+  cursor: String!
+  node: Log!
+}
+
+"""组件成员的角色"""
+enum MemberRole {
+  """开发者"""
+  Developer
+
+  """访客"""
+  Guest
+
+  """维护者"""
+  Maintainer
+
+  """拥有者"""
+  Owner
+
+  """测试"""
+  Reporter
+}
+
+"""合并请求"""
+type MergeRequest {
+  """经办人"""
+  assignee: User
+
+  """assignee id"""
+  assigneeId: String
+
+  """创建人"""
+  author: User!
+
+  """创建人 id"""
+  authorId: String!
+  conflictDiffData: String
+  conflictDiffSchema: String
+
+  """创建时间"""
+  createAt: Float
+  description: String
+
+  """主键 id"""
+  id: Float!
+  mergeCommitSha: String
+  mergeError: String
+  mergeRequestSourceId: String
+
+  """代码来源：app, 或者 component"""
+  mergeRequestSourceType: MergeRequestSourceType!
+
+  """MR 状态"""
+  mergeRequestStatus: MergeRequestStatus!
+
+  """最终合并人"""
+  mergeUser: User
+
+  """最终合并人 id"""
+  mergeUserId: String
+
+  """合并源分支"""
+  sourceBranch: Branch
+  sourceBranchName: String!
+
+  """目标分支"""
+  targetBranch: Branch
+  targetBranchName: String!
+  targetCommitSha: String
+  title: String!
+
+  """更新时间"""
+  updateAt: Float
+
+  """MR 修改者"""
+  updater: User
+
+  """更新合并请求内容的用户id"""
+  updaterId: String
+}
+
+"""合并请求详细内容"""
+type MergeRequestDetail {
+  """经办人"""
+  assignee: User
+
+  """assignee id"""
+  assigneeId: String
+
+  """创建人"""
+  author: User!
+
+  """创建人 id"""
+  authorId: String!
+
+  """两个分支的提交差异"""
+  commits: [Commit!]
+
+  """冲突数据"""
+  conflictData: ConflictData
+  conflictDiffData: String
+  conflictDiffSchema: String
+
+  """创建时间"""
+  createAt: Float
+  description: String
+
+  """两个分支的提交 shema 差异"""
+  diffData: DiffData
+
+  """主键 id"""
+  id: Float!
+  mergeCommitSha: String
+  mergeError: String
+  mergeRequestSourceId: String
+
+  """代码来源：app, 或者 component"""
+  mergeRequestSourceType: MergeRequestSourceType!
+
+  """MR 状态"""
+  mergeRequestStatus: MergeRequestStatus!
+
+  """最终合并人"""
+  mergeUser: User
+
+  """最终合并人 id"""
+  mergeUserId: String
+
+  """合并源分支"""
+  sourceBranch: Branch
+  sourceBranchName: String!
+
+  """目标分支"""
+  targetBranch: Branch
+  targetBranchName: String!
+  targetCommitSha: String
+  title: String!
+
+  """更新时间"""
+  updateAt: Float
+
+  """MR 修改者"""
+  updater: User
+
+  """更新合并请求内容的用户id"""
+  updaterId: String
+}
+
+"""合并请求对比内容"""
+type MergeRequestDiff {
+  """两个分支的提交差异"""
+  commits: [Commit!]
+
+  """两个分支的提交 shema 差异"""
+  diffData: DiffData
+}
+
+"""合并请求申请内容"""
+input MergeRequestInput {
+  """合并人"""
+  assignee_id: String!
+
+  """合并说明"""
+  description: String
+
+  """冲突表名"""
+  source_branch: String!
+
+  """冲突表名"""
+  target_branch: String!
+
+  """合并 title"""
+  title: String
+}
+
+"""查询合并请求申请列表条件"""
+input MergeRequestSearchInput {
+  """app Id"""
+  appId: String
+
+  """componet Id"""
+  componentId: String
+
+  """合并状态"""
+  status: String
+
+  """分支名字"""
+  tree: String
+}
+
+"""合并代码来源"""
+enum MergeRequestSourceType {
+  """app 代码"""
+  app
+
+  """component 代码"""
+  component
+}
+
+"""合并请求状态"""
+enum MergeRequestStatus {
+  """Closed"""
+  Closed
+
+  """Conflicted"""
+  Conflicted
+
+  """Draft"""
+  Draft
+
+  """Merged"""
+  Merged
+
+  """Openning"""
+  Openning
+}
+
+type Mutation {
+  """
+  为应用创建分支：一般创建出来的分支仅当前用户可用，以 'release-' 开头的分支则比较特殊，仅 Owner 及 Maintainer 可创建，且创建出来后应用成员均可见
+  """
+  appCheckoutNewBranch(
+    """分支信息"""
+    branch: CheckoutAppNewBranch!
+  ): Branch!
+
+  """创建应用：创建在 main 分支上"""
+  appCreate(app: NewAppInput!): App!
+
+  """为应用删除某个分支"""
+  appDeleteBranch(
+    """分支名"""
+    name: String!
+  ): Boolean!
+
+  """修复应用的 namespace 字段"""
+  appFixNamespace(id: String!, namespace: String!): App!
+
+  """添加应用成员"""
+  appMemberAdd(appMember: AddAppMemberInput!): AppMember!
+
+  """移除应用成员"""
+  appMemberRemove(appId: String!, userId: String!): Boolean!
+
+  """更新应用"""
+  appUpdate(app: UpdateAppInput!): App!
+
+  """更新应用的国际化文案"""
+  appUpdateI18n(
+    """schema 的国际化文案"""
+    i18n: JSON!
+
+    """schema id"""
+    id: String!
+  ): JSON!
+
+  """创建区块"""
+  blockCreate(block: NewBlockInput!): Block!
+
+  """删除区块"""
+  blockDelete(id: String!): Boolean!
+
+  """更新区块"""
+  blockUpdate(block: UpdateBlockInput!): Block!
+  closeMergeRequests(id: Float!): JSON!
+
+  """提交组件的更改"""
+  componentCommit(id: String!, message: String!): CommitResult!
+
+  """创建组件：创建在 main 分支上"""
+  componentCreate(component: NewComponentInput!): Component!
+
+  """发布组件"""
+  componentRelease(release: ReleaseComponentInput!): ComponentVersion!
+
+  """更新组件"""
+  componentUpdate(component: UpdateComponentInput!): Component!
+
+  """更新组件的国际化文案"""
+  componentUpdateI18n(
+    """schema 的国际化文案"""
+    i18n: JSON!
+
+    """schema id"""
+    id: String!
+  ): JSON!
+  createMergeRequest(
+    """合并请求内容 """
+    mergeRequestParam: MergeRequestInput!
+  ): MergeRequest!
+
+  """发布应用"""
+  doPublish(publish: NewPublishInput!): PublishRecord!
+  mergeRequests(id: Float!): JSON!
+
+  """提交页面的更改"""
+  pageCommit(id: String!, message: String!): CommitResult!
+
+  """创建页面"""
+  pageCreate(page: NewPageInput!): Page!
+
+  """删除页面"""
+  pageDelete(id: String!): Boolean!
+
+  """更新页面"""
+  pageUpdate(page: UpdatePageInput!): Page!
+
+  """创建发布渠道：创建在 main 分支上"""
+  publishChannelCreate(channel: NewPublishChannelInput!): PublishChannel!
+
+  """删除发布渠道"""
+  publishChannelDelete(
+    """是否清除渠道对应的发布记录"""
+    clearPublishRecords: Boolean
+
+    """发布渠道 id"""
+    id: String!
+  ): Boolean!
+
+  """修改发布渠道"""
+  publishChannelUpdate(channel: UpdatePublishChannelInput!): PublishChannel!
+
+  """删除发布记录"""
+  publishRecordDelete(id: String!): Boolean!
+  resolveConflict(conflictResolveInput: ConflictResolveInput!): JSON!
+  translate(
+    """是否修正源文本"""
+    correct: Boolean
+
+    """
+    源文本的语言 code，不指定会自动识别，支持的语言列表见 https://github.com/plainheart/bing-translate-api/blob/master/src/lang.json
+    """
+    from: String
+
+    """源文本"""
+    text: String!
+
+    """要翻译的语言 code，支持的语言列表同 `from`"""
+    to: String!
+  ): TranslationResult!
+
+  """创建用户"""
+  userCreate(user: NewUserInput!): User!
+}
+
+input NewAppInput {
+  """应用资产"""
+  assets: JSON
+
+  """应用描述"""
+  description: String
+
+  """应用名称"""
+  name: String!
+
+  """应用的命名空间 (创建后不可更改)"""
+  namespace: String!
+
+  """应用 schema: version, utils, constants, css, config, meta, i18n 等信息"""
+  schema: JSON
+}
+
+input NewBlockInput {
+  """区块名称（英文）"""
+  name: String!
+
+  """区块相关包"""
+  packages: JSON
+
+  """区块内容"""
+  schema: JSON!
+
+  """区块截图"""
+  screenshot: String!
+
+  """区块标题（中文）"""
+  title: String!
+}
+
+input NewComponentInput {
+  """组件资产"""
+  assets: JSON
+
+  """组件描述"""
+  description: String
+
+  """文件名"""
+  fileName: String!
+
+  """组件名称"""
+  name: String!
+
+  """组件的命名空间 (创建后不可更改)"""
+  namespace: String!
+
+  """组件 schema: version, utils, constants, css, config, meta, i18n 等信息"""
+  schema: JSON
+}
+
+input NewPageInput {
+  """应用 id"""
+  appId: String!
+
+  """页面内容"""
+  content: JSON
+
+  """页面内容来源"""
+  contentFrom: PageContentFromInput
+
+  """文件名"""
+  fileName: String!
+
+  """页面相关包"""
+  packages: JSON
+
+  """页面路径"""
+  pathname: String!
+
+  """页面标题"""
+  title: String!
+}
+
+input NewPublishChannelInput {
+  """应用 id (非内置渠道时必填)"""
+  appId: String
+
+  """是否内置渠道"""
+  builtIn: Boolean = false
+
+  """github 渠道详情"""
+  github: PublishChannelGitHubInput
+
+  """helm 渠道详情"""
+  helm: PublishChannelHelmInput
+
+  """渠道名称"""
+  name: String!
+
+  """渠道类型"""
+  type: PublishChannelType!
+}
+
+input NewPublishInput {
+  """应用 id (选择内置仓库时必填)"""
+  appId: String
+
+  """发布基线"""
+  baseline: PublishBaseline!
+
+  """渠道 id"""
+  channelId: String!
+
+  """提交 ID，当发布基线为分支或标签时必填"""
+  commitId: String
+
+  """展示名称：一般是应用的名称"""
+  displayName: String!
+
+  """发布名称：一般是应用的 namespace"""
+  name: String!
+
+  """分支名、标签名 或 提交 ID"""
+  tree: String!
+
+  """发布版本"""
+  version: String!
+}
+
+input NewUserInput {
+  """邮箱"""
+  email: String!
+
+  """用户名"""
+  name: String!
+
+  """角色"""
+  role: UserRole!
+}
+
+"""排序"""
+enum OrderBy {
+  """升序，对于文本数据，升序表示按照字母顺序排列（A-Z），对于数字数据则是从小到大排列"""
+  ASC
+
+  """降序，对于文本数据，降序表示按字母逆序排列（Z-A），对于数字数据则是从大到小排列"""
+  DESC
+}
+
+type Package {
+  """作者"""
+  author: JSON
+
+  """依赖"""
+  dependencies: JSON
+
+  """描述"""
+  description: String
+
+  """主页"""
+  homepage: String
+
+  """许可"""
+  license: String
+
+  """npm 包名称"""
+  name: ID!
+
+  """是否私有"""
+  private: Boolean!
+
+  """数据来源"""
+  source: String
+
+  """npm 包 umd 配置"""
+  umd(
+    """应用或组件的 id"""
+    id: String
+    tree: String
+  ): PackageUmdConfig
+
+  """版本"""
+  version: String!
+
+  """版本列表"""
+  versions: [PackageVersion!]
+}
+
+type PackageUmdConfig {
+  """npm 包专属于编辑态的 umd 产物 cdn 地址 (lowcode engine 专用)"""
+  editUrls: [String!]
+
+  """外包依赖及版本"""
+  externals: JSON
+
+  """外包依赖包列表"""
+  externalsPkgs: [ExternalsPkgItem!]
+
+  """全局变量名称"""
+  library: ID!
+
+  """组件低码描述配置"""
+  meta: PackageUmdMetaConfig
+
+  """npm 包 umd 产物 cdn 地址"""
+  urls: [String!]!
+}
+
+type PackageUmdMetaConfig {
+  """组件低码描述配置地址"""
+  exportName: String!
+
+  """组件低码描述配置地址"""
+  url: String!
+}
+
+type PackageVersion {
+  """发布时间"""
+  publishTime: Float
+
+  """版本名称"""
+  version: ID!
+}
+
+"""页面"""
+type Page {
+  """应用"""
+  app: App
+
+  """应用 id"""
+  appId: String!
+
+  """提交记录"""
+  commits(commitsArgs: CommitsArgs): PaginatedCommits!
+
+  """页面内容"""
+  content: JSON
+
+  """创建时间"""
+  createAt: Float!
+
+  """页面 id"""
+  id: ID!
+
+  """页面相关包"""
+  packages: JSON @deprecated(reason: "已废弃，调整到应用维度维护")
+
+  """页面路径"""
+  pathname: String!
+
+  """页面标题"""
+  title: String!
+
+  """创建时间"""
+  updateAt: Float!
+
+  """版本"""
+  version: Float!
+}
+
+input PageContentFromInput {
+  """页面 id"""
+  pageId: String
+
+  """模板 id"""
+  templateId: String
+}
+
+"""分页的提交"""
+type PaginatedCommits {
+  edges: [CommitEdge!]
+  hasNextPage: Boolean!
+  nodes: [Commit!]
+  page: Int!
+  pageSize: Int!
+  totalCount: Int!
+}
+
+"""分页的提交日志"""
+type PaginatedLog {
+  edges: [LogEdge!]
+  hasNextPage: Boolean!
+  nodes: [Log!]
+  page: Int!
+  pageSize: Int!
+  totalCount: Int!
+}
+
+"""分页的发布记录"""
+type PaginatedPublishRecords {
+  edges: [PublishRecordEdge!]
+  hasNextPage: Boolean!
+  nodes: [PublishRecord!]
+  page: Int!
+  pageSize: Int!
+  totalCount: Int!
+}
+
+"""发布基线"""
+enum PublishBaseline {
+  """分支"""
+  Branch
+
+  """提交 ID"""
+  CommitId
+
+  """标签"""
+  Tag
+}
+
+"""发布渠道"""
+type PublishChannel {
+  """应用"""
+  app: App
+
+  """应用 id：内置渠道没有该字段"""
+  appId: String
+
+  """是否内置渠道"""
+  builtIn: Boolean!
+
+  """创建时间"""
+  createAt: Float
+
+  """渠道详情"""
+  detail: PublishChannelDetail
+
+  """渠道 id"""
+  id: ID!
+
+  """渠道名称"""
+  name: String!
+
+  """应用发布记录"""
+  publishRecords: [PublishRecord!]
+
+  """渠道状态"""
+  status: PublishChannelStatus
+
+  """渠道类型"""
+  type: PublishChannelType
+
+  """更新时间"""
+  updateAt: Float
+
+  """更新者"""
+  updator: User
+
+  """更新者 id"""
+  updatorId: String
+}
+
+"""发布渠道详情"""
+union PublishChannelDetail = PublishChannelGithub | PublishChannelHelm
+
+"""gitHub 仓库详情"""
+input PublishChannelGitHubInput {
+  """令牌"""
+  token: String!
+}
+
+"""github 仓库详情"""
+type PublishChannelGithub {
+  """令牌"""
+  token: String!
+}
+
+"""gitHub 仓库详情"""
+input PublishChannelGithubUpdateInput {
+  """令牌"""
+  token: String
+}
+
+"""helm 仓库详情"""
+type PublishChannelHelm {
+  """一个 chart 版本"""
+  chart(name: String!, version: String!): Chartmuseum
+
+  """加密后的密码"""
+  password: String
+
+  """状态详情"""
+  status: JSON
+
+  """地址"""
+  url: String!
+
+  """用户名"""
+  username: String
+}
+
+"""helm 仓库详情"""
+input PublishChannelHelmInput {
+  """密码 (base64)"""
+  password: String
+
+  """地址"""
+  url: String!
+
+  """用户名 (base64)"""
+  username: String
+}
+
+"""helm 仓库详情"""
+input PublishChannelHelmUpdateInput {
+  """密码 (base64)"""
+  password: String
+
+  """地址"""
+  url: String
+
+  """用户名 (base64)"""
+  username: String
+}
+
+"""发布渠道"""
+enum PublishChannelStatus {
+  """异常"""
+  Abnormal
+
+  """健康"""
+  Healthy
+}
+
+"""发布渠道"""
+enum PublishChannelType {
+  """github 仓库"""
+  Github
+
+  """gitlab 仓库"""
+  Gitlab
+
+  """helm 仓库"""
+  Helm
+}
+
+"""获取发布渠道的参数"""
+input PublishChannelsArgs {
+  """筛选参数"""
+  filter: PublishChannelsFilterArgs
+
+  """排序参数"""
+  order: PublishChannelsOrderArgs
+}
+
+"""获取发布渠道的筛选参数"""
+input PublishChannelsFilterArgs {
+  """模糊匹配仓库名称"""
+  q: String
+
+  """渠道状态"""
+  status: PublishChannelStatus
+
+  """渠道类型"""
+  type: PublishChannelType
+}
+
+"""获取发布渠道的排序参数"""
+input PublishChannelsOrderArgs {
+  """创建时间"""
+  createAt: OrderBy
+
+  """更新时间"""
+  updateAt: OrderBy
+}
+
+"""发布记录"""
+type PublishRecord {
+  """应用"""
+  app: App
+
+  """应用 id"""
+  appId: String!
+
+  """发布基线"""
+  baseline: PublishBaseline!
+
+  """构建 id：一般对应的是构建流水线的 name"""
+  buildId: String!
+
+  """渠道"""
+  channel: PublishChannel
+
+  """渠道 id"""
+  channelId: String
+
+  """渠道名称"""
+  channelName: String!
+
+  """创建时间"""
+  createAt: Float
+
+  """发布详情"""
+  detail: PublishRecordDetail
+
+  """发布 id"""
+  id: ID!
+
+  """发布名称"""
+  name: String!
+
+  """更新者"""
+  publisher: User
+
+  """发布者 id"""
+  publisherId: String
+
+  """发布状态"""
+  status: PublishStatus
+
+  """分支名、标签名 或 提交 ID"""
+  tree: String!
+
+  """更新时间"""
+  updateAt: Float
+
+  """发布版本"""
+  version: String!
+}
+
+"""发布记录详情"""
+type PublishRecordDetail {
+  """渠道详情"""
+  channel: JSON
+
+  """提交信息"""
+  commit: Commit!
+
+  """展示名称：一般是应用的名称"""
+  displayName: String!
+
+  """发布名称：一般是应用的 namespace"""
+  name: String!
+
+  """状态详情"""
+  status: PublishStatusDetail
+}
+
+type PublishRecordEdge {
+  cursor: String!
+  node: PublishRecord!
+}
+
+"""获取发布记录的参数"""
+input PublishRecordsArgs {
+  """筛选参数"""
+  filter: PublishRecordsFilterArgs
+
+  """排序参数"""
+  order: PublishRecordsOrderArgs
+
+  """页码"""
+  page: Float = 1
+
+  """每页数量"""
+  pageSize: Float = 20
+}
+
+"""获取发布记录的筛选参数"""
+input PublishRecordsFilterArgs {
+  """发布基线"""
+  baseline: PublishBaseline
+
+  """模糊匹配仓库名称、版本"""
+  q: String
+
+  """发布状态"""
+  status: PublishStatus
+}
+
+"""获取发布记录的排序参数"""
+input PublishRecordsOrderArgs {
+  """更新时间"""
+  createAt: OrderBy = DESC
+}
+
+"""发布状态"""
+enum PublishStatus {
+  """发布成功"""
+  Done
+
+  """发布失败"""
+  Failed
+
+  """发布中"""
+  Running
+}
+
+"""发布状态详情"""
+type PublishStatusDetail {
+  """详细信息"""
+  message: String
+
+  """进度百分比"""
+  progress: Float
+}
+
+type Query {
+  """应用详情"""
+  app(id: String!, tree: String): App
+
+  """应用列表：main 分支上的"""
+  apps: [App!]!
+
+  """区块详情"""
+  block(id: String!): Block
+
+  """区块列表"""
+  blocks: [Block!]!
+
+  """组件详情"""
+  component(id: String!, tree: String): Component
+
+  """组件版本"""
+  componentVersion(componentId: String!, version: String!): ComponentVersion
+
+  """组件列表：main 分支上的"""
+  components: [Component!]!
+
+  """当前用户详情"""
+  currentUser: User
+  getBranchesDiff(
+    """对比分支"""
+    sourceBranch: String!
+
+    """目标分支"""
+    targetBranch: String!
+  ): MergeRequestDiff!
+
+  """查看合并详细内容 """
+  getMergeRequest(id: Float!): MergeRequestDetail
+  getMergeRequests(
+    """合并请求内容 """
+    searchParam: MergeRequestSearchInput!
+  ): [MergeRequest!]!
+
+  """提交信息"""
+  git: Git!
+
+  """npm 包详情"""
+  package(name: String!, version: String): Package
+
+  """npm 包列表"""
+  packages(keyword: String): [Package!]!
+
+  """页面详情"""
+  page(id: String!): Page
+
+  """发布渠道详情"""
+  publishChannel(id: String!): PublishChannel
+
+  """发布记录详情"""
+  publishRecord(id: String!): PublishRecord
+
+  """用户详情"""
+  user(id: String!): User
+
+  """用户列表"""
+  users: [User!]!
+}
+
+input ReleaseComponentInput {
+  """组件 id"""
+  componentId: String!
+
+  """版本描述 (发布日志等)"""
+  description: String
+
+  """若为 true，则会覆盖已存在版本"""
+  force: Boolean
+
+  """版本"""
+  version: String!
+}
+
+"""对比schema类型"""
+type SchemaDiff {
+  """原有对象"""
+  our: JSON
+
+  """* 原表名 **"""
+  tableName: String
+
+  """合并对象"""
+  their: JSON
+}
+
+"""标签"""
+type Tag {
+  """提交日期"""
+  date: Float!
+
+  """提交人邮箱"""
+  email: String!
+
+  """提交 id"""
+  hash: String!
+
+  """提交信息"""
+  message: String!
+
+  """标签名"""
+  name: ID!
+
+  """提交人"""
+  tagger: String!
+}
+
+type TranslationResult {
+  """修正后的文本，当 `correct` 设置为 `true` 时返回"""
+  correctedText: String
+
+  """源文本的语言 code"""
+  from: String!
+
+  """源文本"""
+  text: String!
+
+  """要翻译的语言 code"""
+  to: String!
+
+  """翻译后的文本"""
+  translation: String!
+}
+
+input UpdateAppInput {
+  """应用资产"""
+  assets: JSON
+
+  """应用描述"""
+  description: String
+
+  """应用 id"""
+  id: String!
+
+  """应用名称"""
+  name: String
+
+  """应用 schema: version, utils, constants, css, config, meta, i18n 等信息"""
+  schema: JSON
+}
+
+input UpdateBlockInput {
+  """区块 id"""
+  id: String!
+
+  """区块名称（英文）"""
+  name: String
+
+  """区块相关包"""
+  packages: JSON
+
+  """区块内容"""
+  schema: JSON
+
+  """区块截图"""
+  screenshot: String
+
+  """区块标题（中文）"""
+  title: String
+}
+
+input UpdateComponentInput {
+  """组件资产"""
+  assets: JSON
+
+  """组件描述"""
+  description: String
+
+  """文件名"""
+  fileName: String
+
+  """组件 id"""
+  id: String!
+
+  """组件名称"""
+  name: String
+
+  """组件 schema: version, utils, constants, css, config, meta, i18n 等信息"""
+  schema: JSON
+}
+
+input UpdatePageInput {
+  """页面内容"""
+  content: JSON
+
+  """文件名"""
+  fileName: String
+
+  """页面 id"""
+  id: String!
+
+  """页面相关包"""
+  packages: JSON
+
+  """页面路径"""
+  pathname: String
+
+  """页面标题"""
+  title: String
+}
+
+input UpdatePublishChannelInput {
+  """github 渠道详情"""
+  github: PublishChannelGithubUpdateInput
+
+  """helm 渠道详情"""
+  helm: PublishChannelHelmUpdateInput
+
+  """发布渠道 id"""
+  id: String!
+
+  """渠道类型"""
+  type: PublishChannelType!
+}
+
+"""用户"""
+type User {
+  """用户的应用"""
+  apps: [App!]
+
+  """用户的区块"""
+  blocks: [Block!]
+
+  """用户的组件"""
+  components: [Component!]
+
+  """创建时间"""
+  createAt: Float
+
+  """用户邮箱"""
+  email: String!
+
+  """用户 id"""
+  id: ID!
+
+  """用户名称"""
+  name: String!
+
+  """应用发布渠道"""
+  publishChannels: [PublishChannel!]
+
+  """应用发布记录"""
+  publishRecords: [PublishRecord!]
+
+  """用户角色"""
+  role: UserRole
+
+  """更新时间"""
+  updateAt: Float
+}
+
+"""用户角色"""
+enum UserRole {
+  """系统管理员"""
+  SystemAdmin
+
+  """普通用户"""
+  User
+}

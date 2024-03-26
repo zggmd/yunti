@@ -28,7 +28,6 @@ coverage
 # production
 dist
 es
-lib
 umd
 logs
 test-output

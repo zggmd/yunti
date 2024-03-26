@@ -11,6 +11,7 @@
   "scripts": {
     "build": "dumi build",
     "dev": "dumi dev",
+    "dev:server": "pnpm --filter 'yunti-server' dev",
     "lint": "npm run lint:es && npm run lint:style && nr lint:md",
     "lint-fix": "npm run lint-fix:es && npm run lint-fix:style",
     "lint-fix:es": "eslint \"{docs,packages}/**/*.{js,jsx,ts,tsx}\" --fix",
@@ -52,7 +53,7 @@
     "@types/react": "^17",
     "@types/react-dom": "^17",
     "@umijs/test": "^4",
-    "@yuntijs/lint": "^1.5.2",
+    "@yuntijs/lint": "^1.5.1",
     "@yuntijs/ui": "^1.0.0-beta.7",
     "commitlint": "^18",
     "concurrently": "^8.2.2",

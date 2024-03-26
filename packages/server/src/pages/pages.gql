@@ -1,0 +1,65 @@
+# 创建页面
+mutation createPage($page: NewPageInput!) {
+  pageCreate(page: $page) {
+    id
+    appId
+    title
+    pathname
+    content
+  }
+}
+
+# 修改页面
+mutation updatePage($page: UpdatePageInput!) {
+  pageUpdate(page: $page) {
+    id
+    appId
+    title
+    pathname
+    content
+  }
+}
+
+# 获取页面详情
+query getPage($id: String!) {
+  page(id: $id) {
+    id
+    appId
+    title
+    pathname
+    content
+  }
+}
+
+# 获取页面提交记录
+query getPageCommits($id: String!, $commitsArgs: CommitsArgs) {
+  page(id: $id) {
+    id
+    title
+    commits(commitsArgs: $commitsArgs) {
+      page
+      pageSize
+      totalCount
+      hasNextPage
+      nodes {
+        hash
+        committer
+        email
+        date
+        message
+      }
+    }
+  }
+}
+
+# 删除页面
+mutation deletePage($id: String!) {
+  pageDelete(id: $id)
+}
+
+# 提交页面的更改
+mutation commitPage($id: String!, $message: String!) {
+  pageCommit(id: $id, message: $message) {
+    hash
+  }
+}

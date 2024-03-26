@@ -1,0 +1,157 @@
+{
+  "config": {
+    "antd": {
+      "configProvider": {
+        "componentSize": "middle",
+        "space": {
+          "size": 12
+        },
+        "theme": {
+          "components": {
+            "Page": {
+              "pagePadding": 20,
+              "pagePaddingBottom": 32,
+              "pagePaddingTop": 20
+            },
+            "Row": {
+              "rowHorizontalGutter": 20,
+              "rowVerticalGutter": 20
+            }
+          },
+          "token": {
+            "borderRadius": 2,
+            "fontSize": 12,
+            "colorPrimary": "#00b96b",
+            "colorLink": "#00b96b",
+            "colorSuccess": "#5cb85c",
+            "colorWarning": "#ffbf00",
+            "colorError": "#f85a5a",
+            "colorLinkHover": "#6f8bf7"
+          }
+        }
+      }
+    }
+  },
+  "constants": {
+    "IS_PROD": {
+      "builtin": true,
+      "description": "是否为生产环境",
+      "mock": "false",
+      "type": "JSExpression",
+      "value": "process.env.NODE_ENV === 'production'"
+    },
+    "IS_QIAN_KUN": {
+      "builtin": true,
+      "description": "是否为乾坤微前端环境",
+      "mock": "true",
+      "type": "JSExpression",
+      "value": "window.__POWERED_BY_QIANKUN__"
+    },
+    "basename": {
+      "builtin": true,
+      "description": "应用路由前缀",
+      "type": "JSExpression",
+      "value": "<replace-me>"
+    }
+  },
+  "utils": [
+    {
+      "builtin": true,
+      "content": {
+        "componentName": "message",
+        "destructuring": true,
+        "exportName": "message",
+        "package": "antd",
+        "subName": ""
+      },
+      "description": "全局提示",
+      "name": "message",
+      "type": "npm"
+    },
+    {
+      "builtin": true,
+      "content": {
+        "componentName": "notification",
+        "destructuring": true,
+        "exportName": "notification",
+        "package": "@tenx-ui/materials",
+        "subName": ""
+      },
+      "description": "通知提醒框",
+      "name": "notification",
+      "type": "npm"
+    },
+    {
+      "builtin": true,
+      "content": {
+        "componentName": "getAuthData",
+        "destructuring": true,
+        "exportName": "getAuthData",
+        "package": "@tenx-ui/auth-utils",
+        "subName": "",
+        "version": "0.0.1"
+      },
+      "description": "获取认证数据",
+      "name": "getAuthData",
+      "type": "npm"
+    },
+    {
+      "builtin": true,
+      "content": {
+        "componentName": "setAuthData",
+        "destructuring": true,
+        "exportName": "setAuthData",
+        "package": "@tenx-ui/auth-utils",
+        "version": "0.0.1"
+      },
+      "description": "设置认证数据",
+      "name": "setAuthData",
+      "type": "npm"
+    },
+    {
+      "builtin": true,
+      "content": {
+        "componentName": "removeAuthData",
+        "destructuring": true,
+        "exportName": "removeAuthData",
+        "package": "@tenx-ui/auth-utils",
+        "version": "0.0.1"
+      },
+      "description": "移除认证数据",
+      "name": "removeAuthData",
+      "type": "npm"
+    },
+    {
+      "builtin": true,
+      "content": {
+        "componentName": "isTokenExpired",
+        "destructuring": true,
+        "exportName": "isTokenExpired",
+        "package": "@tenx-ui/auth-utils",
+        "version": "0.0.1"
+      },
+      "description": "判断 token 是否有效",
+      "name": "isTokenExpired",
+      "type": "npm"
+    },
+    {
+      "builtin": true,
+      "content": {
+        "value": "() => {\r\n  const authData = this.getAuthData();\r\n  const { token_type, id_token } = authData.token || {};\r\n  const Authorization = token_type && id_token && `${token_type} ${id_token}`;\r\n  return Authorization;\r\n}"
+      },
+      "description": "获取 Authorization header",
+      "name": "getAuthorization",
+      "type": "function"
+    },
+    {
+      "builtin": true,
+      "content": {
+        "type": "JSFunction",
+        "value": "() => ({\r\n  // 详细配置见：http://dev-npm.tenxcloud.net/-/web/detail/@yunti/lowcode-datasource-axios-handler\r\n  interceptors: {\r\n    request: [\r\n      {\r\n        onFulfilled: (config) => {\r\n          if (!config.headers.get('Authorization')) {\r\n            config.headers.set('Authorization', this.getAuthorization());\r\n          }\r\n          return config;\r\n        }\r\n      }\r\n    ],\r\n  }\r\n})"
+      },
+      "description": "获取 axios 默认配置，也可在配置中指定拦截器，用于数据源初始化 axios handler",
+      "name": "getAxiosHanlderConfig",
+      "type": "function"
+    }
+  ]
+}

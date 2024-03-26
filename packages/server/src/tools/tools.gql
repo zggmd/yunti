@@ -1,0 +1,10 @@
+# 翻译文本
+mutation translate($text: String!, $from: String, $to: String!, $correct: Boolean) {
+  translate(text: $text, from: $from, to: $to, correct: $correct) {
+    text
+    translation
+    from
+    to
+    correctedText
+  }
+}

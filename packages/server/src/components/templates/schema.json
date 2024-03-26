@@ -1,0 +1,74 @@
+{
+  "componentsTree": [
+    {
+      "componentName": "Component",
+      "id": "<replace me>",
+      "fileName": "<replace me>",
+      "propTypes": [],
+      "props": {},
+      "state": {},
+      "css": "body {\n  font-size: 12px;\n}\n",
+      "lifeCycles": {
+        "componentDidMount": {
+          "type": "JSFunction",
+          "source": "function componentDidMount() {\n  console.log('did mount');\n}",
+          "value": "function componentDidMount() {\n  console.log('did mount');\n}"
+        },
+        "componentWillUnmount": {
+          "type": "JSFunction",
+          "source": "function componentWillUnmount() {\n  console.log('will unmount');\n}",
+          "value": "function componentWillUnmount() {\n  console.log('will unmount');\n}"
+        }
+      },
+      "methods": {},
+      "hidden": false,
+      "title": "",
+      "isLocked": false,
+      "condition": true,
+      "conditionGroup": ""
+    }
+  ],
+  "config": {
+    "authData": {},
+    "antd": {
+      "configProvider": {
+        "componentSize": "middle",
+        "space": {
+          "size": 12
+        },
+        "theme": {
+          "components": {
+            "Page": {
+              "pagePadding": 20,
+              "pagePaddingBottom": 32,
+              "pagePaddingTop": 20
+            },
+            "Row": {
+              "rowHorizontalGutter": 20,
+              "rowVerticalGutter": 20
+            }
+          },
+          "token": {
+            "borderRadius": 2,
+            "fontSize": 12,
+            "colorPrimary": "#00b96b",
+            "colorLink": "#00b96b",
+            "colorSuccess": "#5cb85c",
+            "colorWarning": "#ffbf00",
+            "colorError": "#f85a5a",
+            "colorLinkHover": "#6f8bf7"
+          }
+        }
+      }
+    }
+  },
+  "constants": {},
+  "i18n": {},
+  "meta": {
+    "name": "<replace me>",
+    "description": "<replace me>",
+    "version": "<replace me>"
+  },
+  "utils": [],
+  "version": "1.0.0"
+}

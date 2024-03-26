@@ -1,0 +1,158 @@
+# 创建用户
+mutation createUser($user: NewUserInput!) {
+  userCreate(user: $user) {
+    name
+    email
+  }
+}
+
+# 获取用户列表
+query getUsers {
+  users {
+    id
+    name
+    email
+  }
+}
+
+# 获取用户详情
+query getUser($id: String!) {
+  user(id: $id) {
+    id
+    name
+    email
+    role
+    createAt
+    updateAt
+  }
+}
+
+# 获取用户的详情及应用列表
+query getUserApps($id: String!) {
+  user(id: $id) {
+    id
+    name
+    role
+    apps {
+      id
+      name
+      namespace
+      description
+      createAt
+      updateAt
+      members {
+        role
+        member {
+          id
+          name
+        }
+      }
+    }
+  }
+}
+
+# 获取用户的详情及组件列表
+query getUserComponents($id: String!) {
+  user(id: $id) {
+    id
+    name
+    role
+    components {
+      id
+      name
+      namespace
+      description
+      createAt
+      updateAt
+      members {
+        role
+        member {
+          id
+          name
+        }
+      }
+    }
+  }
+}
+
+# 获取当前用户详情
+query getCurrentUser {
+  currentUser {
+    id
+    name
+    email
+    role
+    createAt
+    updateAt
+  }
+}
+
+# 获取当前用户的详情及应用列表
+query getCurrentUserApps {
+  currentUser {
+    id
+    name
+    role
+    apps {
+      id
+      name
+      namespace
+      description
+      createAt
+      updateAt
+      members {
+        role
+        member {
+          id
+          name
+        }
+      }
+    }
+  }
+}
+
+# 获取当前用户的详情及组件列表
+query getCurrentUserComponents {
+  currentUser {
+    id
+    name
+    role
+    components {
+      id
+      name
+      namespace
+      description
+      createAt
+      updateAt
+      members {
+        role
+        member {
+          id
+          name
+        }
+      }
+    }
+  }
+}
+
+# 获取当前用户的组件列表及版本
+query getCurrentUserComponentsWithVersions {
+  currentUser {
+    id
+    name
+    role
+    components {
+      id
+      name
+      namespace
+      description
+      createAt
+      updateAt
+      versions {
+        commitId
+        version
+        description
+      }
+    }
+  }
+}

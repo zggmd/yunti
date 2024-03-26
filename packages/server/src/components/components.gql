@@ -1,0 +1,135 @@
+# 创建组件
+mutation createComponent($component: NewComponentInput!) {
+  componentCreate(component: $component) {
+    id
+    name
+    namespace
+    description
+    assets
+    schema
+    createAt
+    updateAt
+    members {
+      componentId
+      userId
+      role
+    }
+  }
+}
+
+# 更新组件
+mutation updateComponent($component: UpdateComponentInput!) {
+  componentUpdate(component: $component) {
+    id
+    name
+    namespace
+    description
+    assets
+    schema
+    createAt
+    updateAt
+  }
+}
+
+# 更新组件的国际化文案
+mutation updateComponentI18n($id: String!, $i18n: JSON!) {
+  componentUpdateI18n(id: $id, i18n: $i18n)
+}
+
+# 获取组件列表
+query getComponents {
+  components {
+    id
+    name
+    namespace
+    description
+    createAt
+    updateAt
+    members {
+      role
+      member {
+        id
+        name
+      }
+    }
+  }
+}
+
+# 获取组件详情
+query getComponent($id: String!, $tree: String) {
+  component(id: $id, tree: $tree) {
+    id
+    name
+    namespace
+    description
+    assets
+    schema
+    i18nUsage
+    members {
+      role
+      member {
+        id
+        name
+      }
+    }
+    versions {
+      componentId
+      commitId
+      version
+      description
+      createAt
+      updateAt
+    }
+    branches {
+      name
+      displayName
+      hash
+      committer
+      email
+      date
+      message
+    }
+  }
+}
+
+# 获取组件提交记录
+query getComponentCommits($id: String!, $commitsArgs: CommitsArgs) {
+  component(id: $id) {
+    id
+    name
+    namespace
+    description
+    commits(commitsArgs: $commitsArgs) {
+      page
+      pageSize
+      totalCount
+      hasNextPage
+      nodes {
+        hash
+        committer
+        email
+        date
+        message
+      }
+    }
+  }
+}
+
+# 提交组件的更改
+mutation commitComponent($id: String!, $message: String!) {
+  componentCommit(id: $id, message: $message) {
+    hash
+  }
+}
+
+# 发布组件版本
+mutation releaseComponent($release: ReleaseComponentInput!) {
+  componentRelease(release: $release) {
+    componentId
+    commitId
+    version
+    description
+    createAt
+    updateAt
+  }
+}

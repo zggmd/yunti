@@ -1,0 +1,98 @@
+# 创建发布渠道
+mutation createPublishChannel($channel: NewPublishChannelInput!) {
+  publishChannelCreate(channel: $channel) {
+    id
+    name
+    type
+    status
+    detail {
+      ... on PublishChannelHelm {
+        url
+        username
+        status
+      }
+      ... on PublishChannelGithub {
+        token
+      }
+    }
+    appId
+    updatorId
+    createAt
+    updateAt
+  }
+}
+
+# 删除发布渠道
+mutation deletePublishChannel($id: String!, $clearPublishRecords: Boolean) {
+  publishChannelDelete(id: $id, clearPublishRecords: $clearPublishRecords)
+}
+
+# 修改发布渠道
+mutation updatePublishChannel($channel: UpdatePublishChannelInput!) {
+  publishChannelUpdate(channel: $channel) {
+    id
+    name
+    type
+    status
+    detail {
+      ... on PublishChannelHelm {
+        url
+        username
+        status
+      }
+      ... on PublishChannelGithub {
+        token
+      }
+    }
+    appId
+    updatorId
+    createAt
+    updateAt
+  }
+}
+
+# 获取发布渠道详情
+query getPublishChannelDetail($id: String!) {
+  publishChannel(id: $id) {
+    id
+    name
+    type
+    status
+    detail {
+      ... on PublishChannelHelm {
+        url
+        username
+        status
+      }
+      ... on PublishChannelGithub {
+        token
+      }
+    }
+    appId
+    updatorId
+    createAt
+    updateAt
+  }
+}
+
+# 获取 helm 发布渠道的一个 chart 版本
+query getPublishChannelHelmChart($id: String!, $chartName: String!, $chartVersion: String!) {
+  publishChannel(id: $id) {
+    id
+    name
+    type
+    status
+    detail {
+      ... on PublishChannelHelm {
+        url
+        chart(name: $chartName, version: $chartVersion) {
+          name
+          version
+          home
+          digest
+          created
+        }
+      }
+    }
+  }
+}

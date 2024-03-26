@@ -1,0 +1,16 @@
+FROM yuntijs/yunti-server:base-1.0 as builder
+LABEL maintainer="zhangpc<zhang.pengcheng3@neolink.com>"
+
+ENV NODE_ENV production
+
+COPY . /usr/src/app/
+
+# package files
+RUN nr build
+
+FROM 172.22.96.119/tenx_containers/busybox:tenx
+COPY --from=builder /usr/src/app/configs /build-files/app/configs
+COPY --from=builder /usr/src/app/dist /build-files/app/dist
+COPY --from=builder /usr/src/app/public /build-files/app/public
+COPY --from=builder /usr/src/app/.gitdiff /build-files/app/.gitdiff
+COPY --from=builder /usr/src/app/.gitversion /build-files/app/.gitversion

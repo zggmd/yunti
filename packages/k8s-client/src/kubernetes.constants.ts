@@ -1,0 +1,1 @@
+export const K8S_CLIENT_CONFIG = 'K8S_CLIENT_CONFIG';

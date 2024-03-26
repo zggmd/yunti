@@ -1,0 +1,18 @@
+# 获取组件版本详情
+query getComponentVersion($componentId: String!, $version: String!) {
+  componentVersion(componentId: $componentId, version: $version) {
+    componentId
+    commitId
+    version
+    description
+    createAt
+    updateAt
+    component {
+      id
+      name
+      description
+      assets
+      schema
+    }
+  }
+}

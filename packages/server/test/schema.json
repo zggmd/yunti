@@ -1,0 +1,1984 @@
+{
+  "componentsMap": [
+    {
+      "devMode": "lowCode",
+      "componentName": "LccComponentXnggv"
+    },
+    {
+      "devMode": "lowCode",
+      "componentName": "LccComponentChj61"
+    },
+    {
+      "package": "@tenx-ui/materials",
+      "version": "1.5.28",
+      "exportName": "Typography",
+      "destructuring": true,
+      "subName": "Title",
+      "componentName": "Typography.Title"
+    },
+    {
+      "package": "@tenx-ui/materials",
+      "version": "1.5.28",
+      "exportName": "Col",
+      "destructuring": true,
+      "subName": "",
+      "componentName": "Col"
+    },
+    {
+      "package": "@tenx-ui/materials",
+      "version": "1.5.28",
+      "exportName": "Alert",
+      "destructuring": true,
+      "subName": "",
+      "componentName": "Alert"
+    },
+    {
+      "package": "@tenx-ui/icon-materials",
+      "version": "0.1.6",
+      "exportName": "AntdIconPlusOutlined",
+      "destructuring": true,
+      "subName": "",
+      "componentName": "AntdIconPlusOutlined"
+    },
+    {
+      "package": "@tenx-ui/materials",
+      "version": "1.5.28",
+      "exportName": "Button",
+      "destructuring": true,
+      "subName": "",
+      "componentName": "Button"
+    },
+    {
+      "package": "@tenx-ui/icon-materials",
+      "version": "0.1.6",
+      "exportName": "TenxIconRefresh",
+      "destructuring": true,
+      "subName": "",
+      "componentName": "TenxIconRefresh"
+    },
+    {
+      "package": "@tenx-ui/materials",
+      "version": "1.5.28",
+      "exportName": "Input",
+      "destructuring": true,
+      "subName": "Search",
+      "componentName": "Input.Search"
+    },
+    {
+      "package": "@tenx-ui/materials",
+      "version": "1.5.28",
+      "exportName": "Space",
+      "destructuring": true,
+      "subName": "",
+      "componentName": "Space"
+    },
+    {
+      "package": "@tenx-ui/icon-materials",
+      "version": "0.1.6",
+      "exportName": "AntdIconSettingOutlined",
+      "destructuring": true,
+      "subName": "",
+      "componentName": "AntdIconSettingOutlined"
+    },
+    {
+      "package": "@tenx-ui/materials",
+      "version": "1.5.28",
+      "exportName": "Dropdown",
+      "destructuring": true,
+      "subName": "",
+      "componentName": "Dropdown"
+    },
+    {
+      "package": "@tenx-ui/materials",
+      "version": "1.5.28",
+      "exportName": "Image",
+      "destructuring": true,
+      "subName": "",
+      "componentName": "Image"
+    },
+    {
+      "package": "@tenx-ui/materials",
+      "version": "1.5.28",
+      "exportName": "Typography",
+      "destructuring": true,
+      "subName": "Paragraph",
+      "componentName": "Typography.Paragraph"
+    },
+    {
+      "package": "@tenx-ui/materials",
+      "version": "1.5.28",
+      "exportName": "Row",
+      "destructuring": true,
+      "subName": "",
+      "componentName": "Row"
+    },
+    {
+      "package": "@tenx-ui/materials",
+      "version": "1.5.28",
+      "exportName": "Divider",
+      "destructuring": true,
+      "subName": "",
+      "componentName": "Divider"
+    },
+    {
+      "package": "@tenx-ui/materials",
+      "version": "1.5.28",
+      "exportName": "Status",
+      "destructuring": true,
+      "subName": "",
+      "componentName": "Status"
+    },
+    {
+      "package": "@tenx-ui/icon-materials",
+      "version": "0.1.6",
+      "exportName": "AntdIconInfoCircleOutlined",
+      "destructuring": true,
+      "subName": "",
+      "componentName": "AntdIconInfoCircleOutlined"
+    },
+    {
+      "package": "@tenx-ui/materials",
+      "version": "1.5.28",
+      "exportName": "Tooltip",
+      "destructuring": true,
+      "subName": "",
+      "componentName": "Tooltip"
+    },
+    {
+      "package": "@tenx-ui/materials",
+      "version": "1.5.28",
+      "exportName": "Tag",
+      "destructuring": true,
+      "subName": "",
+      "componentName": "Tag"
+    },
+    {
+      "package": "@tenx-ui/materials",
+      "version": "1.5.28",
+      "exportName": "Typography",
+      "destructuring": true,
+      "subName": "Time",
+      "componentName": "Typography.Time"
+    },
+    {
+      "package": "@tenx-ui/materials",
+      "version": "1.5.28",
+      "exportName": "Descriptions",
+      "destructuring": true,
+      "subName": "",
+      "componentName": "Descriptions"
+    },
+    {
+      "package": "@tenx-ui/materials",
+      "version": "1.5.28",
+      "exportName": "Card",
+      "destructuring": true,
+      "subName": "",
+      "componentName": "Card"
+    },
+    {
+      "package": "@tenx-ui/materials",
+      "version": "1.5.28",
+      "exportName": "List",
+      "destructuring": true,
+      "subName": "Item",
+      "componentName": "List.Item"
+    },
+    {
+      "package": "@tenx-ui/materials",
+      "version": "1.5.28",
+      "exportName": "List",
+      "destructuring": true,
+      "subName": "",
+      "componentName": "List"
+    },
+    {
+      "package": "@tenx-ui/materials",
+      "version": "1.5.28",
+      "exportName": "Pagination",
+      "destructuring": true,
+      "subName": "",
+      "componentName": "Pagination"
+    },
+    {
+      "package": "@tenx-ui/materials",
+      "version": "1.5.28",
+      "exportName": "Page",
+      "destructuring": true,
+      "subName": "",
+      "componentName": "Page"
+    }
+  ],
+  "componentsTree": [
+    {
+      "componentName": "Page",
+      "id": "page-vwko9",
+      "props": {
+        "sdkSwrFuncs": [{}]
+      },
+      "css": ".knowledge-card-tag {\n  max-width: 100px;\n  overflow: hidden;\n  white-space: nowrap;\n  text-overflow: ellipsis;\n}",
+      "meta": {
+        "title": "知识库管理",
+        "router": "/knowledge",
+        "appConfig": {
+          "antd": {
+            "configProvider": {
+              "antd": {
+                "configProvider": {
+                  "space": {
+                    "size": 12
+                  },
+                  "theme": {
+                    "token": {
+                      "fontSize": 12,
+                      "colorLink": "#4461eb",
+                      "colorError": "#f85a5a",
+                      "borderRadius": 4,
+                      "colorPrimary": "#4461eb",
+                      "colorSuccess": "#5cb85c",
+                      "colorWarning": "#ffbf00",
+                      "colorLinkHover": "#6f8bf7"
+                    },
+                    "components": {
+                      "Row": {
+                        "rowVerticalGutter": 16,
+                        "rowHorizontalGutter": 16
+                      },
+                      "Page": {
+                        "pagePadding": 20,
+                        "pageBackground": "#f0f0f0",
+                        "pagePaddingTop": 20,
+                        "pagePaddingBottom": 32
+                      }
+                    }
+                  },
+                  "componentSize": "middle"
+                }
+              }
+            }
+          }
+        }
+      },
+      "state": {
+        "pages": {
+          "type": "JSExpression",
+          "value": "{\n  currentPage: 1,\n  pageSize: 12,\n  total: 0\n}"
+        },
+        "loading": {
+          "type": "JSExpression",
+          "value": "false"
+        },
+        "pageRange": {
+          "type": "JSExpression",
+          "value": "[]"
+        },
+        "corpusList": {
+          "type": "JSExpression",
+          "value": "[]"
+        },
+        "searchName": {
+          "type": "JSExpression",
+          "value": "\"\""
+        },
+        "currentItem": {
+          "type": "JSExpression",
+          "value": "{}"
+        },
+        "editModalOpen": {
+          "type": "JSExpression",
+          "value": "false"
+        },
+        "deleteModalOpen": {
+          "type": "JSExpression",
+          "value": "false"
+        }
+      },
+      "title": "",
+      "hidden": false,
+      "methods": {
+        "getData": {
+          "type": "JSFunction",
+          "value": "function getData() {\n  var _JSON$parse;\n  this.setState({\n    loading: true\n  });\n  const project = (_JSON$parse = JSON.parse(localStorage.getItem('authData'))) === null || _JSON$parse === void 0 ? void 0 : _JSON$parse.project;\n  const {\n    currentPage,\n    pageSize\n  } = this.state.pages;\n  const params = {\n    namespace: project,\n    name: this.state.searchName,\n    page: currentPage,\n    pageSize\n  };\n  this.utils.bff.listKnowledgeBases({\n    input: params\n  }).then(res => {\n    const {\n      KnowledgeBase\n    } = res;\n    const {\n      listKnowledgeBases\n    } = KnowledgeBase || {};\n    const {\n      nodes,\n      totalCount\n    } = listKnowledgeBases || {};\n    this.setState({\n      corpusList: nodes || [],\n      loading: false,\n      pages: {\n        ...this.state.pages,\n        total: totalCount\n      }\n    });\n  }).catch(error => {\n    this.setState({\n      corpusList: [],\n      loading: false\n    });\n  });\n}",
+          "source": "function getData() {\n  this.setState({\n    loading: true\n  });\n  const project = JSON.parse(localStorage.getItem('authData'))?.project;\n  const {\n    currentPage,\n    pageSize\n  } = this.state.pages;\n  const params = {\n    namespace: project,\n    name: this.state.searchName,\n    page: currentPage,\n    pageSize\n  };\n  this.utils.bff.listKnowledgeBases({\n    input: params\n  }).then(res => {\n    const {\n      KnowledgeBase\n    } = res;\n    const {\n      listKnowledgeBases\n    } = KnowledgeBase || {};\n    const {\n      nodes,\n      totalCount\n    } = listKnowledgeBases || {};\n    this.setState({\n      corpusList: nodes || [],\n      loading: false,\n      pages: {\n        ...this.state.pages,\n        total: totalCount\n      }\n    });\n  }).catch(error => {\n    this.setState({\n      corpusList: [],\n      loading: false\n    });\n  });\n}"
+        },
+        "onChange": {
+          "type": "JSFunction",
+          "value": "function onChange(page, pageSize) {\n  // 页码或 pageSize 改变的回调\n  this.setState({\n    pages: {\n      ...this.state.pages,\n      currentPage: page,\n      pageSize\n    }\n  }, () => {\n    this.getData();\n  });\n}",
+          "source": "function onChange(page, pageSize) {\n  // 页码或 pageSize 改变的回调\n  this.setState({\n    pages: {\n      ...this.state.pages,\n      currentPage: page,\n      pageSize\n    }\n  }, () => {\n    this.getData();\n  });\n}"
+        },
+        "onSearch": {
+          "type": "JSFunction",
+          "value": "function onSearch(name) {\n  this.setState({\n    searchName: name,\n    pages: {\n      ...this.state.pages,\n      currentPage: 1\n    }\n  }, () => {\n    this.getData(name);\n  });\n}",
+          "source": "function onSearch(name) {\n  this.setState({\n    searchName: name,\n    pages: {\n      ...this.state.pages,\n      currentPage: 1\n    }\n  }, () => {\n    this.getData(name);\n  });\n}"
+        },
+        "returnTxt": {
+          "type": "JSFunction",
+          "value": "function returnTxt(item) {\n  return item;\n}",
+          "source": "function returnTxt(item) {\n  return item;\n}"
+        },
+        "showTotal": {
+          "type": "JSFunction",
+          "value": "function showTotal(total, range) {\n  return `共 ${total} 条`;\n}",
+          "source": "function showTotal(total, range) {\n  return `共 ${total} 条`;\n}"
+        },
+        "onMenuClick": {
+          "type": "JSFunction",
+          "value": "function onMenuClick({\n  item,\n  key,\n  keyPath,\n  domEvent\n}, extParams) {\n  domEvent.stopPropagation();\n  this.setState({\n    currentItem: extParams.data\n  });\n  switch (key) {\n    case 'edit':\n      {\n        this.setState({\n          editModalOpen: true\n        });\n      }\n      break;\n    case 'delete':\n      {\n        this.setState({\n          deleteModalOpen: true\n        });\n      }\n      break;\n    default:\n      break;\n  }\n}",
+          "source": "function onMenuClick({\n  item,\n  key,\n  keyPath,\n  domEvent\n}, extParams) {\n  domEvent.stopPropagation();\n  this.setState({\n    currentItem: extParams.data\n  });\n  switch (key) {\n    case 'edit':\n      {\n        this.setState({\n          editModalOpen: true\n        });\n      }\n      break;\n    case 'delete':\n      {\n        this.setState({\n          deleteModalOpen: true\n        });\n      }\n      break;\n    default:\n      break;\n  }\n}"
+        },
+        "getDataStatus": {
+          "type": "JSFunction",
+          "value": "function getDataStatus(isStatus, isTag) {\n  return [\n  // 导入中\n  {\n    type: 'primary',\n    [isStatus ? 'id' : 'value']: 'process',\n    [isStatus || isTag ? 'children' : 'text']: \"数据处理中\"\n  },\n  // 连接成功\n  {\n    type: 'success',\n    [isStatus ? 'id' : 'value']: 'success',\n    [isStatus || isTag ? 'children' : 'text']: \"数据处理完成\"\n  },\n  // 连接异常\n  {\n    type: 'error',\n    [isStatus ? 'id' : 'value']: 'error',\n    [isStatus || isTag ? 'children' : 'text']: \"数据处理失败\"\n  },\n  // 删除中\n  {\n    type: 'info',\n    [isStatus ? 'id' : 'value']: 'deleting',\n    [isStatus || isTag ? 'children' : 'text']: \"删除中\"\n  }];\n}",
+          "source": "function getDataStatus(isStatus, isTag) {\n  return [\n  // 导入中\n  {\n    type: 'primary',\n    [isStatus ? 'id' : 'value']: 'process',\n    [isStatus || isTag ? 'children' : 'text']: \"数据处理中\"\n  },\n  // 连接成功\n  {\n    type: 'success',\n    [isStatus ? 'id' : 'value']: 'success',\n    [isStatus || isTag ? 'children' : 'text']: \"数据处理完成\"\n  },\n  // 连接异常\n  {\n    type: 'error',\n    [isStatus ? 'id' : 'value']: 'error',\n    [isStatus || isTag ? 'children' : 'text']: \"数据处理失败\"\n  },\n  // 删除中\n  {\n    type: 'info',\n    [isStatus ? 'id' : 'value']: 'deleting',\n    [isStatus || isTag ? 'children' : 'text']: \"删除中\"\n  }];\n}"
+        },
+        "getStatusType": {
+          "type": "JSFunction",
+          "value": "function getStatusType(item) {\n  if (item.status === 'True') {\n    return 'success';\n  }\n  if (item.status === 'False') {\n    return 'error';\n  }\n  if (item.status === 'Deleting') {\n    return 'deleting';\n  }\n  return 'process';\n}",
+          "source": "function getStatusType(item) {\n  if (item.status === 'True') {\n    return 'success';\n  }\n  if (item.status === 'False') {\n    return 'error';\n  }\n  if (item.status === 'Deleting') {\n    return 'deleting';\n  }\n  return 'process';\n}"
+        },
+        "onCreateClick": {
+          "type": "JSFunction",
+          "value": "function onCreateClick(event) {\n  this.history.push(`/knowledge/create`);\n}",
+          "source": "function onCreateClick(event) {\n  this.history.push(`/knowledge/create`);\n}"
+        },
+        "onDetailClick": {
+          "type": "JSFunction",
+          "value": "function onDetailClick(e, extParams) {\n  this.history.push(`/knowledge/detail/${extParams.data.name}`);\n}",
+          "source": "function onDetailClick(e, extParams) {\n  this.history.push(`/knowledge/detail/${extParams.data.name}`);\n}"
+        },
+        "onEditModalOk": {
+          "type": "JSFunction",
+          "value": "function onEditModalOk() {\n  this.getData();\n  this.setState({\n    editModalOpen: false\n  });\n}",
+          "source": "function onEditModalOk() {\n  this.getData();\n  this.setState({\n    editModalOpen: false\n  });\n}"
+        },
+        "onDeleteModalOk": {
+          "type": "JSFunction",
+          "value": "function onDeleteModalOk() {\n  this.getData();\n  this.setState({\n    deleteModalOpen: false\n  });\n}",
+          "source": "function onDeleteModalOk() {\n  this.getData();\n  this.setState({\n    deleteModalOpen: false\n  });\n}"
+        },
+        "stopPropagation": {
+          "type": "JSFunction",
+          "value": "function stopPropagation(e) {\n  e.stopPropagation();\n}",
+          "source": "function stopPropagation(e) {\n  e.stopPropagation();\n}"
+        },
+        "onShowSizeChange": {
+          "type": "JSFunction",
+          "value": "function onShowSizeChange(current, size) {\n  // pageSize 变化的回调\n  this.setState({\n    pages: {\n      ...this.state.pages,\n      pageSize: size\n    }\n  });\n}",
+          "source": "function onShowSizeChange(current, size) {\n  // pageSize 变化的回调\n  this.setState({\n    pages: {\n      ...this.state.pages,\n      pageSize: size\n    }\n  });\n}"
+        },
+        "onEditModalCancel": {
+          "type": "JSFunction",
+          "value": "function onEditModalCancel() {\n  this.setState({\n    editModalOpen: false\n  });\n}",
+          "source": "function onEditModalCancel() {\n  this.setState({\n    editModalOpen: false\n  });\n}"
+        },
+        "onDeleteModalCancel": {
+          "type": "JSFunction",
+          "value": "function onDeleteModalCancel() {\n  this.setState({\n    deleteModalOpen: false\n  });\n}",
+          "source": "function onDeleteModalCancel() {\n  this.setState({\n    deleteModalOpen: false\n  });\n}"
+        },
+        "handlePageSizeChange": {
+          "type": "JSFunction",
+          "value": "function handlePageSizeChange(size) {\n  this.setState({\n    pages: {\n      ...this.state.pages,\n      pageSize: size\n    }\n  });\n}",
+          "source": "function handlePageSizeChange(size) {\n  this.setState({\n    pages: {\n      ...this.state.pages,\n      pageSize: size\n    }\n  });\n}"
+        }
+      },
+      "fileName": "Knowledge",
+      "isLocked": false,
+      "condition": true,
+      "dataSource": {
+        "list": []
+      },
+      "lifeCycles": {
+        "componentDidMount": {
+          "type": "JSFunction",
+          "value": "function componentDidMount() {\n  this.getData();\n}",
+          "source": "function componentDidMount() {\n  this.getData();\n}"
+        }
+      },
+      "originCode": "class Page extends Component {\n  state = {\n    corpusList: [],\n    searchName: \"\",\n    loading: false,\n    pages: {\n      currentPage: 1,\n      pageSize: 12,\n      total: 0\n    },\n    pageRange: [],\n    editModalOpen: false,\n    deleteModalOpen: false,\n    currentItem: {},\n  }\n\n  componentDidMount() {\n    this.getData()\n  }\n\n  returnTxt(item) {\n    return item;\n  }\n\n  getStatusType(item) {\n    if (item.status === 'True') {\n      return 'success'\n    } \n    if (item.status === 'False') {\n      return 'error'\n    }\n    if (item.status === 'Deleting') {\n      return 'deleting'\n    }\n    return 'process'\n  }\n\n  getDataStatus(isStatus, isTag) {\n    return [\n      // 导入中\n      {\n        type: 'primary',\n        [isStatus ? 'id' : 'value']: 'process',\n        [isStatus || isTag ? 'children' : 'text']: \"数据处理中\",\n      },\n      // 连接成功\n      {\n        type: 'success',\n        [isStatus ? 'id' : 'value']: 'success',\n        [isStatus || isTag ? 'children' : 'text']: \"数据处理完成\",\n      },\n      // 连接异常\n      {\n        type: 'error',\n        [isStatus ? 'id' : 'value']: 'error',\n        [isStatus || isTag ? 'children' : 'text']: \"数据处理失败\",\n      },\n      // 删除中\n      {\n        type: 'info',\n        [isStatus ? 'id' : 'value']: 'deleting',\n        [isStatus || isTag ? 'children' : 'text']: \"删除中\",\n      },\n    ];\n  }\n\n  onSearch(name) {\n    this.setState({\n      searchName: name,\n      pages: {\n        ...this.state.pages,\n        currentPage: 1\n      }\n    }, () => {\n      this.getData(name)\n    })\n  }\n\n  getData() {\n    this.setState({\n      loading: true\n    })\n    const project = JSON.parse(localStorage.getItem('authData'))?.project;\n    const { currentPage, pageSize } = this.state.pages\n    const params = { namespace: project, name: this.state.searchName, page: currentPage, pageSize }\n    this.utils.bff.listKnowledgeBases({ input: params }).then(res => {\n      const { KnowledgeBase } = res;\n      const { listKnowledgeBases } = KnowledgeBase || {};\n      const { nodes, totalCount } = listKnowledgeBases || {};\n\n      this.setState({\n        corpusList: nodes || [],\n        loading: false,\n        pages: {\n          ...this.state.pages,\n          total: totalCount\n        }\n      })\n    }).catch(error => {\n      this.setState({\n        corpusList: [],\n        loading: false\n      })\n    })\n  }\n\n  handlePageSizeChange(size) {\n    this.setState({\n      pages: {\n        ...this.state.pages,\n        pageSize: size\n      }\n    })\n  }\n\n  showTotal(total, range) {\n    return `共 ${total} 条`;\n  }\n\n  onShowSizeChange(current, size) {\n    // pageSize 变化的回调\n    this.setState({\n      pages: {\n        ...this.state.pages,\n        pageSize: size\n      }\n    })\n  }\n\n  onChange(page, pageSize) {\n    // 页码或 pageSize 改变的回调\n    this.setState({\n      pages: {\n        ...this.state.pages,\n        currentPage: page,\n        pageSize\n      }\n    }, () => {\n      this.getData()\n    })\n  }\n\n  onDetailClick(e, extParams) {\n    this.history.push(`/knowledge/detail/${extParams.data.name}`)\n  }\n\n  onCreateClick(event) {\n    this.history.push(`/knowledge/create`)\n  }\n\n  onMenuClick({ item, key, keyPath, domEvent }, extParams){\n    domEvent.stopPropagation();\n    this.setState({\n      currentItem: extParams.data,\n    })\n    switch(key) {\n      case 'edit': {\n        this.setState({\n          editModalOpen: true,\n        })\n      }\n        break;\n      case 'delete': {\n        this.setState({\n          deleteModalOpen: true,\n        })\n      }\n        break;\n      default:\n        break;\n    }\n  }\n\n  onEditModalOk() {\n    this.getData()\n    this.setState({\n      editModalOpen: false,\n    })\n  }\n\n\tonEditModalCancel(){\n    this.setState({\n      editModalOpen: false,\n    })\n  }\n\n  onDeleteModalOk() {\n    this.getData()\n    this.setState({\n      deleteModalOpen: false,\n    })\n  }\n\n  onDeleteModalCancel() {\n    this.setState({\n      deleteModalOpen: false,\n    })\n  }\n  stopPropagation(e) {\n    e.stopPropagation();\n  }\n}\n",
+      "conditionGroup": "",
+      "children": [
+        {
+          "componentName": "LccComponentXnggv",
+          "id": "node_oclpjnjhoq10",
+          "props": {
+            "name": {
+              "type": "JSExpression",
+              "value": "this.state.currentItem?.name"
+            },
+            "onOk": {
+              "type": "JSFunction",
+              "value": "function(){return this.onEditModalOk.apply(this,Array.prototype.slice.call(arguments).concat([])) }"
+            },
+            "open": {
+              "mock": "true",
+              "type": "JSExpression",
+              "value": "this.state.editModalOpen"
+            },
+            "__events": {
+              "eventList": [
+                {
+                  "name": "onOk",
+                  "disabled": true,
+                  "template": "",
+                  "description": "保存成功的后调"
+                },
+                {
+                  "name": "onCancel",
+                  "disabled": true,
+                  "template": "",
+                  "description": "取消的回调函数"
+                }
+              ],
+              "eventDataList": [
+                {
+                  "name": "onCancel",
+                  "type": "componentEvent",
+                  "relatedEventName": "onEditModalCancel"
+                },
+                {
+                  "name": "onOk",
+                  "type": "componentEvent",
+                  "relatedEventName": "onEditModalOk"
+                }
+              ]
+            },
+            "onCancel": {
+              "type": "JSFunction",
+              "value": "function(){return this.onEditModalCancel.apply(this,Array.prototype.slice.call(arguments).concat([])) }"
+            },
+            "namespace": {
+              "type": "JSExpression",
+              "value": "this.state.currentItem?.namespace"
+            },
+            "initialValues": {
+              "type": "JSExpression",
+              "value": "this.state.currentItem"
+            },
+            "__component_name": "LccComponentXnggv",
+            "_unsafe_MixedSetter____condition____select": "VariableSetter"
+          },
+          "title": "",
+          "hidden": false,
+          "isLocked": false,
+          "loopArgs": ["", ""],
+          "condition": {
+            "type": "JSExpression",
+            "value": "this.state.editModalOpen"
+          },
+          "conditionGroup": ""
+        },
+        {
+          "componentName": "LccComponentChj61",
+          "id": "node_oclpkrfdnz11",
+          "props": {
+            "name": {
+              "type": "JSExpression",
+              "value": "this.state.currentItem?.name"
+            },
+            "onOk": {
+              "type": "JSFunction",
+              "value": "function(){return this.onDeleteModalOk.apply(this,Array.prototype.slice.call(arguments).concat([])) }"
+            },
+            "__events": {
+              "eventList": [
+                {
+                  "name": "onOk",
+                  "disabled": true,
+                  "template": "",
+                  "description": "删除完成的回调"
+                },
+                {
+                  "name": "onCancel",
+                  "disabled": true,
+                  "template": "",
+                  "description": "删除取消的回调"
+                }
+              ],
+              "eventDataList": [
+                {
+                  "name": "onOk",
+                  "type": "componentEvent",
+                  "relatedEventName": "onDeleteModalOk"
+                },
+                {
+                  "name": "onCancel",
+                  "type": "componentEvent",
+                  "relatedEventName": "onDeleteModalCancel"
+                }
+              ]
+            },
+            "onCancel": {
+              "type": "JSFunction",
+              "value": "function(){return this.onDeleteModalCancel.apply(this,Array.prototype.slice.call(arguments).concat([])) }"
+            },
+            "namespace": {
+              "type": "JSExpression",
+              "value": "this.state.currentItem?.namespace"
+            },
+            "displayName": {
+              "type": "JSExpression",
+              "value": "this.state.currentItem?.displayName"
+            },
+            "__component_name": "LccComponentChj61",
+            "_unsafe_MixedSetter____condition____select": "VariableSetter"
+          },
+          "title": "",
+          "hidden": true,
+          "isLocked": false,
+          "loopArgs": ["", ""],
+          "condition": {
+            "type": "JSExpression",
+            "value": "this.state.deleteModalOpen"
+          },
+          "conditionGroup": ""
+        },
+        {
+          "componentName": "Row",
+          "id": "node_oclopce8ym1",
+          "props": {
+            "wrap": true,
+            "__component_name": "Row"
+          },
+          "title": "",
+          "hidden": false,
+          "isLocked": false,
+          "condition": true,
+          "conditionGroup": "",
+          "children": [
+            {
+              "componentName": "Col",
+              "id": "node_oclopce8ym2",
+              "props": {
+                "span": 24,
+                "__component_name": "Col"
+              },
+              "title": "",
+              "hidden": false,
+              "isLocked": false,
+              "condition": true,
+              "conditionGroup": "",
+              "children": [
+                {
+                  "componentName": "Typography.Title",
+                  "id": "node_oclopci92s3",
+                  "props": {
+                    "bold": true,
+                    "level": 1,
+                    "bordered": false,
+                    "children": "知识库管理",
+                    "ellipsis": true,
+                    "__component_name": "Typography.Title"
+                  },
+                  "title": "",
+                  "hidden": false,
+                  "isLocked": false,
+                  "condition": true,
+                  "conditionGroup": ""
+                }
+              ]
+            },
+            {
+              "componentName": "Col",
+              "id": "node_oclpthgw462l",
+              "props": {
+                "span": 24,
+                "__component_name": "Col"
+              },
+              "title": "",
+              "hidden": false,
+              "isLocked": false,
+              "condition": true,
+              "conditionGroup": "",
+              "children": [
+                {
+                  "componentName": "Alert",
+                  "id": "node_oclpthgw462v",
+                  "props": {
+                    "type": "info",
+                    "message": "构建私域文档以及知识管理的能力，支持多种数据类型，上传的数据文件将会储存至向量数据库中。",
+                    "showIcon": true,
+                    "__component_name": "Alert"
+                  },
+                  "title": "",
+                  "hidden": false,
+                  "isLocked": false,
+                  "condition": true,
+                  "conditionGroup": ""
+                }
+              ]
+            },
+            {
+              "componentName": "Col",
+              "id": "node_oclopce8ym3",
+              "props": {
+                "span": 24,
+                "__component_name": "Col"
+              },
+              "title": "",
+              "hidden": false,
+              "isLocked": false,
+              "condition": true,
+              "conditionGroup": "",
+              "children": [
+                {
+                  "componentName": "Card",
+                  "id": "node_oclopci92s4",
+                  "props": {
+                    "size": "default",
+                    "type": "inner",
+                    "style": {
+                      "paddingTop": "4px",
+                      "paddingBottom": "16px"
+                    },
+                    "actions": [],
+                    "loading": false,
+                    "bordered": false,
+                    "hoverable": false,
+                    "__component_name": "Card"
+                  },
+                  "title": "",
+                  "hidden": false,
+                  "isLocked": false,
+                  "loopArgs": ["", ""],
+                  "condition": true,
+                  "conditionGroup": "",
+                  "children": [
+                    {
+                      "componentName": "Row",
+                      "id": "node_oclopci92s5",
+                      "props": {
+                        "wrap": true,
+                        "__component_name": "Row"
+                      },
+                      "title": "",
+                      "hidden": false,
+                      "isLocked": false,
+                      "loopArgs": ["", ""],
+                      "condition": true,
+                      "conditionGroup": "",
+                      "children": [
+                        {
+                          "componentName": "Col",
+                          "id": "node_oclopci92s6",
+                          "props": {
+                            "span": 24,
+                            "__component_name": "Col"
+                          },
+                          "title": "",
+                          "hidden": false,
+                          "isLocked": false,
+                          "loopArgs": ["", ""],
+                          "condition": true,
+                          "conditionGroup": "",
+                          "children": [
+                            {
+                              "componentName": "Space",
+                              "id": "node_oclopci92s8",
+                              "props": {
+                                "align": "center",
+                                "direction": "horizontal",
+                                "__component_name": "Space"
+                              },
+                              "title": "",
+                              "hidden": false,
+                              "isLocked": false,
+                              "condition": true,
+                              "conditionGroup": "",
+                              "children": [
+                                {
+                                  "componentName": "Button",
+                                  "id": "node_oclopci92s9",
+                                  "props": {
+                                    "href": "",
+                                    "icon": {
+                                      "type": "JSSlot",
+                                      "value": [
+                                        {
+                                          "componentName": "AntdIconPlusOutlined",
+                                          "id": "node_oclopci92ss",
+                                          "props": {
+                                            "__component_name": "AntdIconPlusOutlined"
+                                          },
+                                          "title": "",
+                                          "hidden": false,
+                                          "isLocked": false,
+                                          "condition": true,
+                                          "conditionGroup": ""
+                                        }
+                                      ],
+                                      "id": "node_oclopci92sr"
+                                    },
+                                    "type": "primary",
+                                    "block": false,
+                                    "ghost": false,
+                                    "shape": "default",
+                                    "danger": false,
+                                    "target": "_self",
+                                    "onClick": {
+                                      "type": "JSFunction",
+                                      "value": "function(){return this.onCreateClick.apply(this,Array.prototype.slice.call(arguments).concat([])) }"
+                                    },
+                                    "__events": {
+                                      "eventList": [
+                                        {
+                                          "name": "onClick",
+                                          "disabled": true,
+                                          "template": "onClick(event,${extParams}){\n// 点击按钮时的回调\nconsole.log('onClick', event);}"
+                                        }
+                                      ],
+                                      "eventDataList": [
+                                        {
+                                          "name": "onClick",
+                                          "type": "componentEvent",
+                                          "relatedEventName": "onCreateClick"
+                                        }
+                                      ]
+                                    },
+                                    "children": "新增知识库",
+                                    "disabled": false,
+                                    "__component_name": "Button"
+                                  },
+                                  "title": "",
+                                  "hidden": false,
+                                  "isLocked": false,
+                                  "condition": true,
+                                  "conditionGroup": ""
+                                },
+                                {
+                                  "componentName": "Button",
+                                  "id": "node_oclopci92sa",
+                                  "props": {
+                                    "icon": {
+                                      "type": "JSSlot",
+                                      "value": [
+                                        {
+                                          "componentName": "TenxIconRefresh",
+                                          "id": "node_oclopci92s16",
+                                          "props": {
+                                            "__component_name": "TenxIconRefresh"
+                                          },
+                                          "title": "",
+                                          "hidden": false,
+                                          "isLocked": false,
+                                          "condition": true,
+                                          "conditionGroup": ""
+                                        }
+                                      ],
+                                      "id": "node_oclopci92st"
+                                    },
+                                    "block": false,
+                                    "ghost": false,
+                                    "shape": "default",
+                                    "danger": false,
+                                    "onClick": {
+                                      "type": "JSFunction",
+                                      "value": "function(){return this.getData.apply(this,Array.prototype.slice.call(arguments).concat([])) }"
+                                    },
+                                    "__events": {
+                                      "eventList": [
+                                        {
+                                          "name": "onClick",
+                                          "disabled": true,
+                                          "template": "onClick(event,${extParams}){\n// 点击按钮时的回调\nconsole.log('onClick', event);}"
+                                        }
+                                      ],
+                                      "eventDataList": [
+                                        {
+                                          "name": "onClick",
+                                          "type": "componentEvent",
+                                          "relatedEventName": "getData"
+                                        }
+                                      ]
+                                    },
+                                    "children": "刷新",
+                                    "disabled": false,
+                                    "__component_name": "Button"
+                                  },
+                                  "title": "",
+                                  "hidden": false,
+                                  "isLocked": false,
+                                  "condition": true,
+                                  "conditionGroup": ""
+                                },
+                                {
+                                  "componentName": "Input.Search",
+                                  "id": "node_oclopci92sq",
+                                  "props": {
+                                    "__events": {
+                                      "eventList": [
+                                        {
+                                          "name": "onChange",
+                                          "disabled": false,
+                                          "template": "onChange(event,${extParams}){\n// 输入框内容变化时的回调\nconsole.log('onChange',event);}"
+                                        },
+                                        {
+                                          "name": "onPressEnter",
+                                          "disabled": false,
+                                          "template": "onPressEnter(event,${extParams}){\n// 按下回车的回调\nconsole.log('onPressEnter',event);}"
+                                        },
+                                        {
+                                          "name": "onSearch",
+                                          "disabled": true,
+                                          "template": "onSearch(value,event,${extParams}){\n// 点击搜索图标、清除图标，或按下回车键时的回调\nconsole.log('onSearch',value,event);}"
+                                        },
+                                        {
+                                          "name": "onFocus",
+                                          "disabled": false,
+                                          "template": "onFocus(event,${extParams}){\n// 获取焦点回调\nconsole.log('onFocus',event);}"
+                                        },
+                                        {
+                                          "name": "onKeyDown",
+                                          "disabled": false,
+                                          "template": "onKeyDown(event,${extParams}){\n// 按键按下时的回调\nconsole.log('onKeyDown',event);}"
+                                        },
+                                        {
+                                          "name": "onKeyPress",
+                                          "disabled": false,
+                                          "template": "onKeyPress(event,${extParams}){\n// 按键按下后的回调\nconsole.log('onKeyPress',event);}"
+                                        },
+                                        {
+                                          "name": "onKeyUp",
+                                          "disabled": false,
+                                          "template": "onKeyUp(event,${extParams}){\n// 按键释放回调\nconsole.log('onKeyUp',event);}"
+                                        },
+                                        {
+                                          "name": "onBlur",
+                                          "disabled": false,
+                                          "template": "onBlur(event,${extParams}){\n// 按键释放回调\nconsole.log('onBlur',event);}"
+                                        }
+                                      ],
+                                      "eventDataList": [
+                                        {
+                                          "name": "onSearch",
+                                          "type": "componentEvent",
+                                          "relatedEventName": "onSearch"
+                                        }
+                                      ]
+                                    },
+                                    "onSearch": {
+                                      "type": "JSFunction",
+                                      "value": "function(){return this.onSearch.apply(this,Array.prototype.slice.call(arguments).concat([])) }"
+                                    },
+                                    "placeholder": "请输入知识库名称搜索",
+                                    "__component_name": "Input.Search"
+                                  },
+                                  "title": "",
+                                  "hidden": false,
+                                  "isLocked": false,
+                                  "condition": true,
+                                  "conditionGroup": ""
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "componentName": "Col",
+                          "id": "node_oclopci92s7",
+                          "props": {
+                            "span": 24,
+                            "__component_name": "Col"
+                          },
+                          "title": "",
+                          "hidden": false,
+                          "isLocked": false,
+                          "condition": true,
+                          "conditionGroup": "",
+                          "children": [
+                            {
+                              "componentName": "List",
+                              "id": "node_oclopciat4l",
+                              "props": {
+                                "grid": {
+                                  "lg": 3,
+                                  "md": 2,
+                                  "sm": 2,
+                                  "xl": 4,
+                                  "xs": 2,
+                                  "xxl": 4,
+                                  "column": 3,
+                                  "gutter": 16
+                                },
+                                "size": "small",
+                                "split": false,
+                                "footer": "",
+                                "header": "",
+                                "rowKey": "id",
+                                "loading": {
+                                  "mock": true,
+                                  "type": "JSExpression",
+                                  "value": "this.state.loading"
+                                },
+                                "bordered": false,
+                                "dataSource": {
+                                  "type": "JSExpression",
+                                  "value": "this.state.corpusList"
+                                },
+                                "gridEnable": true,
+                                "itemLayout": "horizontal",
+                                "renderItem": {
+                                  "type": "JSSlot",
+                                  "params": ["item"],
+                                  "value": [
+                                    {
+                                      "componentName": "List.Item",
+                                      "id": "node_oclopciat4p",
+                                      "props": {
+                                        "extra": "",
+                                        "actions": [],
+                                        "_unsafe_MixedSetter____loop____select": "JsonSetter"
+                                      },
+                                      "title": "",
+                                      "hidden": false,
+                                      "isLocked": false,
+                                      "loopArgs": ["", ""],
+                                      "condition": true,
+                                      "conditionGroup": "",
+                                      "children": [
+                                        {
+                                          "componentName": "Card",
+                                          "id": "node_oclopciat4q",
+                                          "props": {
+                                            "size": "default",
+                                            "type": "default",
+                                            "cover": "",
+                                            "style": {},
+                                            "actions": [],
+                                            "loading": false,
+                                            "onClick": {
+                                              "type": "JSFunction",
+                                              "value": "function(){return this.onDetailClick.apply(this,Array.prototype.slice.call(arguments).concat([{\n\t\"data\": this.item\n}])) }"
+                                            },
+                                            "__events": {
+                                              "eventList": [
+                                                {
+                                                  "name": "onClick",
+                                                  "disabled": true,
+                                                  "template": "onClick(e, ${extParams}){\n// 事件的 handler\nconsole.log(e, 'onClick');}"
+                                                }
+                                              ],
+                                              "eventDataList": [
+                                                {
+                                                  "name": "onClick",
+                                                  "type": "componentEvent",
+                                                  "paramStr": "{\n\t\"data\": this.item\n}",
+                                                  "relatedEventName": "onDetailClick"
+                                                }
+                                              ]
+                                            },
+                                            "bordered": true,
+                                            "bodyStyle": {
+                                              "position": "relative"
+                                            },
+                                            "hoverable": true
+                                          },
+                                          "title": "",
+                                          "hidden": false,
+                                          "isLocked": false,
+                                          "loopArgs": ["", ""],
+                                          "condition": true,
+                                          "conditionGroup": "",
+                                          "children": [
+                                            {
+                                              "componentName": "Row",
+                                              "id": "node_oclopciat411",
+                                              "props": {
+                                                "wrap": true,
+                                                "gutter": [0, 0],
+                                                "h-gutter": 0,
+                                                "v-gutter": 0,
+                                                "__component_name": "Row"
+                                              },
+                                              "title": "",
+                                              "hidden": false,
+                                              "isLocked": false,
+                                              "condition": true,
+                                              "conditionGroup": "",
+                                              "children": [
+                                                {
+                                                  "componentName": "Col",
+                                                  "id": "node_oclopejkov3j",
+                                                  "props": {
+                                                    "span": 24,
+                                                    "style": {
+                                                      "right": "24px",
+                                                      "position": "absolute"
+                                                    },
+                                                    "__component_name": "Col"
+                                                  },
+                                                  "title": "",
+                                                  "hidden": false,
+                                                  "isLocked": false,
+                                                  "condition": true,
+                                                  "conditionGroup": "",
+                                                  "children": [
+                                                    {
+                                                      "componentName": "Dropdown",
+                                                      "id": "node_oclopekmt03",
+                                                      "props": {
+                                                        "menu": {
+                                                          "items": [
+                                                            {
+                                                              "key": "edit",
+                                                              "label": "编辑"
+                                                            },
+                                                            {
+                                                              "key": "delete",
+                                                              "label": "删除"
+                                                            }
+                                                          ],
+                                                          "onClick": {
+                                                            "type": "JSFunction",
+                                                            "value": "function(){return this.onMenuClick.apply(this,Array.prototype.slice.call(arguments).concat([{\n \t \"data\": this.item\n}])) }"
+                                                          }
+                                                        },
+                                                        "trigger": ["hover"],
+                                                        "__events": {
+                                                          "eventList": [
+                                                            {
+                                                              "name": "menu.onClick",
+                                                              "disabled": true,
+                                                              "template": "onDropDownClick({ item, key, keyPath, domEvent }, ${extParams}){\n// onClick\t点击 MenuItem 调用此函数 \nconsole.log('onDropDownClick', item, key, keyPath, domEvent);}"
+                                                            }
+                                                          ],
+                                                          "eventDataList": [
+                                                            {
+                                                              "name": "menu.onClick",
+                                                              "type": "componentEvent",
+                                                              "paramStr": "{\n \t \"data\": this.item\n}",
+                                                              "relatedEventName": "onMenuClick"
+                                                            }
+                                                          ]
+                                                        },
+                                                        "disabled": false,
+                                                        "placement": "bottomLeft",
+                                                        "__component_name": "Dropdown",
+                                                        "destroyPopupOnHide": true
+                                                      },
+                                                      "title": "",
+                                                      "hidden": false,
+                                                      "isLocked": false,
+                                                      "loopArgs": ["", ""],
+                                                      "condition": true,
+                                                      "conditionGroup": "",
+                                                      "children": [
+                                                        {
+                                                          "componentName": "Button",
+                                                          "id": "node_oclopekmt04",
+                                                          "props": {
+                                                            "type": "default",
+                                                            "block": false,
+                                                            "ghost": false,
+                                                            "shape": "default",
+                                                            "style": {
+                                                              "top": "-10px",
+                                                              "float": "right",
+                                                              "right": "-16px",
+                                                              "width": "48px",
+                                                              "border": "none",
+                                                              "zIndex": "2",
+                                                              "padding": "0",
+                                                              "boxShadow": "none"
+                                                            },
+                                                            "danger": false,
+                                                            "onClick": {
+                                                              "type": "JSFunction",
+                                                              "value": "function(){return this.stopPropagation.apply(this,Array.prototype.slice.call(arguments).concat([])) }"
+                                                            },
+                                                            "__events": {
+                                                              "eventList": [
+                                                                {
+                                                                  "name": "onClick",
+                                                                  "disabled": true,
+                                                                  "template": "onClick(event,${extParams}){\n// 点击按钮时的回调\nconsole.log('onClick', event);}"
+                                                                }
+                                                              ],
+                                                              "eventDataList": [
+                                                                {
+                                                                  "name": "onClick",
+                                                                  "type": "componentEvent",
+                                                                  "relatedEventName": "stopPropagation"
+                                                                }
+                                                              ]
+                                                            },
+                                                            "children": {
+                                                              "type": "JSSlot",
+                                                              "value": [
+                                                                {
+                                                                  "componentName": "AntdIconSettingOutlined",
+                                                                  "id": "node_oclopekmt08",
+                                                                  "props": {
+                                                                    "__component_name": "AntdIconSettingOutlined"
+                                                                  },
+                                                                  "title": "",
+                                                                  "hidden": false,
+                                                                  "isLocked": false,
+                                                                  "condition": true,
+                                                                  "conditionGroup": ""
+                                                                }
+                                                              ],
+                                                              "id": "node_oclopekmt05"
+                                                            },
+                                                            "disabled": false,
+                                                            "__component_name": "Button"
+                                                          },
+                                                          "title": "",
+                                                          "hidden": false,
+                                                          "isLocked": false,
+                                                          "condition": true,
+                                                          "conditionGroup": ""
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "componentName": "Col",
+                                                  "id": "node_oclopciat412",
+                                                  "props": {
+                                                    "span": 24,
+                                                    "__component_name": "Col"
+                                                  },
+                                                  "title": "",
+                                                  "hidden": false,
+                                                  "isLocked": false,
+                                                  "condition": true,
+                                                  "conditionGroup": "",
+                                                  "children": [
+                                                    {
+                                                      "componentName": "Row",
+                                                      "id": "node_oclope8h6z2",
+                                                      "props": {
+                                                        "wrap": false,
+                                                        "style": {
+                                                          "display": "flex",
+                                                          "alignItems": "center"
+                                                        },
+                                                        "gutter": [0, 0],
+                                                        "h-gutter": 0,
+                                                        "v-gutter": 0,
+                                                        "__component_name": "Row"
+                                                      },
+                                                      "title": "",
+                                                      "hidden": false,
+                                                      "isLocked": false,
+                                                      "condition": true,
+                                                      "conditionGroup": "",
+                                                      "children": [
+                                                        {
+                                                          "componentName": "Col",
+                                                          "id": "node_oclope8h6z3",
+                                                          "props": {
+                                                            "flex": "56px",
+                                                            "__component_name": "Col"
+                                                          },
+                                                          "title": "",
+                                                          "hidden": false,
+                                                          "isLocked": false,
+                                                          "condition": true,
+                                                          "conditionGroup": "",
+                                                          "children": [
+                                                            {
+                                                              "componentName": "Image",
+                                                              "id": "node_oclope8h6z5",
+                                                              "props": {
+                                                                "src": "data:image/png;base64,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",
+                                                                "style": {
+                                                                  "borderRadius": "28px"
+                                                                },
+                                                                "width": 56,
+                                                                "height": 56,
+                                                                "preview": false,
+                                                                "fallback": "",
+                                                                "__component_name": "Image"
+                                                              },
+                                                              "title": "",
+                                                              "hidden": false,
+                                                              "isLocked": false,
+                                                              "condition": true,
+                                                              "conditionGroup": ""
+                                                            }
+                                                          ]
+                                                        },
+                                                        {
+                                                          "componentName": "Col",
+                                                          "id": "node_oclope8h6z4",
+                                                          "props": {
+                                                            "flex": "auto",
+                                                            "__component_name": "Col"
+                                                          },
+                                                          "title": "",
+                                                          "hidden": false,
+                                                          "isLocked": false,
+                                                          "condition": true,
+                                                          "conditionGroup": "",
+                                                          "children": [
+                                                            {
+                                                              "componentName": "Row",
+                                                              "id": "node_oclope8h6z6",
+                                                              "props": {
+                                                                "wrap": true,
+                                                                "style": {
+                                                                  "cursor": "pointer",
+                                                                  "paddingLeft": "20px"
+                                                                },
+                                                                "gutter": [0, 0],
+                                                                "__events": {
+                                                                  "eventList": [
+                                                                    {
+                                                                      "name": "onClick",
+                                                                      "disabled": true,
+                                                                      "template": "onClick(e, ${extParams}){\n// 事件的 handler\nconsole.log(e, 'onClick');}"
+                                                                    }
+                                                                  ],
+                                                                  "eventDataList": []
+                                                                },
+                                                                "h-gutter": 0,
+                                                                "v-gutter": 0,
+                                                                "__component_name": "Row"
+                                                              },
+                                                              "title": "",
+                                                              "hidden": false,
+                                                              "isLocked": false,
+                                                              "loopArgs": ["", ""],
+                                                              "condition": true,
+                                                              "conditionGroup": "",
+                                                              "children": [
+                                                                {
+                                                                  "componentName": "Col",
+                                                                  "id": "node_oclope8h6z7",
+                                                                  "props": {
+                                                                    "style": {
+                                                                      "paddingRight": "32px"
+                                                                    },
+                                                                    "__component_name": "Col"
+                                                                  },
+                                                                  "title": "",
+                                                                  "hidden": false,
+                                                                  "isLocked": false,
+                                                                  "condition": true,
+                                                                  "conditionGroup": "",
+                                                                  "children": [
+                                                                    {
+                                                                      "componentName": "Typography.Title",
+                                                                      "id": "node_oclope8h6z9",
+                                                                      "props": {
+                                                                        "bold": true,
+                                                                        "level": 1,
+                                                                        "bordered": false,
+                                                                        "children": {
+                                                                          "type": "JSExpression",
+                                                                          "value": "this.utils.getFullName(this.item)"
+                                                                        },
+                                                                        "ellipsis": true,
+                                                                        "__component_name": "Typography.Title",
+                                                                        "_unsafe_MixedSetter_children_select": "VariableSetter"
+                                                                      },
+                                                                      "title": "",
+                                                                      "hidden": false,
+                                                                      "isLocked": false,
+                                                                      "condition": true,
+                                                                      "conditionGroup": ""
+                                                                    }
+                                                                  ]
+                                                                },
+                                                                {
+                                                                  "componentName": "Col",
+                                                                  "id": "node_oclope8h6z8",
+                                                                  "props": {
+                                                                    "span": 24,
+                                                                    "__component_name": "Col"
+                                                                  },
+                                                                  "title": "",
+                                                                  "hidden": false,
+                                                                  "isLocked": false,
+                                                                  "loopArgs": ["", ""],
+                                                                  "condition": true,
+                                                                  "conditionGroup": "",
+                                                                  "children": [
+                                                                    {
+                                                                      "componentName": "Typography.Paragraph",
+                                                                      "id": "node_oclope8h6za",
+                                                                      "props": {
+                                                                        "code": false,
+                                                                        "mark": false,
+                                                                        "style": {
+                                                                          "fontSize": ""
+                                                                        },
+                                                                        "delete": false,
+                                                                        "strong": false,
+                                                                        "children": {
+                                                                          "type": "JSExpression",
+                                                                          "value": "this.item.description || \"-\""
+                                                                        },
+                                                                        "disabled": false,
+                                                                        "editable": false,
+                                                                        "ellipsis": {
+                                                                          "rows": 1
+                                                                        },
+                                                                        "underline": false,
+                                                                        "_unsafe_MixedSetter_children_select": "VariableSetter",
+                                                                        "_unsafe_MixedSetter_ellipsis_select": "ObjectSetter"
+                                                                      },
+                                                                      "title": "",
+                                                                      "hidden": false,
+                                                                      "isLocked": false,
+                                                                      "loopArgs": ["", ""],
+                                                                      "condition": true,
+                                                                      "conditionGroup": ""
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "componentName": "Col",
+                                                  "id": "node_oclopek1zn1",
+                                                  "props": {
+                                                    "span": 24,
+                                                    "style": {
+                                                      "height": "36px",
+                                                      "marginBottom": "-15px"
+                                                    },
+                                                    "__component_name": "Col"
+                                                  },
+                                                  "title": "",
+                                                  "hidden": false,
+                                                  "isLocked": false,
+                                                  "condition": true,
+                                                  "conditionGroup": "",
+                                                  "children": [
+                                                    {
+                                                      "componentName": "Divider",
+                                                      "id": "node_oclopflb2s2",
+                                                      "props": {
+                                                        "mode": "line",
+                                                        "style": {
+                                                          "width": "calc(100% + 48px)",
+                                                          "marginLeft": "-24px"
+                                                        },
+                                                        "dashed": false,
+                                                        "defaultOpen": false,
+                                                        "__component_name": "Divider"
+                                                      },
+                                                      "title": "",
+                                                      "hidden": false,
+                                                      "isLocked": false,
+                                                      "condition": true,
+                                                      "conditionGroup": ""
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "componentName": "Row",
+                                              "id": "node_oclp0ut4csf",
+                                              "props": {
+                                                "wrap": true,
+                                                "__component_name": "Row"
+                                              },
+                                              "title": "",
+                                              "hidden": false,
+                                              "isLocked": false,
+                                              "condition": true,
+                                              "conditionGroup": "",
+                                              "children": [
+                                                {
+                                                  "componentName": "Col",
+                                                  "id": "node_oclp0ut4csg",
+                                                  "props": {
+                                                    "span": 24,
+                                                    "__component_name": "Col"
+                                                  },
+                                                  "title": "",
+                                                  "hidden": false,
+                                                  "isLocked": false,
+                                                  "condition": true,
+                                                  "conditionGroup": "",
+                                                  "children": [
+                                                    {
+                                                      "componentName": "Descriptions",
+                                                      "id": "node_oclp0ut4csk",
+                                                      "props": {
+                                                        "id": "",
+                                                        "size": "default",
+                                                        "colon": true,
+                                                        "items": [
+                                                          {
+                                                            "key": "ssfd772g2sk",
+                                                            "span": 1,
+                                                            "label": "状态",
+                                                            "children": {
+                                                              "type": "JSSlot",
+                                                              "value": [
+                                                                {
+                                                                  "componentName": "Space",
+                                                                  "id": "node_oclqalnx4r2",
+                                                                  "props": {
+                                                                    "size": 2,
+                                                                    "align": "center",
+                                                                    "direction": "horizontal",
+                                                                    "__component_name": "Space",
+                                                                    "_unsafe_MixedSetter_size_select": "NumberSetter"
+                                                                  },
+                                                                  "title": "",
+                                                                  "hidden": false,
+                                                                  "isLocked": false,
+                                                                  "condition": true,
+                                                                  "conditionGroup": "",
+                                                                  "children": [
+                                                                    {
+                                                                      "componentName": "Status",
+                                                                      "id": "node_oclp0ut4csq",
+                                                                      "props": {
+                                                                        "id": {
+                                                                          "type": "JSExpression",
+                                                                          "value": "this.getStatusType(this.item)"
+                                                                        },
+                                                                        "types": {
+                                                                          "type": "JSExpression",
+                                                                          "value": "this.getDataStatus(this, true)"
+                                                                        },
+                                                                        "getTypes": {
+                                                                          "type": "JSExpression",
+                                                                          "value": ""
+                                                                        },
+                                                                        "__component_name": "Status",
+                                                                        "_unsafe_MixedSetter_id_select": "VariableSetter",
+                                                                        "_unsafe_MixedSetter_types_select": "ExpressionSetter"
+                                                                      },
+                                                                      "title": "",
+                                                                      "hidden": false,
+                                                                      "isLocked": false,
+                                                                      "condition": true,
+                                                                      "conditionGroup": ""
+                                                                    },
+                                                                    {
+                                                                      "componentName": "Tooltip",
+                                                                      "id": "node_oclpvzqlpa2",
+                                                                      "props": {
+                                                                        "title": {
+                                                                          "type": "JSExpression",
+                                                                          "value": "this.item.message"
+                                                                        },
+                                                                        "__component_name": "Tooltip",
+                                                                        "_unsafe_MixedSetter_title_select": "VariableSetter",
+                                                                        "_unsafe_MixedSetter____condition____select": "VariableSetter"
+                                                                      },
+                                                                      "title": "",
+                                                                      "hidden": false,
+                                                                      "isLocked": false,
+                                                                      "loopArgs": ["", ""],
+                                                                      "condition": {
+                                                                        "type": "JSExpression",
+                                                                        "value": "this.item.status !== 'True' && this.item.message"
+                                                                      },
+                                                                      "conditionGroup": "",
+                                                                      "children": [
+                                                                        {
+                                                                          "componentName": "AntdIconInfoCircleOutlined",
+                                                                          "id": "node_oclpvzqlpa1",
+                                                                          "props": {
+                                                                            "style": {
+                                                                              "color": "#9b9b9b",
+                                                                              "marginLeft": "4px"
+                                                                            },
+                                                                            "__component_name": "AntdIconInfoCircleOutlined"
+                                                                          },
+                                                                          "title": "",
+                                                                          "hidden": false,
+                                                                          "isLocked": false,
+                                                                          "loopArgs": [null, null],
+                                                                          "condition": true,
+                                                                          "conditionGroup": ""
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                },
+                                                                {
+                                                                  "componentName": "Tag",
+                                                                  "id": "node_oclqalnx4r1",
+                                                                  "props": {
+                                                                    "color": "default",
+                                                                    "style": {
+                                                                      "marginLeft": "12px"
+                                                                    },
+                                                                    "children": {
+                                                                      "type": "JSExpression",
+                                                                      "value": "this.item.embedder?.displayName || this.item.embedder?.name"
+                                                                    },
+                                                                    "closable": false,
+                                                                    "className": "knowledge-card-tag",
+                                                                    "__component_name": "Tag",
+                                                                    "_unsafe_MixedSetter_children_select": "VariableSetter"
+                                                                  },
+                                                                  "title": "",
+                                                                  "hidden": false,
+                                                                  "isLocked": false,
+                                                                  "condition": true,
+                                                                  "conditionGroup": ""
+                                                                }
+                                                              ],
+                                                              "id": "node_oclp0ut4csl"
+                                                            }
+                                                          },
+                                                          {
+                                                            "key": "3nv8b79bh9d",
+                                                            "span": 1,
+                                                            "label": "更新时间",
+                                                            "children": {
+                                                              "type": "JSSlot",
+                                                              "value": [
+                                                                {
+                                                                  "componentName": "Typography.Time",
+                                                                  "id": "node_oclp0ut4csr",
+                                                                  "props": {
+                                                                    "time": {
+                                                                      "mock": "--",
+                                                                      "type": "JSExpression",
+                                                                      "value": "this.item.updateTimestamp"
+                                                                    },
+                                                                    "format": "",
+                                                                    "relativeTime": false,
+                                                                    "__component_name": "Typography.Time"
+                                                                  },
+                                                                  "title": "",
+                                                                  "hidden": false,
+                                                                  "isLocked": false,
+                                                                  "condition": true,
+                                                                  "conditionGroup": ""
+                                                                }
+                                                              ],
+                                                              "id": "node_oclp0ut4csn"
+                                                            }
+                                                          }
+                                                        ],
+                                                        "title": "",
+                                                        "column": 1,
+                                                        "layout": "horizontal",
+                                                        "bordered": false,
+                                                        "itemStyle": {},
+                                                        "labelStyle": {
+                                                          "width": "76",
+                                                          "padding": "12px 0 0 0"
+                                                        },
+                                                        "contentStyle": {
+                                                          "padding": "12px 0 0 0"
+                                                        },
+                                                        "borderedBottom": true,
+                                                        "__component_name": "Descriptions",
+                                                        "borderedBottomDashed": true
+                                                      },
+                                                      "title": "",
+                                                      "hidden": false,
+                                                      "isLocked": false,
+                                                      "loopArgs": [null, null],
+                                                      "condition": true,
+                                                      "conditionGroup": ""
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ],
+                                  "title": "插槽容器",
+                                  "id": "node_oclopciat4m"
+                                },
+                                "__component_name": "List",
+                                "_unsafe_MixedSetter_pagination_select": "BoolSetter"
+                              },
+                              "title": "",
+                              "hidden": false,
+                              "isLocked": false,
+                              "loopArgs": ["", ""],
+                              "condition": true,
+                              "conditionGroup": ""
+                            }
+                          ]
+                        },
+                        {
+                          "componentName": "Col",
+                          "id": "node_oclopciat47",
+                          "props": {
+                            "span": 24,
+                            "style": {
+                              "display": "flex",
+                              "justifyContent": "right"
+                            },
+                            "__component_name": "Col"
+                          },
+                          "title": "",
+                          "hidden": false,
+                          "isLocked": false,
+                          "loopArgs": ["", ""],
+                          "condition": true,
+                          "conditionGroup": "",
+                          "children": [
+                            {
+                              "componentName": "Pagination",
+                              "id": "node_oclopciat48",
+                              "props": {
+                                "style": {
+                                  "display": "flex",
+                                  "marginTop": "8px"
+                                },
+                                "total": {
+                                  "mock": 50,
+                                  "type": "JSExpression",
+                                  "value": "this.state.pages.total"
+                                },
+                                "simple": false,
+                                "current": {
+                                  "mock": 1,
+                                  "type": "JSExpression",
+                                  "value": "this.state.pages.currentPage"
+                                },
+                                "__events": {
+                                  "eventList": [
+                                    {
+                                      "name": "onChange",
+                                      "disabled": true,
+                                      "template": "onChange(page,pageSize,${extParams}){\n// 页码或 pageSize 改变的回调\nconsole.log('onChange',page,pageSize);}"
+                                    },
+                                    {
+                                      "name": "onShowSizeChange",
+                                      "disabled": true,
+                                      "template": "onShowSizeChange(current,size,${extParams}){\n// pageSize 变化的回调\nconsole.log('onShowSizeChange',current,size);}"
+                                    }
+                                  ],
+                                  "eventDataList": [
+                                    {
+                                      "name": "onShowSizeChange",
+                                      "type": "componentEvent",
+                                      "relatedEventName": "onShowSizeChange"
+                                    },
+                                    {
+                                      "name": "onChange",
+                                      "type": "componentEvent",
+                                      "relatedEventName": "onChange"
+                                    }
+                                  ]
+                                },
+                                "onChange": {
+                                  "type": "JSFunction",
+                                  "value": "function(){return this.onChange.apply(this,Array.prototype.slice.call(arguments).concat([])) }"
+                                },
+                                "pageSize": {
+                                  "mock": 10,
+                                  "type": "JSExpression",
+                                  "value": "this.state.pages.pageSize"
+                                },
+                                "showTotal": {
+                                  "type": "JSFunction",
+                                  "value": "function(){ return this.showTotal.apply(this,Array.prototype.slice.call(arguments).concat([])) }"
+                                },
+                                "pageSizeOptions": {
+                                  "mock": [10, 20, 30],
+                                  "type": "JSExpression",
+                                  "value": ""
+                                },
+                                "__component_name": "Pagination",
+                                "onShowSizeChange": {
+                                  "type": "JSFunction",
+                                  "value": "function(){return this.onShowSizeChange.apply(this,Array.prototype.slice.call(arguments).concat([])) }"
+                                }
+                              },
+                              "title": "",
+                              "hidden": false,
+                              "isLocked": false,
+                              "loopArgs": ["", ""],
+                              "condition": true,
+                              "conditionGroup": ""
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "config": {
+    "antd": {
+      "configProvider": {
+        "space": {
+          "size": 12
+        },
+        "theme": {
+          "token": {
+            "fontSize": 12,
+            "colorLink": "#4461eb",
+            "colorError": "#f85a5a",
+            "borderRadius": 4,
+            "colorPrimary": "#4461eb",
+            "colorSuccess": "#5cb85c",
+            "colorWarning": "#ffbf00",
+            "colorLinkHover": "#6f8bf7"
+          },
+          "components": {
+            "Row": {
+              "rowVerticalGutter": 16,
+              "rowHorizontalGutter": 16
+            },
+            "Page": {
+              "pagePadding": 20,
+              "pageBackground": "#f0f0f0",
+              "pagePaddingTop": 20,
+              "pagePaddingBottom": 32
+            }
+          }
+        },
+        "componentSize": "middle"
+      }
+    }
+  },
+  "constants": {
+    "IS_PROD": {
+      "mock": "false",
+      "type": "JSExpression",
+      "value": "process.env.NODE_ENV === 'production'",
+      "builtin": true,
+      "description": "是否为生产环境"
+    },
+    "basename": {
+      "type": "JSExpression",
+      "value": "'/kubeagi-portal'",
+      "builtin": true,
+      "description": "应用路由前缀"
+    },
+    "IS_QIAN_KUN": {
+      "mock": "true",
+      "type": "JSExpression",
+      "value": "window.__POWERED_BY_QIANKUN__",
+      "builtin": true,
+      "description": "是否为乾坤微前端环境"
+    }
+  },
+  "i18n": {
+    "en-US": {
+      "i18n-38tkeb1r": "Data source management",
+      "i18n-4j54jhul": "Label ID tag item",
+      "i18n-8f4bzjjd": "The connection is abnormal",
+      "i18n-9hlw3x8l": "请输入知识库名称搜索",
+      "i18n-9plmyzo5": "Importing",
+      "i18n-caihsq7h": "Please enter the knowledge base name to search",
+      "i18n-dibrmx57": "filename",
+      "i18n-eog0s8xc": "Data ingestion",
+      "i18n-gjzse85o": "status",
+      "i18n-glavn95l": "Please enter a name for the data source",
+      "i18n-hp37vpeo": "Please enter the data source name to search",
+      "i18n-jskgqh8o": "flushed",
+      "i18n-m2zjlilo": "Data sources",
+      "i18n-o0qitjur": "description",
+      "i18n-p7mextst": "state",
+      "i18n-qahl1me8": "The connection is successful",
+      "i18n-qiakd7cu": "The name of the data",
+      "i18n-str3pnrc": "edit",
+      "i18n-sy5aawos": "Please enter a knowledge base name",
+      "i18n-tghsncz7": "text",
+      "i18n-tr55yns8": "The name of the data source",
+      "i18n-txt5kh4m": "description",
+      "i18n-uag94ndq": "Updated",
+      "i18n-ueslu0a9": "A new data source is added",
+      "i18n-wourf2xg": "return",
+      "i18n-z0idrepg": "Delete"
+    },
+    "zh-CN": {
+      "i18n-38tkeb1r": "知识库管理",
+      "i18n-4j54jhul": "标ID签项",
+      "i18n-8f4bzjjd": "连接异常",
+      "i18n-9hlw3x8l": "请输入知识库名称搜索",
+      "i18n-9plmyzo5": "导入中",
+      "i18n-caihsq7h": "请输入知识库名称搜索",
+      "i18n-dibrmx57": "文件",
+      "i18n-eog0s8xc": "数据接入",
+      "i18n-gjzse85o": "状态",
+      "i18n-glavn95l": "请输入数据源名称",
+      "i18n-hp37vpeo": "请输入知识库名称搜索",
+      "i18n-jskgqh8o": "刷新",
+      "i18n-m2zjlilo": "数据源",
+      "i18n-o0qitjur": "描述",
+      "i18n-p7mextst": "",
+      "i18n-qahl1me8": "连接成功",
+      "i18n-qiakd7cu": "数据名称",
+      "i18n-str3pnrc": "编辑",
+      "i18n-sy5aawos": "请输入知识库名称",
+      "i18n-tghsncz7": "text",
+      "i18n-tr55yns8": "数据源名称",
+      "i18n-txt5kh4m": "描述",
+      "i18n-uag94ndq": "更新时间",
+      "i18n-ueslu0a9": "新增知识库",
+      "i18n-wourf2xg": "返回",
+      "i18n-z0idrepg": "删除"
+    }
+  },
+  "meta": {
+    "name": "KubeAGI 前端 portal",
+    "port": "8028",
+    "git_url": "https://github.com/kubeagi/portal.git",
+    "version": "0.1.0",
+    "basename": "/kubeagi-portal",
+    "namespace": "kubeagi-portal",
+    "description": "KubeAGI 的前端 portal"
+  },
+  "utils": [
+    {
+      "name": "message",
+      "type": "npm",
+      "builtin": true,
+      "content": {
+        "package": "antd",
+        "subName": "",
+        "version": "5.11.0",
+        "exportName": "message",
+        "componentName": "message",
+        "destructuring": true
+      },
+      "description": "全局提示"
+    },
+    {
+      "name": "notification",
+      "type": "npm",
+      "builtin": true,
+      "content": {
+        "package": "@tenx-ui/materials",
+        "subName": "",
+        "version": "1.5.28",
+        "exportName": "notification",
+        "componentName": "notification",
+        "destructuring": true
+      },
+      "description": "通知提醒框"
+    },
+    {
+      "name": "getAuthData",
+      "type": "npm",
+      "builtin": true,
+      "content": {
+        "package": "@tenx-ui/auth-utils",
+        "subName": "",
+        "version": "0.0.2",
+        "exportName": "getAuthData",
+        "componentName": "getAuthData",
+        "destructuring": true
+      },
+      "description": "获取认证数据"
+    },
+    {
+      "name": "setAuthData",
+      "type": "npm",
+      "builtin": true,
+      "content": {
+        "package": "@tenx-ui/auth-utils",
+        "version": "0.0.2",
+        "exportName": "setAuthData",
+        "componentName": "setAuthData",
+        "destructuring": true
+      },
+      "description": "设置认证数据"
+    },
+    {
+      "name": "removeAuthData",
+      "type": "npm",
+      "builtin": true,
+      "content": {
+        "package": "@tenx-ui/auth-utils",
+        "version": "0.0.2",
+        "exportName": "removeAuthData",
+        "componentName": "removeAuthData",
+        "destructuring": true
+      },
+      "description": "移除认证数据"
+    },
+    {
+      "name": "isTokenExpired",
+      "type": "npm",
+      "builtin": true,
+      "content": {
+        "package": "@tenx-ui/auth-utils",
+        "version": "0.0.2",
+        "exportName": "isTokenExpired",
+        "componentName": "isTokenExpired",
+        "destructuring": true
+      },
+      "description": "判断 token 是否有效"
+    },
+    {
+      "name": "getAuthorization",
+      "type": "function",
+      "builtin": true,
+      "content": {
+        "value": "() => {\r\n  const authData = this.getAuthData();\r\n  const { token_type, id_token } = authData.token || {};\r\n  const Authorization = token_type && id_token && `${token_type} ${id_token}`;\r\n  return Authorization;\r\n}"
+      },
+      "description": "获取 Authorization header"
+    },
+    {
+      "name": "getAxiosHanlderConfig",
+      "type": "function",
+      "builtin": true,
+      "content": {
+        "type": "JSFunction",
+        "value": "() => ({\r\n  // 详细配置见：http://dev-npm.tenxcloud.net/-/web/detail/@yunti/lowcode-datasource-axios-handler\r\n  interceptors: {\r\n    request: [\r\n      {\r\n        onFulfilled: (config) => {\r\n          if (!config.headers.get('Authorization')) {\r\n            config.headers.set('Authorization', this.getAuthorization());\r\n          }\r\n          return config;\r\n        }\r\n      }\r\n    ],\r\n  }\r\n})"
+      },
+      "description": "获取 axios 默认配置，也可在配置中指定拦截器，用于数据源初始化 axios handler"
+    },
+    {
+      "name": "bff",
+      "type": "npm",
+      "content": {
+        "package": "@yuntijs/arcadia-bff-sdk",
+        "version": "1.1.2",
+        "exportName": "sdk",
+        "componentName": "bff",
+        "destructuring": true
+      },
+      "description": "sdk of arcadia"
+    },
+    {
+      "name": "getDataSourceStatus",
+      "type": "function",
+      "content": {
+        "type": "JSFunction",
+        "value": "(pageThis, isStatus, isTag) => {\r\n  return [\r\n    // 导入中\r\n    {\r\n      \"type\": \"primary\",\r\n      [isStatus ? \"id\" : 'value']: \"process\",\r\n      [(isStatus || isTag) ? \"children\" : 'text']: pageThis.i18n('i18n-9plmyzo5'),\r\n    }\r\n     // 连接成功\r\n    , {\r\n      \"type\": \"success\",\r\n      [isStatus ? \"id\" : 'value']: \"success\",\r\n      [(isStatus || isTag) ? \"children\" : 'text']: pageThis.i18n('i18n-qahl1me8'),\r\n    }, {\r\n       // 连接异常\r\n      \"type\": \"error\",\r\n      [isStatus ? \"id\" : 'value']: \"error\",\r\n      [(isStatus || isTag) ? \"children\" : 'text']: pageThis.i18n('i18n-8f4bzjjd'),\r\n    }\r\n  ]\r\n}"
+      },
+      "description": "数据源状态"
+    },
+    {
+      "name": "getDataSourceTypes",
+      "type": "function",
+      "content": {
+        "type": "JSFunction",
+        "value": "(pageThis, isTag) => {\r\n  const valueKey = 'value'\r\n  const labelKey = isTag ? \"children\" : 'text'\r\n  return [\r\n    {\r\n      [valueKey]: \"localUpload\",\r\n      [labelKey]: pageThis.i18n(''),\r\n      forms: ['upload']\r\n    },\r\n    {\r\n      [valueKey]: \"fileStorage\",\r\n      [labelKey]: pageThis.i18n(''),\r\n      forms: ['serverAddress', 'path']\r\n    },\r\n    {\r\n      [valueKey]: \"objectStorage\",\r\n      [labelKey]: pageThis.i18n(''),\r\n      forms: ['Bucket', 'Object']\r\n    },\r\n    {\r\n      [valueKey]: \"mysql\",\r\n      [labelKey]: pageThis.i18n(''),\r\n      forms: ['serverAddress', 'username', 'password']\r\n    },\r\n    {\r\n      [valueKey]: \"mongodb\",\r\n      [labelKey]: pageThis.i18n(''),\r\n      forms: ['serverAddress', 'username', 'password']\r\n    },\r\n    {\r\n      [valueKey]: \"api\",\r\n      [labelKey]: pageThis.i18n(''),\r\n      forms: ['apiAddress', 'token']\r\n    },\r\n  ]\r\n}"
+      },
+      "description": "数据源类型"
+    },
+    {
+      "name": "getFullName",
+      "type": "function",
+      "content": {
+        "type": "JSFunction",
+        "value": "(source) => {\r\n  if (!source) return '-';\r\n  const { name, displayName } = source;\r\n  if (!displayName) {\r\n    return name;\r\n  }\r\n  return `${displayName} (${name})`;\r\n}"
+      },
+      "description": "获取完整名称"
+    }
+  ],
+  "version": "1.0.0"
+}

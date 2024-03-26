@@ -1,0 +1,42 @@
+{
+  "name": "@yuntijs/k8s-client",
+  "version": "1.0.0",
+  "description": "该模块是对 [@kubernetes/client-node](https://github.com/kubernetes-client/javascript) 的二次封装，从资源的维度重新组织了 api。",
+  "keywords": [],
+  "author": "zhangpc",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "directories": {
+    "lib": "lib",
+    "doc": "docs"
+  },
+  "files": [
+    "dist",
+    "compiled"
+  ],
+  "scripts": {
+    "build": "rimraf -rf dist && tsc -p tsconfig.json",
+    "gen": "npm run gen:code && npm run gen:doc",
+    "gen:code": "ts-node gen/index.ts && prettier --write \"**/*.ts\"",
+    "gen:doc": "typedoc --options typedoc.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@kubernetes/client-node": "^0.19.0",
+    "@types/ws": "^8",
+    "nanoid": "^3",
+    "ws": "^8"
+  },
+  "devDependencies": {
+    "@nestjs/common": "^10.3.5",
+    "json-schema-to-typescript": "^13.1.1",
+    "rimraf": "^5.0.5",
+    "ts-node": "^10.9.1",
+    "typedoc": "^0.25.1",
+    "typescript": "^5.2.2"
+  },
+  "peerDependencies": {
+    "@nestjs/common": ">=10.x"
+  }
+}

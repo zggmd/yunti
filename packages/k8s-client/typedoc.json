@@ -1,0 +1,9 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "categoryOrder": ["core", "apps", "batch", "rbac", "*"],
+  "entryPoints": ["./lib/index.ts"],
+  "exclude": ["**/*+(.spec|.e2e).ts"],
+  "name": "kubernetes",
+  "out": "./docs",
+  "tsconfig": "./tsconfig.json"
+}

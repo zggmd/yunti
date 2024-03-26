@@ -1,0 +1,15 @@
+# 添加应用成员
+mutation addAppMember($appMember: AddAppMemberInput!) {
+  appMemberAdd(appMember: $appMember) {
+    appId
+    userId
+    role
+    createAt
+    updateAt
+  }
+}
+
+# 移除应用成员
+mutation removeAppMember($appId: String!, $userId: String!) {
+  appMemberRemove(appId: $appId, userId: $userId)
+}

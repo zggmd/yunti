@@ -1,0 +1,11 @@
+FROM --platform=linux/amd64 node:18.16-alpine
+LABEL maintainer="zhangpc<zhang.pengcheng3@neolink.com>"
+
+# Create app directory
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+# Install dependencies modules
+COPY package.json /usr/src/app/
+COPY pnpm-lock.yaml /usr/src/app/
+RUN npm i pnpm @antfu/ni -g && ni

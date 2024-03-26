@@ -1,0 +1,139 @@
+{
+  "components": [
+    {
+      "url": "http://dev-unpkg.tenxcloud.net/@tenx-ui/materials@1.5.30/build/lowcode/meta.js",
+      "version": "1.5.30",
+      "reference": {
+        "id": "@tenx-ui/materials",
+        "version": "1.5.30"
+      },
+      "exportName": "TenxUiMaterialsMeta"
+    },
+    {
+      "url": "http://dev-unpkg.tenxcloud.net/@tenx-ui/icon-materials@0.1.7/build/lowcode/meta.js",
+      "version": "0.1.7",
+      "reference": {
+        "id": "@tenx-ui/icon-materials",
+        "version": "0.1.7"
+      },
+      "exportName": "TenxUiIconMaterialsMeta"
+    }
+  ],
+  "packages": [
+    {
+      "id": "dayjs",
+      "urls": ["http://dev-unpkg.tenxcloud.net/dayjs@1.11.6/dayjs.min.js"],
+      "library": "dayjs",
+      "package": "dayjs",
+      "version": "1.11.6",
+      "editUrls": ["http://dev-unpkg.tenxcloud.net/dayjs@1.11.6/dayjs.min.js"]
+    },
+    {
+      "id": "antd",
+      "meta": {},
+      "urls": [
+        "https://jsd.onmicrosoft.cn/npm/antd@5.13.1/dist/antd.min.js",
+        "https://jsd.onmicrosoft.cn/npm/antd@5.13.1/dist/reset.min.css"
+      ],
+      "library": "antd",
+      "package": "antd",
+      "version": "5.13.1",
+      "editUrls": null
+    },
+    {
+      "id": "@ant-design/icons",
+      "urls": ["//g.alicdn.com/code/npm/@ali/ant-design-icons-cdn/4.5.0/index.umd.min.js"],
+      "library": "icons",
+      "package": "@ant-design/icons",
+      "version": "4.7.0"
+    },
+    {
+      "id": "@alifd/next",
+      "urls": [
+        "https://g.alicdn.com/legao-comp/web_bundle_0724/@alife/theme-254/1.29.5/@alifd/next/1.24.18/theme.7c897c2.css",
+        "https://g.alicdn.com/legao-comp/web_bundle_0724/@alifd/next/1.24.18/main.059bccd.js"
+      ],
+      "library": "Next",
+      "package": "@alifd/next",
+      "version": "1.24.18"
+    },
+    {
+      "id": "moment",
+      "urls": ["https://g.alicdn.com/mylib/moment/2.24.0/min/moment.min.js"],
+      "library": "moment",
+      "package": "moment",
+      "version": "2.24.0"
+    },
+    {
+      "id": "lodash",
+      "meta": null,
+      "urls": ["https://jsd.onmicrosoft.cn/npm/lodash@4.17.21/lodash.min.js"],
+      "library": "_",
+      "package": "lodash",
+      "version": "4.17.21",
+      "editUrls": null
+    },
+    {
+      "id": "@tenx-ui/materials",
+      "meta": {
+        "url": "http://dev-unpkg.tenxcloud.net/@tenx-ui/materials@1.5.30/build/lowcode/meta.js",
+        "exportName": "TenxUiMaterialsMeta"
+      },
+      "urls": [
+        "http://dev-unpkg.tenxcloud.net/@tenx-ui/materials@1.5.30/dist/TenxUiMaterials.js",
+        "http://dev-unpkg.tenxcloud.net/@tenx-ui/materials@1.5.30/dist/TenxUiMaterials.css"
+      ],
+      "library": "TenxUiMaterials",
+      "package": "@tenx-ui/materials",
+      "version": "1.5.30",
+      "editUrls": [
+        "http://dev-unpkg.tenxcloud.net/@tenx-ui/materials@1.5.30/build/lowcode/view.css",
+        "http://dev-unpkg.tenxcloud.net/@tenx-ui/materials@1.5.30/build/lowcode/view.js"
+      ]
+    },
+    {
+      "meta": {
+        "url": "http://dev-unpkg.tenxcloud.net/@tenx-ui/icon-materials@0.1.7/build/lowcode/meta.js",
+        "exportName": "TenxUiIconMaterialsMeta"
+      },
+      "urls": [
+        "http://dev-unpkg.tenxcloud.net/@tenx-ui/icon-materials@0.1.7/dist/TenxUiIconMaterials.js",
+        "http://dev-unpkg.tenxcloud.net/@tenx-ui/icon-materials@0.1.7/dist/TenxUiIconMaterials.css"
+      ],
+      "library": "TenxUiIconMaterials",
+      "package": "@tenx-ui/icon-materials",
+      "version": "0.1.7",
+      "editUrls": [
+        "http://dev-unpkg.tenxcloud.net/@tenx-ui/icon-materials@0.1.7/build/lowcode/view.css",
+        "http://dev-unpkg.tenxcloud.net/@tenx-ui/icon-materials@0.1.7/build/lowcode/view.js"
+      ],
+      "id": "@tenx-ui/icon-materials"
+    },
+    {
+      "id": "@tenx-ui/auth-utils",
+      "meta": {},
+      "urls": [
+        "http://dev-unpkg.tenxcloud.net/@tenx-ui/auth-utils@0.0.2/dist/umd/auth-utils.min.js"
+      ],
+      "library": "authUtils",
+      "package": "@tenx-ui/auth-utils",
+      "version": "0.0.2",
+      "editUrls": null
+    }
+  ],
+  "sort": {
+    "groupList": ["容器/布局", "组件", "表单", "图表组件", "图标", "低码组件"],
+    "categoryList": [
+      "基础组件",
+      "输入组件",
+      "布局组件",
+      "容器组件",
+      "数据组件",
+      "其他",
+      "formily 表单容器",
+      "formily 表单组件",
+      "业务组件"
+    ]
+  },
+  "version": "1.1.0"
+}

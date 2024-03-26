@@ -1,0 +1,125 @@
+# 当前 server 的默认配置
+# ⚠⚠ 修改不会实时生效，需要重启 server，开发时也一样 ⚠⚠
+web:
+  # server 端口
+  port: 8034
+# 日志配置
+log:
+  # 支持 log,error,warn,debug,verbose 5 个日志等级的组合
+  levels: log,error,warn
+# gzip 压缩配置 https://github.com/expressjs/compression#options
+compression:
+  enabled: true
+  level: 6
+# 请求体解析器配置
+# 详见 https://github.com/expressjs/body-parser#bodyparserjsonoptions
+bodyParser:
+  json:
+    inflate: true
+    limit: 5mb
+# 数据库配置
+# 详见 typeorm 数据库配置 https://typeorm.io/data-source-options
+db:
+  type: mysql
+  host: 0.0.0.0
+  port: 13306
+  username: root
+  password: tenxcloud
+  database: yunti
+  logging: false
+  timezone: Z
+  synchronize: false
+  # yunti-server 与数据库建立的最大连接数
+  maxDataSources: 200
+# session 配置
+# 详见 https://github.com/expressjs/session#options
+session:
+  secret: yunti-server-lowcode-fe
+  name: yunti
+  resave: false
+  saveUninitialized: false
+  rolling: true
+# redis 配置，目前用于存储 session
+# 配置详见 https://redis.github.io/ioredis/index.html#RedisOptions
+redis:
+  host: 0.0.0.0
+  port: 6379
+  password: ''
+  db: 0
+  ttl: 600
+  # redis 命令超时参数，否则网络异常时可能导致请求一直 hang 住，详见 http://jira.tenxcloud.21vianet.com/browse/TCS-4224
+  commandTimeout: 5000
+# oidc 认证配置，详见 https://gitlab.dev.21vianet.com/sbg2-tenxcloud/next-gen/bff-server/-/blob/dev-branch/wiki/oidc.md
+oidc:
+  # oidc 服务端配置
+  server:
+    url: https://portal.172.22.96.136.nip.io/oidc
+  # oidc 客户端配置
+  client:
+    client_id: yunti
+    client_secret: yunti-secret
+    # client_id: bff-client
+    # client_secret: 61324af0-1234-4f61-b110-ef57013267d6
+    redirect_uri: http://localhost:8034/callback/oidc
+# 代理配置
+proxy:
+  # 配置可以是一个地址
+  # http: http://172.22.50.204:3128
+  # https: http://172.22.50.204:3128
+  # 也可以是一个对象，详见 https://undici.nodejs.org/#/docs/api/ProxyAgent
+  # http:
+  #   uri: my.proxy.server
+  #   token: 'Basic xxxxx'
+# 关于提交的一些配置
+commit:
+  # 为了减少 commit 数量，更新 schema, i18n 等应用和组件的数据时会判断最新的 commit 更新的字段如果跟当前一致，
+  # 而且提交时间在 10 分钟内的话，会做回退操作，新的 commit 中会包含所有修改
+  reset_minutes: 10
+# npm 配置
+npm:
+  registry:
+    public:
+      url: https://www.npmjs.com
+      registry: https://registry.npmjs.com
+    publicMirror:
+      url: https://npmmirror.com
+      registry: https://registry.npmmirror.com
+      algolia:
+        url: https://ofcncog2cu-dsn.algolia.net/1/indexes/npm-search/query
+        appId: ''
+        apiKey: xxxxx''
+    # 私有 npm registry 配置，支持 verdaccio 类型的 registry，详见 https://verdaccio.org/
+    private:
+      url: ''
+      token: ''
+      proxy: false
+  cdn:
+    apiUrl: https://data.jsdelivr.com
+    mirror: https://jsd.onmicrosoft.cn
+  unpkg: http://dev-unpkg.tenxcloud.net
+kubernetes:
+  name: kube-oidc-proxy
+  server: https://172.22.96.133:6443
+  skipTLSVerify: true
+minio:
+  client:
+    endPoint: ''
+    accessKey: ''
+    secretKey: ''
+    useSSL: false
+    port: 9000
+  bucket: yunti
+pipeline:
+  namespace: yunti-system
+  dockerConfig: dockerconfig-secret
+  # 默认为空，会使用默认的 storageClass，可根据 k8s 集群的实际情况进行设置
+  storageClassName: ''
+  publish:
+    name: lowcode-publish
+    dockerfile: dockerfile-cm
+    chart: chart-template-cm
+dockerhub:
+  name: yuntibuild
+  url: https://index.docker.io/v1/
+  username: yuntibuild
+  password: ''

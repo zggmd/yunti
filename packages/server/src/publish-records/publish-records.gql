@@ -1,0 +1,60 @@
+# 发布应用
+mutation doPublish($publish: NewPublishInput!) {
+  doPublish(publish: $publish) {
+    id
+    name
+    buildId
+    appId
+    channelId
+    baseline
+    tree
+    version
+    status
+    detail {
+      name
+      displayName
+      commit {
+        hash
+        committer
+        date
+        message
+      }
+      channel
+      status {
+        progress
+        message
+      }
+    }
+    publisherId
+    createAt
+    updateAt
+  }
+}
+
+# 删除发布记录
+mutation deletePublishRecord($id: String!) {
+  publishRecordDelete(id: $id)
+}
+
+# 获取发布记录详情
+query getPublishRecordDetail($id: String!) {
+  publishRecord(id: $id) {
+    id
+    name
+    appId
+    channelId
+    baseline
+    version
+    status
+    detail {
+      channel
+      status {
+        progress
+        message
+      }
+    }
+    publisherId
+    createAt
+    updateAt
+  }
+}

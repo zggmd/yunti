@@ -1,0 +1,69 @@
+# 创建区块
+mutation createBlock($block: NewBlockInput!) {
+  blockCreate(block: $block) {
+    id
+    name
+    title
+    packages
+    schema
+  }
+}
+
+# 删除区块
+mutation deleteBlock($id: String!) {
+  blockDelete(id: $id)
+}
+
+# 修改区块
+mutation updateBlock($block: UpdateBlockInput!) {
+  blockUpdate(block: $block) {
+    id
+    name
+    title
+    schema
+    screenshot
+    creator {
+      id
+      name
+    }
+    createAt
+    updateAt
+    version
+  }
+}
+
+# 获取区块列表
+query getBlocks {
+  blocks {
+    id
+    name
+    title
+    schema
+    screenshot
+    creator {
+      id
+      name
+    }
+    createAt
+    updateAt
+    version
+  }
+}
+
+# 获取区块详情
+query getBlock($id: String!) {
+  block(id: $id) {
+    id
+    name
+    title
+    schema
+    screenshot
+    creator {
+      id
+      name
+    }
+    createAt
+    updateAt
+    version
+  }
+}
