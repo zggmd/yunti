@@ -92,9 +92,9 @@ import { UsersModule } from './users/users.module';
         },
       },
       transformSchema: schema => {
-        schema = namespaceDirectiveTransformer(schema, 'namespace');
-        schema = passwdDirectiveTransformer(schema, 'passwd');
-        return upperDirectiveTransformer(schema, 'upper');
+        let newSchema = namespaceDirectiveTransformer(schema, 'namespace');
+        newSchema = passwdDirectiveTransformer(newSchema, 'passwd');
+        return upperDirectiveTransformer(newSchema, 'upper');
       },
       buildSchemaOptions: {
         directives: [

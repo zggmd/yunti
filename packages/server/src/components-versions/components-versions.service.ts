@@ -282,27 +282,29 @@ export class ComponentsVersionsService {
       .map(c => c.reference) as LccList;
     const lccAssets = await this.getLccListAssets(lccList);
 
-    const components = assets.components
-      .map(c => {
-        if (!c.reference && c.npm) {
-          c.reference = {
-            ...c.npm,
-            version: c.npm.version || 'latest',
-          } as IPublicTypeReference;
-        }
-        if (c.reference) {
-          // component 统一使用 id 作为唯一标识字段
-          c.reference.id = c.reference.id || c.reference.package;
-          delete c.npm;
-          delete c.reference.package;
-        }
-        return c;
-      })
-      .filter(c => c.devMode !== 'lowCode')
-      .concat(lccAssets.components);
+    const components = [
+      ...assets.components
+        .map(c => {
+          if (!c.reference && c.npm) {
+            c.reference = {
+              ...c.npm,
+              version: c.npm.version || 'latest',
+            } as IPublicTypeReference;
+          }
+          if (c.reference) {
+            // component 统一使用 id 作为唯一标识字段
+            c.reference.id = c.reference.id || c.reference.package;
+            delete c.npm;
+            delete c.reference.package;
+          }
+          return c;
+        })
+        .filter(c => c.devMode !== 'lowCode'),
+      ...lccAssets.components,
+    ];
 
     const packagesRecord: Record<string, IPublicTypePackage> = {};
-    const allPackages = assets.packages.concat(lccAssets.packages).map(pkg => {
+    const allPackages = [...assets.packages, ...lccAssets.packages].map(pkg => {
       // package 中的 package 字段不能删除，低码引擎中使用的是 package 这个字段
       pkg.id = pkg.id || pkg.package;
       return pkg;

@@ -16,6 +16,7 @@ export class ErrorFormatPlugin implements ApolloServerPlugin {
         // console.log('context', context)
         const req = context.contextValue.req;
         Logger.error(context.errors, req && genUserLogString(req), context.source);
+        // eslint-disable-next-line unicorn/no-array-for-each
         context.errors.forEach((e: any) => {
           // console.log('e.keys', Object.getOwnPropertyNames((e)))
           const { body, statusCode, response } = e.originalError || {};

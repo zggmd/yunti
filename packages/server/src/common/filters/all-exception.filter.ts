@@ -37,6 +37,7 @@ export class AllExceptionFilter implements GqlExceptionFilter {
       if (exception.body) {
         const { statusCode } = exception;
         const { body } = exception;
+        // eslint-disable-next-line no-param-reassign
         exception =
           typeof body === 'string' && statusCode === 401 && body.trim() === 'Unauthorized'
             ? new LoginRequiredException(body, exception)

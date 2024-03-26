@@ -78,7 +78,7 @@ export const encodeBase64 = (value: string) => Buffer.from(value || '').toString
 /**
  * Base64 转码 decode
  */
-export const decodeBase64 = (value: string) => Buffer.from(value || '', 'base64').toString('utf-8');
+export const decodeBase64 = (value: string) => Buffer.from(value || '', 'base64').toString('utf8');
 
 /**
  * 首字母大写
@@ -114,10 +114,10 @@ export const extractI18nKeyPathFromSchema = (
     } else if (values.type === 'JSFunction' || values.type === 'JSExpression') {
       const i18nFromJSFunction = values.value?.match(/i18n\(["'|]i18n-[\d,a-z]+["'|]\)/g);
       if (i18nFromJSFunction?.length > 0) {
-        i18nFromJSFunction.forEach((i18nString: string) => {
+        for (const i18nString of i18nFromJSFunction) {
           const key = i18nString.replace(/^i18n\(["'|]/, '').replace(/["'|]\)$/, '');
           callback(key, [...path, key, 'value']);
-        });
+        }
       }
     }
     extractI18nKeyPathFromSchema(values, [...path, key], callback);
@@ -177,13 +177,13 @@ export const checkUserTreeMutationPermision = (
 };
 
 export const semverLt = (v1: string, v2: string) => {
-  v1 = semver.valid(v1);
-  v2 = semver.valid(v2);
-  const validVersions = [v1, v2].filter(v => v !== null).length;
+  const validV1 = semver.valid(v1);
+  const validV2 = semver.valid(v2);
+  const validVersions = [validV1, validV2].filter(v => v !== null).length;
   if (validVersions === 2) {
-    return semver.lt(v1, v2);
+    return semver.lt(validV1, validV2);
   }
-  if (!v1) {
+  if (!validV1) {
     return true;
   }
   return false;

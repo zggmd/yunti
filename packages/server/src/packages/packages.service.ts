@@ -46,13 +46,13 @@ export class PackagesService {
   }
 
   isTenxPackage = (name: string) => {
-    name = decodeURIComponent(name);
+    const decodedName = decodeURIComponent(name);
     return (
-      name.startsWith('@tenx-ui/') ||
-      name.endsWith('-tenx') ||
-      name.startsWith('tenx-') ||
-      name.includes('-tenx-') ||
-      name.startsWith('@yunti/')
+      decodedName.startsWith('@tenx-ui/') ||
+      decodedName.endsWith('-tenx') ||
+      decodedName.startsWith('tenx-') ||
+      decodedName.includes('-tenx-') ||
+      decodedName.startsWith('@yunti/')
     );
   };
 
@@ -273,6 +273,7 @@ export class PackagesService {
     if (version) {
       return Object.assign(pkg, { private: isTenxPackage }) as Package;
     }
+    // eslint-disable-next-line no-param-reassign
     version = pkg['dist-tags']?.latest;
     return Object.assign(pkg.versions[version] || {}, {
       private: isTenxPackage,

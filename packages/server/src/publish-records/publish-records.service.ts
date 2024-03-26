@@ -292,6 +292,7 @@ export class PublishRecordsService {
 
   async getPublishRecordsByAppId(loginUser: ILoginUser, appId: string, args?: PublishRecordsArgs) {
     if (!args) {
+      // eslint-disable-next-line no-param-reassign
       args = new PublishRecordsArgs();
     }
     if (!args.order) {

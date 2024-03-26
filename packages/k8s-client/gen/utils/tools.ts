@@ -15,8 +15,8 @@ const _replaceSpecialName = (name: string) =>
  * @param {string} name 名称
  */
 export const toKebabCase = (name: string) => {
-  name = _replaceSpecialName(name);
-  return name
+  const newName = _replaceSpecialName(name);
+  return newName
     .replaceAll(/([A-Z])/g, '-$1')
     .toLowerCase()
     .replace(/^-/, '');
@@ -29,8 +29,8 @@ export const toKebabCase = (name: string) => {
  * @param {string} name 名称
  */
 export const firstLetterToLowercase = (name: string) => {
-  name = _replaceSpecialName(name);
-  const [first, ...rest] = name;
+  const newName = _replaceSpecialName(name);
+  const [first, ...rest] = newName;
   return first.toLowerCase() + rest.join('');
 };
 
@@ -39,10 +39,10 @@ export const getRegExp = (tagStart = '<remove>', tagEnd = '</remove>') =>
 
 export const processContent = (name: string, content: string) => {
   // <remove>...</remove>
-  content = content.replace(getRegExp(), '');
+  let newContent = content.replace(getRegExp(), '');
   // <remove is="...">...</remove>
-  content = content.replace(getRegExp(`<remove is="${name}">`, `</remove is="${name}">`), '');
-  return FILE_HEADER + content;
+  newContent = newContent.replace(getRegExp(`<remove is="${name}">`, `</remove is="${name}">`), '');
+  return FILE_HEADER + newContent;
 };
 
 export const writeFile = (path: fs.PathOrFileDescriptor, data: string) =>

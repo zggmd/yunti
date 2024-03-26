@@ -201,6 +201,7 @@ export class PublishChannelsService {
   async getPublishChannelsByAppId(appId: string, options?: PublishChannelsArgs) {
     const publishChannelsRepository = await this.getPublishChannelsRepository();
     if (!options) {
+      // eslint-disable-next-line no-param-reassign
       options = new PublishChannelsArgs();
     }
     if (!options.order) {

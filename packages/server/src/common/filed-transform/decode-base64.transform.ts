@@ -29,10 +29,10 @@ export function DecodeBase64Transform(
         obj
       );
     }
-    value = decodeBase64(value);
+    let newValue = decodeBase64(value);
     if (encrypt) {
-      value = encryptText(value);
+      newValue = encryptText(newValue);
     }
-    return value;
+    return newValue;
   }, transformOptions);
 }

@@ -136,9 +136,9 @@ export const ensureOrder = (options: any) => {
   const { docs, keys, prop } = options;
 
   const docsMap = new Map();
-  docs.forEach((doc: any) => {
+  for (const doc of docs) {
     docsMap.set(doc[prop], doc);
-  });
+  }
   return keys.map((key: string) => {
     return docsMap.get(key);
   });

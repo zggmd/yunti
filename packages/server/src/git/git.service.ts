@@ -1,3 +1,6 @@
+/* eslint-disable no-param-reassign */
+
+/* eslint-disable unicorn/no-array-callback-reference */
 import { Injectable, Logger } from '@nestjs/common';
 import { FindManyOptions, Like, QueryRunner } from 'typeorm';
 
