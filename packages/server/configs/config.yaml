@@ -6,12 +6,8 @@ log:
   # 支持 log,error,warn,debug,verbose 5 个日志等级的组合
   levels: log,error,warn,debug,verbose
 db:
-  # database: yunti_init
   logging: true
-  # synchronize: true
-  # host: 172.22.96.17
-  # database: yunti-restore
-  # password: tenxcloud-yunti
+  password: yunti
 minio:
   client:
     endPoint: minio-api.172.22.96.136.nip.io
