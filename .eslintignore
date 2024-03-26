@@ -27,3 +27,5 @@ logs
 
 # misc
 # add other ignore file below
+packages/server/public
+packages/k8s-client/docs
