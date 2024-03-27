@@ -1,6 +1,8 @@
 name: Test CI
 on:
   pull_request:
+    branches:
+      - '!alpha'
   push:
     branches:
       - '!alpha'

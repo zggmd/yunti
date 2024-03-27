@@ -47,7 +47,7 @@ pnpm install
 
 Contributions of all types are more than welcome, if you are interested in contributing code, feel free to check out our GitHub [Issues][github-issues-link] to get stuck in to show us what you’re made of.
 
-\[!\[]\[pr-welcome-shield]]\[pr-welcome-link]
+[![][pr-welcome-shield]][pr-welcome-link]
 
 [![][github-contrib-shield]][github-contrib-link]
 
@@ -87,3 +87,5 @@ This project is [MIT](./LICENSE) licensed.
 [github-releasedate-shield]: https://img.shields.io/github/release-date/yuntijs/yunti?labelColor=black&style=flat-square
 [github-stars-link]: https://github.com/yuntijs/yunti/network/stargazers
 [github-stars-shield]: https://img.shields.io/github/stars/yuntijs/yunti?color=ffcb47&labelColor=black&style=flat-square
+[pr-welcome-link]: https://github.com/yuntijs/yunti/pulls
+[pr-welcome-shield]: https://img.shields.io/badge/☁️_pr_welcome-%E2%86%92-ffcb47?labelColor=black&style=for-the-badge
