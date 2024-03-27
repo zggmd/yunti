@@ -1,4 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
+import { isEqual } from 'lodash';
 import { QueryRunner } from 'typeorm';
 
 import { AppsMembersService } from '@/apps-members/apps-members.service';
@@ -327,6 +328,8 @@ export class MergeRequestService {
       throw new CustomException('ALREADY_RESOLVED', 'Already resolved', 400);
     }
 
+    // 当数据完全使用源代码数据时不需要对源代码进行 commit
+    let isNeedCommit = false;
     const dataSource = await treeDataSources.getDataSource(mergeRequest.sourceBranchName);
     const queryRunner = dataSource.createQueryRunner();
     await queryRunner.connect();
@@ -351,7 +354,12 @@ export class MergeRequestService {
           }
           for (const conflictSchema of conflictSchemaArray) {
             for (const inputResolveSchema of conflictResolveInput.conflictData['schemaConflicts']) {
-              if (conflictSchema.tableName === inputResolveSchema.tableName) {
+              if (
+                conflictSchema.tableName === inputResolveSchema.tableName &&
+                !isEqual(conflictSchema.their.schema, inputResolveSchema.their['schema'])
+              ) {
+                // 当数据完全使用源代码数据时不需要对源代码进行 commit
+                isNeedCommit = true;
                 // 更新 ddl
                 const sql = inputResolveSchema.their['schema'];
                 await queryRunner.query(sql);
@@ -366,7 +374,13 @@ export class MergeRequestService {
         for (const conflictData of conflictDataArray) {
           for (const inputResolveData of conflictResolveInput.conflictData.dataConflicts) {
             // 确保冲突修改部分一一匹配
-            if (inputResolveData.tableName === conflictData.tableName) {
+            // 确保冲突修改部分一一匹配
+            // 当数据完全使用源代码数据时不需要对源代码进行 commit
+            if (
+              inputResolveData.tableName === conflictData.tableName &&
+              !isEqual(conflictData.their, inputResolveData.their)
+            ) {
+              isNeedCommit = true;
               let sql = `DESC ${conflictData.tableName};`;
               const tableResults = await queryRunner.query(sql);
               const tPKs = [];
@@ -411,9 +425,12 @@ export class MergeRequestService {
       mergeRequest.updaterId = user.id;
 
       await mergeRequestRepository.save(mergeRequest);
-      let sql = `CALL DOLT_COMMIT('-Am', 'Merge branch ${mergeRequest.sourceBranchName} for resolve conflict');`;
-      await queryRunner.query(sql);
-      await queryRunner.commitTransaction();
+      // 当数据完全使用源代码数据时不需要对源代码进行 commit
+      if (isNeedCommit) {
+        let sql = `CALL DOLT_COMMIT('-Am', 'Merge branch ${mergeRequest.sourceBranchName} for resolve conflict');`;
+        await queryRunner.query(sql);
+        await queryRunner.commitTransaction();
+      }
     } catch (error) {
       await queryRunner.rollbackTransaction();
       throw error;
