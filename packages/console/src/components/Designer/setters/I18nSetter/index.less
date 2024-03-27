@@ -1,0 +1,125 @@
+/* write style here */
+.yunti-lowcode-setter-i18n {
+  .next-icon-search {
+    display: none;
+  }
+  .i18n-icon {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 26px;
+    height: 26px;
+    img {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  .i18n-icon-selected {
+    background-color: #77a7ff;
+  }
+  .i18n-icon-create {
+    cursor: pointer;
+    font-size: 18px;
+    color: #77a7ff;
+  }
+}
+
+.i18nSetter-popup-container,
+.binddata-popup-container {
+  position: absolute;
+  z-index: 100;
+  top: 28px;
+
+  width: 260px;
+  min-width: 210px !important;
+  padding: 8px;
+
+  background-color: #fff;
+  border: 1px solid rgba(31, 56, 88, 0.1);
+  box-shadow: 0 1px 4px 0 rgba(31, 56, 88, 0.15);
+  .binddata-popup-container-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .binddata-popup-container-delete {
+    cursor: pointer;
+    color: #1677ff;
+  }
+}
+
+.binddata-popup-container {
+  .bind-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  p {
+    width: 50px;
+    margin-bottom: 0;
+  }
+  .edit-i18n {
+    margin-bottom: 8px;
+    font-size: 12px;
+  }
+}
+.lowcode-setter-i18n-list {
+  overflow: auto;
+
+  max-height: calc(100vh - 300px);
+
+  background-color: #fff;
+  border: 1px solid rgba(31, 56, 88, 0.1);
+  box-shadow: 0 1px 4px 0 rgba(31, 56, 88, 0.15);
+  .lowcode-setter-i18n-list-empty {
+    svg {
+      width: 60px;
+    }
+    .yunti-empty-description {
+      margin: -20px 0 20px;
+    }
+  }
+  .lowcode-setter-i18n-search-box-container {
+    cursor: pointer;
+
+    margin: 3px;
+    padding: 6px 0;
+
+    background-color: #fff;
+    border-radius: 2px;
+    .i18n-lang-item {
+      display: flex;
+      padding: 5px;
+      font-size: 12px;
+      line-height: 15px;
+      .i18n-item-lang-type {
+        overflow: hidden;
+
+        width: 40px;
+        margin-right: 10px;
+
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .item-lang-content {
+        overflow: hidden;
+        width: 100%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  .lowcode-setter-i18n-search-box-container:hover {
+    background-color: #f6f7f9;
+  }
+  .lowcode-setter-i18n-search-box-container-selected {
+    background-color: #f6f7f9;
+  }
+}

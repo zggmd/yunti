@@ -1,0 +1,200 @@
+// https://github.com/alibaba/lowcode-engine-ext/blob/845b3115a2/src/plugin/plugin-variable-bind-dialog/index.less
+.variable-dialog-body {
+  width: 960px;
+  height: 600px;
+
+  .dialog-small-title {
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: rgb(0, 0, 0);
+  }
+  .dialog-help-tip-input {
+    user-select: text;
+
+    overflow: auto;
+
+    height: 240px;
+    padding: 8px;
+
+    font-size: 12px;
+    line-height: 20px;
+
+    border: 1px solid rgba(31, 56, 88, 0.3);
+    border-top: none;
+    border-radius: 0 0 3px 3px;
+    .vs-variable-content-desc-title {
+      margin-bottom: 4px;
+      font-weight: 700;
+    }
+  }
+
+  .dialog-left-container {
+    float: left;
+
+    .vs-variable-selector-inner {
+      display: flex;
+      height: 520px;
+      border: 1px solid rgba(31, 56, 88, 0.3);
+      border-radius: 3px;
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .vs-variable-selector-ul {
+        li {
+          cursor: pointer;
+
+          position: relative;
+
+          height: 28px;
+          padding: 0 12px;
+
+          line-height: 28px;
+          white-space: nowrap;
+          &:hover {
+            background: rgba(128, 128, 128, 0.15);
+          }
+        }
+        .active {
+          background: rgba(128, 128, 128, 0.15);
+        }
+      }
+      .vs-variable-selector-category {
+        overflow: auto;
+        width: 206px;
+        height: 100%;
+        border-right: 1px solid rgba(31, 56, 88, 0.3);
+      }
+      .vs-variable-selector-items-container {
+        width: 206px;
+        .ve-search-control {
+          height: 28px;
+          margin: 10px;
+        }
+        .vs-variable-selector-ul {
+          overflow: auto;
+          width: 100%;
+          height: calc(100% - 48px);
+        }
+      }
+    }
+
+    .dialog-left-context {
+      width: 355px;
+      height: 520px;
+      border: 1px solid rgba(31, 56, 88, 0.3);
+      border-radius: 3px;
+
+      .variable-type-container {
+        float: left;
+        width: 200px;
+        height: 390px;
+      }
+
+      .select-item {
+        cursor: pointer;
+
+        position: relative;
+
+        overflow: hidden;
+
+        height: 28px;
+        padding: 0 30px 0 12px;
+
+        font-size: 12px;
+        line-height: 28px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .select-item-active {
+        background: rgba(128, 128, 128, 0.15);
+      }
+
+      .event-select-container {
+        float: left;
+        width: 156px;
+
+        .event-search-box {
+          width: 135px;
+          margin: 10px;
+        }
+      }
+
+      .event-list {
+        overflow: hidden auto;
+        height: 342px;
+      }
+
+      .variable-list {
+        font-size: 13px;
+        .variable-item {
+          cursor: pointer;
+          height: 30px;
+          padding-left: 30px;
+          line-height: 30px;
+        }
+
+        .variable-item:hover {
+          background-color: rgba(31, 56, 88, 0.06);
+        }
+      }
+    }
+  }
+
+  .dialog-right-container {
+    float: left;
+    width: 540px;
+    padding-left: 12px;
+
+    .event-input-container {
+      margin-bottom: 20px;
+    }
+    textarea {
+      height: 100%;
+    }
+  }
+}
+
+.variable-bind-dialog-bottom {
+  .bottom-left-container {
+    float: left;
+  }
+}
+
+.variable-dialog-title {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 12px;
+  img {
+    cursor: pointer;
+  }
+}
+
+.vs-variable-minimize {
+  cursor: pointer;
+
+  position: absolute;
+  z-index: 100;
+  right: 286px;
+  bottom: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 120px;
+  padding: 8px 12px;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  box-shadow: 0 0 8px #aaa;
+  img {
+    width: 12px;
+  }
+}

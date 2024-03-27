@@ -10,7 +10,9 @@
   "license": "MIT",
   "scripts": {
     "build": "dumi build",
-    "dev": "dumi dev",
+    "dev": "concurrently \"npm run dev:console\" \"npm run dev:server\"",
+    "dev:console": "pnpm --filter 'yunti-console' dev",
+    "dev:docs": "dumi dev",
     "dev:server": "pnpm --filter 'yunti-server' dev",
     "lint": "npm run lint:es && npm run lint:style && npm run lint:md",
     "lint-fix": "npm run lint-fix:es && npm run lint-fix:style",
@@ -34,25 +36,23 @@
       "prettier --write --no-error-on-unmatched-pattern"
     ],
     "*.{css,less}": [
-      "stylelint --fix",
+      "stylelint --allow-empty-input --fix",
       "prettier --write"
     ],
     "*.{js,jsx}": [
-      "stylelint --fix",
+      "stylelint --allow-empty-input --fix",
       "eslint --fix",
       "prettier --write"
     ],
     "*.{ts,tsx}": [
-      "stylelint --fix",
+      "stylelint --allow-empty-input --fix",
       "eslint --fix",
       "prettier --parser=typescript --write"
     ]
   },
   "devDependencies": {
-    "@types/jest": "^27",
     "@types/react": "^17",
     "@types/react-dom": "^17",
-    "@umijs/test": "^4",
     "@yuntijs/lint": "^1.5.1",
     "@yuntijs/ui": "^1.0.0-beta.7",
     "commitlint": "^18",
@@ -62,7 +62,6 @@
     "eslint": "^8.52.0",
     "father": "^4.3.8",
     "husky": "^8",
-    "jest": "^27",
     "lint-staged": "^15",
     "multi-semantic-release": "^3",
     "prettier": "^3",

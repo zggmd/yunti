@@ -1,0 +1,88 @@
+// 低码引擎样式覆盖
+
+:root {
+  // engine-core
+  --color-brand: #006cff;
+  --color-brand-light: #197aff;
+  --color-brand-dark: #0060e5;
+  --color-canvas-background: rgba(31, 56, 88, 0.06);
+  --color-icon-normal: rgba(31, 56, 88, 0.4);
+  --color-icon-hover: rgba(31, 56, 88, 0.6);
+  --color-icon-active: #006cff;
+  --color-icon-reverse: #fff;
+  --color-line-normal: rgba(31, 56, 88, 0.1);
+  --color-line-darken: rgba(18, 32, 50, 0.1);
+  --color-title: rgba(0, 0, 0, 0.8);
+  --color-text: rgba(0, 0, 0, 0.6);
+  --color-text-dark: rgba(0, 0, 0, 0.6);
+  --color-text-light: rgba(26, 26, 26, 0.6);
+  --color-text-reverse: hsla(0deg, 0%, 100%, 0.8);
+  --color-text-regular: rgba(31, 56, 88, 0.8);
+  --color-field-label: rgba(0, 0, 0, 0.4);
+  --color-field-text: rgba(0, 0, 0, 0.6);
+  --color-field-placeholder: rgba(31, 56, 88, 0.3);
+  --color-field-border: rgba(31, 56, 88, 0.3);
+  --color-field-border-hover: rgba(31, 56, 88, 0.4);
+  --color-field-border-active: rgba(31, 56, 88, 0.6);
+  --color-field-background: #fff;
+  --color-function-success: #66bc5c;
+  --color-function-success-dark: #4da243;
+  --color-function-success-light: #88cb80;
+  --color-function-warning: #fabd0e;
+  --color-function-warning-dark: #d19c04;
+  --color-function-warning-light: #fbcb40;
+  --color-function-information: #2e76a6;
+  --color-function-information-dark: #235a7e;
+  --color-function-information-light: #3e91c9;
+  --color-function-error: #f04631;
+  --color-function-error-dark: #de2710;
+  --color-function-error-light: #f37161;
+  --color-pane-background: #fff;
+  --color-block-background-normal: #fff;
+  --color-block-background-light: rgba(31, 56, 88, 0.04);
+  --color-block-background-shallow: rgba(31, 56, 88, 0.06);
+  --color-block-background-dark: rgba(31, 56, 88, 0.1);
+  --color-block-background-disabled: rgba(31, 56, 88, 0.2);
+  --color-block-background-deep-dark: #bac3cc;
+  --color-layer-mask-background: rgba(0, 0, 0, 0.1);
+  --color-layer-tooltip-background: rgba(44, 47, 51, 0.8);
+  --pane-title-bg-color: rgba(31, 56, 88, 0.04);
+  --font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', helvetica, arial, sans-serif;
+  --font-size-label: 14px;
+  --font-size-text: 12px;
+  --font-size-btn-large: 16px;
+  --font-size-btn-medium: 14px;
+  --font-size-btn-small: 12px;
+  --global-border-radius: 3px;
+  --input-border-radius: 3px;
+  --popup-border-radius: 6px;
+  --left-area-width: 48px;
+  --right-area-width: 300px;
+  --top-area-height: 48px;
+  --toolbar-height: 36px;
+  --dock-pane-width: 300px;
+  --dock-fixed-pane-width: 300px;
+
+  // variables.css
+  --btn-pure-primary-bg: #00b96b;
+  --btn-pure-primary-bg-hover: #20c77c;
+}
+
+.lc-workbench {
+  .lc-left-area {
+    .lc-left-area-top {
+      .lc-dock {
+        margin: 8px 0;
+        &:first-child {
+          margin-top: 0;
+        }
+        &.actived {
+          background-color: rgba(68, 97, 235, 0.1);
+        }
+        .lc-title-txt {
+          margin-top: 2px;
+        }
+      }
+    }
+  }
+}

@@ -33,7 +33,7 @@ jobs:
 
       - name: setting token of private npm registry
         run: |
-          npm set //dev-npm.tenxcloud.net/:_authToken="${{ secrets.PRIVATE_NPM_TOKEN }}"
+          npm set //dev-npm.k8s.com.cn/:_authToken="${{ secrets.PRIVATE_NPM_TOKEN }}"
 
       - name: Install deps
         run: pnpm i

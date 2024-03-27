@@ -1,9 +1,8 @@
 {
   "name": "yunti-server",
-  "version": "0.0.1",
-  "private": true,
+  "version": "0.1.0",
   "description": "yunti-server for console",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "author": "zhangpc<zhang.pengcheng3@neolink.com>",
   "scripts": {
     "prebuild": "rimraf dist",
@@ -122,7 +121,6 @@
     "ts-loader": "^9.4.3",
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.2.0",
-    "typescript": "^5",
     "zx": "^7.2.3"
   },
   "packageManager": "pnpm@8.12.1"

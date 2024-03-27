@@ -1,0 +1,144 @@
+{
+  "components": [
+    {
+      "exportName": "TenxUiMaterialsMeta",
+      "npm": {
+        "package": "@tenx-ui/materials",
+        "version": "latest"
+      },
+      "url": "http://dev-unpkg.tenxcloud.net/@tenx-ui/materials@latest/build/lowcode/meta.js"
+    },
+    {
+      "exportName": "TenxUiChartsMeta",
+      "npm": {
+        "package": "@tenx-ui/charts",
+        "version": "latest"
+      },
+      "url": "http://dev-unpkg.tenxcloud.net/@tenx-ui/charts@latest/build/lowcode/meta.js"
+    },
+    {
+      "exportName": "TenxUiIconMaterialsMeta",
+      "npm": {
+        "package": "@tenx-ui/icon-materials",
+        "version": "0.1.1"
+      },
+      "url": "http://dev-unpkg.tenxcloud.net/@tenx-ui/icon-materials@0.1.1/build/lowcode/meta.js"
+    }
+  ],
+  "packages": [
+    {
+      "package": "@alifd/next",
+      "id": "@alifd/next",
+      "library": "Next",
+      "version": "1.24.18",
+      "urls": [
+        "https://g.alicdn.com/legao-comp/web_bundle_0724/@alife/theme-254/1.29.5/@alifd/next/1.24.18/theme.7c897c2.css",
+        "https://g.alicdn.com/legao-comp/web_bundle_0724/@alifd/next/1.24.18/main.059bccd.js"
+      ]
+    },
+    {
+      "package": "moment",
+      "id": "moment",
+      "version": "2.24.0",
+      "library": "moment",
+      "urls": ["https://g.alicdn.com/mylib/moment/2.24.0/min/moment.min.js"]
+    },
+    {
+      "package": "lodash",
+      "id": "lodash",
+      "library": "_",
+      "version": "4.6.1",
+      "urls": ["https://g.alicdn.com/platform/c/lodash/4.6.1/lodash.min.js"]
+    },
+    {
+      "package": "@ant-design/icons",
+      "id": "@ant-design/icons",
+      "library": "icons",
+      "version": "4.7.0",
+      "urls": ["//g.alicdn.com/code/npm/@ali/ant-design-icons-cdn/4.5.0/index.umd.min.js"]
+    },
+    {
+      "library": "dayjs",
+      "id": "dayjs",
+      "package": "dayjs",
+      "version": "1.11.6",
+      "urls": ["http://dev-unpkg.tenxcloud.net/dayjs@1.11.6/dayjs.min.js"],
+      "editUrls": ["http://dev-unpkg.tenxcloud.net/dayjs@1.11.6/dayjs.min.js"]
+    },
+    {
+      "package": "antd",
+      "id": "antd",
+      "library": "antd",
+      "version": "5.6.4",
+      "urls": ["http://dev-unpkg.tenxcloud.net/antd@5.6.4/dist/antd.min.js"],
+      "editUrls": ["http://dev-unpkg.tenxcloud.net/antd@5.6.4/dist/antd.min.js"]
+    },
+    {
+      "package": "@tenx-ui/materials",
+      "id": "@tenx-ui/materials",
+      "library": "TenxUiMaterials",
+      "version": "latest",
+      "urls": [
+        "http://dev-unpkg.tenxcloud.net/@tenx-ui/materials@latest/build/lowcode/view.js",
+        "http://dev-unpkg.tenxcloud.net/@tenx-ui/materials@latest/build/lowcode/view.css"
+      ],
+      "editUrls": [
+        "http://dev-unpkg.tenxcloud.net/@tenx-ui/materials@latest/build/lowcode/view.js",
+        "http://dev-unpkg.tenxcloud.net/@tenx-ui/materials@latest/build/lowcode/view.css"
+      ]
+    },
+    {
+      "package": "@tenx-ui/charts",
+      "id": "@tenx-ui/charts",
+      "library": "TenxUiCharts",
+      "version": "latest",
+      "urls": [
+        "http://dev-unpkg.tenxcloud.net/@tenx-ui/charts@latest/build/lowcode/view.js",
+        "http://dev-unpkg.tenxcloud.net/@tenx-ui/charts@latest/build/lowcode/view.css"
+      ],
+      "editUrls": [
+        "http://dev-unpkg.tenxcloud.net/@tenx-ui/charts@latest/build/lowcode/view.js",
+        "http://dev-unpkg.tenxcloud.net/@tenx-ui/charts@latest/build/lowcode/view.css"
+      ]
+    },
+    {
+      "package": "@tenx-ui/icon-materials",
+      "id": "@tenx-ui/icon-materials",
+      "library": "TenxUiIconMaterials",
+      "version": "0.1.1",
+      "urls": [
+        "http://dev-unpkg.tenxcloud.net/@tenx-ui/icon-materials@0.1.1/build/lowcode/view.js",
+        "http://dev-unpkg.tenxcloud.net/@tenx-ui/icon-materials@0.1.1/build/lowcode/view.css"
+      ],
+      "editUrls": [
+        "http://dev-unpkg.tenxcloud.net/@tenx-ui/icon-materials@0.1.1/build/lowcode/view.js",
+        "http://dev-unpkg.tenxcloud.net/@tenx-ui/icon-materials@0.1.1/build/lowcode/view.css"
+      ]
+    },
+    {
+      "package": "@tenx-ui/auth-utils",
+      "id": "@tenx-ui/auth-utils",
+      "library": "authUtils",
+      "version": "0.0.1",
+      "urls": [
+        "http://dev-unpkg.tenxcloud.net/@tenx-ui/auth-utils@0.0.1/dist/umd/auth-utils.min.js"
+      ]
+    }
+  ],
+  "sort": {
+    "categoryList": [
+      "基础组件",
+      "输入组件",
+      "布局组件",
+      "容器组件",
+      "数据组件",
+      "其他",
+      "formily 表单容器",
+      "formily 表单组件",
+      "图表组件",
+      "业务组件"
+    ],
+    "groupList": ["容器/布局", "组件", "表单", "图表组件"]
+  },
+  "version": "1.1.0"
+}

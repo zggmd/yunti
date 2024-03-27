@@ -1,0 +1,362 @@
+{
+  "componentsMap": [
+    {
+      "package": "@tenx-ui/materials",
+      "version": "1.5.11-beta.8",
+      "exportName": "Typography",
+      "destructuring": true,
+      "subName": "Text",
+      "componentName": "Typography.Text"
+    },
+    {
+      "package": "@tenx-ui/materials",
+      "version": "1.5.11-beta.8",
+      "exportName": "Col",
+      "destructuring": true,
+      "subName": "",
+      "componentName": "Col"
+    },
+    {
+      "package": "@tenx-ui/materials",
+      "version": "1.5.11-beta.8",
+      "exportName": "Row",
+      "destructuring": true,
+      "subName": "",
+      "componentName": "Row"
+    },
+    {
+      "package": "@tenx-ui/materials",
+      "version": "1.5.11-beta.8",
+      "exportName": "Button",
+      "destructuring": true,
+      "subName": "",
+      "componentName": "Button"
+    },
+    {
+      "package": "@tenx-ui/materials",
+      "version": "1.5.11-beta.8",
+      "exportName": "Image",
+      "destructuring": true,
+      "subName": "",
+      "componentName": "Image"
+    },
+    {
+      "package": "@tenx-ui/materials",
+      "version": "1.5.11-beta.8",
+      "exportName": "Page",
+      "destructuring": true,
+      "subName": "",
+      "componentName": "Page"
+    }
+  ],
+  "componentsTree": [
+    {
+      "componentName": "Page",
+      "condition": true,
+      "fileName": "Test",
+      "id": "page-dgf1j",
+      "isLocked": false,
+      "meta": {
+        "title": "test",
+        "router": "/test"
+      },
+      "methods": {
+        "onBannerClick": {
+          "type": "JSFunction",
+          "value": "function onBannerClick(e) {\n  window.open('https://cdn.tenxcloud.com/kubebb/kubebb_intro.mp4', '_blank');\n}",
+          "source": "function onBannerClick(e) {\n  window.open('https://cdn.tenxcloud.com/kubebb/kubebb_intro.mp4', '_blank');\n}"
+        }
+      },
+      "children": [
+        {
+          "componentName": "Row",
+          "id": "node_oclnl79r8s2",
+          "props": {
+            "__component_name": "Row",
+            "justify": "space-between",
+            "wrap": false,
+            "style": {
+              "backgroundImage": "linear-gradient(45deg,#f1f2f5,#f1f2f5,#c4d4ff)",
+              "overflow": "hidden",
+              "padding": "6rem 8rem"
+            }
+          },
+          "hidden": false,
+          "title": "",
+          "isLocked": false,
+          "condition": true,
+          "conditionGroup": "",
+          "children": [
+            {
+              "componentName": "Col",
+              "id": "node_oclnl79r8s3",
+              "props": {
+                "__component_name": "Col"
+              },
+              "hidden": false,
+              "title": "",
+              "isLocked": false,
+              "condition": true,
+              "conditionGroup": "",
+              "children": [
+                {
+                  "componentName": "Row",
+                  "id": "node_oclnl79r8s7",
+                  "props": {
+                    "__component_name": "Row",
+                    "wrap": true
+                  },
+                  "hidden": false,
+                  "title": "",
+                  "isLocked": false,
+                  "condition": true,
+                  "conditionGroup": "",
+                  "children": [
+                    {
+                      "componentName": "Col",
+                      "id": "node_oclnl79r8s8",
+                      "props": {
+                        "__component_name": "Col",
+                        "span": 24
+                      },
+                      "hidden": false,
+                      "title": "",
+                      "isLocked": false,
+                      "condition": true,
+                      "conditionGroup": "",
+                      "children": [
+                        {
+                          "componentName": "Typography.Text",
+                          "id": "node_oclnl79r8s11",
+                          "props": {
+                            "__component_name": "Typography.Text",
+                            "children": "Framework as a Building Block for Kubernetes",
+                            "ellipsis": true,
+                            "style": {
+                              "color": "#000",
+                              "fontSize": "40px",
+                              "fontWeight": "400"
+                            },
+                            "disabled": false,
+                            "strong": false
+                          },
+                          "title": "文本",
+                          "hidden": false,
+                          "isLocked": false,
+                          "condition": true,
+                          "conditionGroup": ""
+                        }
+                      ]
+                    },
+                    {
+                      "componentName": "Col",
+                      "id": "node_oclnl79r8s9",
+                      "props": {
+                        "__component_name": "Col",
+                        "span": 24
+                      },
+                      "hidden": false,
+                      "title": "",
+                      "isLocked": false,
+                      "condition": true,
+                      "conditionGroup": "",
+                      "children": [
+                        {
+                          "componentName": "Typography.Text",
+                          "id": "node_oclnl79r8sa",
+                          "props": {
+                            "__component_name": "Typography.Text",
+                            "children": "在Kubernetes 上以搭积木的方式构建自己的服务门户",
+                            "ellipsis": true,
+                            "style": {
+                              "color": "#000",
+                              "fontSize": "28px",
+                              "fontWeight": "300"
+                            },
+                            "disabled": false,
+                            "strong": false
+                          },
+                          "title": "文本",
+                          "hidden": false,
+                          "isLocked": false,
+                          "condition": true,
+                          "conditionGroup": ""
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "componentName": "Button",
+                  "id": "node_oclnl79r8s14",
+                  "props": {
+                    "__component_name": "Button",
+                    "type": "primary",
+                    "children": "教程-5min →",
+                    "icon": "",
+                    "href": "http://kubebb.k8s.com.cn/docs/quick-start/prerequisite",
+                    "danger": false,
+                    "ghost": false,
+                    "shape": "default",
+                    "block": false,
+                    "disabled": false,
+                    "style": {
+                      "fontSize": "16px",
+                      "height": "56px",
+                      "width": "237px",
+                      "marginTop": "50px"
+                    },
+                    "target": "_blank"
+                  },
+                  "hidden": false,
+                  "title": "",
+                  "isLocked": false,
+                  "condition": true,
+                  "conditionGroup": ""
+                }
+              ]
+            },
+            {
+              "componentName": "Col",
+              "id": "node_oclnl79r8s4",
+              "props": {
+                "__component_name": "Col"
+              },
+              "hidden": false,
+              "title": "",
+              "isLocked": false,
+              "condition": true,
+              "conditionGroup": "",
+              "children": [
+                {
+                  "componentName": "Image",
+                  "id": "node_oclnl79r8sb",
+                  "props": {
+                    "__component_name": "Image",
+                    "src": "http://kubebb.k8s.com.cn/assets/images/video-bg-3e54b94d1aeeb099eb6237c288dc52d5.png",
+                    "height": 260,
+                    "width": 450,
+                    "preview": false,
+                    "fallback": "",
+                    "__events": {
+                      "eventDataList": [
+                        {
+                          "type": "componentEvent",
+                          "name": "onClick",
+                          "relatedEventName": "onBannerClick"
+                        }
+                      ],
+                      "eventList": [
+                        {
+                          "name": "onClick",
+                          "template": "onClick(e, ${extParams}){\n// 事件的 handler\nconsole.log(e, 'onClick');}",
+                          "disabled": true
+                        }
+                      ]
+                    },
+                    "onClick": {
+                      "type": "JSFunction",
+                      "value": "function(){return this.onBannerClick.apply(this,Array.prototype.slice.call(arguments).concat([])) }"
+                    },
+                    "style": {
+                      "cursor": "pointer"
+                    }
+                  },
+                  "hidden": false,
+                  "title": "",
+                  "isLocked": false,
+                  "condition": true,
+                  "conditionGroup": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "config": {
+    "antd": {
+      "configProvider": {
+        "theme": {
+          "token": {
+            "colorPrimary": "#4461eb"
+          }
+        }
+      }
+    }
+  },
+  "constants": {
+    "IS_PROD": {
+      "builtin": true,
+      "description": "是否为生产环境",
+      "mock": "false",
+      "type": "JSExpression",
+      "value": "process.env.NODE_ENV === 'production'"
+    },
+    "IS_QIAN_KUN": {
+      "builtin": true,
+      "description": "是否为乾坤微前端环境",
+      "mock": "true",
+      "type": "JSExpression",
+      "value": "window.__POWERED_BY_QIANKUN__"
+    },
+    "basename": {
+      "builtin": true,
+      "description": "应用路由前缀",
+      "type": "JSExpression",
+      "value": "'/umi-demo'"
+    }
+  },
+  "meta": {
+    "name": "Hello World",
+    "version": "0.1.0",
+    "namespace": "hello-world-portal",
+    "description": "hello world portal developed by yunti",
+    "port": "8168",
+    "basename": "/hello-world"
+  },
+  "utils": [
+    {
+      "builtin": true,
+      "content": {
+        "componentName": "getAuthData",
+        "destructuring": true,
+        "exportName": "getAuthData",
+        "package": "@tenx-ui/auth-utils",
+        "subName": "",
+        "version": "0.0.1"
+      },
+      "description": "获取认证数据",
+      "name": "getAuthData",
+      "type": "npm"
+    },
+    {
+      "builtin": true,
+      "content": {
+        "componentName": "setAuthData",
+        "destructuring": true,
+        "exportName": "setAuthData",
+        "package": "@tenx-ui/auth-utils",
+        "version": "0.0.1"
+      },
+      "description": "设置认证数据",
+      "name": "setAuthData",
+      "type": "npm"
+    },
+    {
+      "builtin": true,
+      "content": {
+        "componentName": "removeAuthData",
+        "destructuring": true,
+        "exportName": "removeAuthData",
+        "package": "@tenx-ui/auth-utils",
+        "version": "0.0.1"
+      },
+      "description": "移除认证数据",
+      "name": "removeAuthData",
+      "type": "npm"
+    }
+  ],
+  "version": "1.0.0"
+}

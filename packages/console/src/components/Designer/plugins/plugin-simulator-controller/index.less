@@ -1,0 +1,72 @@
+.lp-simulator-pane {
+  display: flex;
+  align-items: center;
+  margin: 0 8px;
+  .ant-input-number-input {
+    width: 78px;
+    padding-right: 25px;
+  }
+  .lp-simulator-pane-item {
+    cursor: pointer;
+
+    display: inline-block;
+
+    width: 32px;
+    height: 32px;
+    margin: 0 4px;
+    padding: 6px;
+
+    border-radius: 3px;
+    &:hover {
+      svg {
+        opacity: 1;
+      }
+    }
+    &.actived {
+      background: #f2f2f2;
+    }
+  }
+  svg {
+    opacity: 0.6;
+  }
+
+  .lp-simulator-width-setter {
+    position: relative;
+    width: 105px;
+    height: 32px;
+    margin-left: 12px;
+  }
+}
+
+// 根据不同的模拟器切换GUI样式
+.lc-simulator {
+  .lc-simulator-device-default {
+    margin: auto;
+  }
+  // mobile
+  .lc-simulator-device-phone {
+    top: 16px;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 375px;
+    margin: auto;
+  }
+  // pad
+  .lc-simulator-device-tablet {
+    top: 16px;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 768px;
+    margin: auto;
+  }
+  // pc
+  .lc-simulator-device-desktop {
+    inset: 16px;
+    width: auto;
+    margin: auto;
+  }
+}
