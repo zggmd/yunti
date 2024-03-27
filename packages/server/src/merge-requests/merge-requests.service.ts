@@ -278,22 +278,9 @@ export class MergeRequestService {
       throw new CustomException('ALREADY_CLOSED', 'Already closed', 409);
     }
 
-    // 当关闭
-    if (mergeRequest.authorId !== user.id) {
-      let memberRole;
-      memberRole = await (mergeRequest.mergeRequestSourceType === MergeRequestSourceType.app
-        ? this.appsMembersService.checkUserAppMemberRole(user, mergeRequest.mergeRequestSourceId)
-        : this.componentsMembersService.checkUserComponentMemberRole(
-            user,
-            mergeRequest.mergeRequestSourceId
-          ));
-      if (memberRole !== MemberRole.Owner && memberRole !== MemberRole.Maintainer) {
-        throw new CustomException(
-          'Forbidden',
-          'Only MR creator, onwer and Maintainer can close the MR',
-          403
-        );
-      }
+    // 当关闭检查用户权限是否足够
+    if (mergeRequest.authorId !== user.id || mergeRequest.assigneeId !== user.id) {
+      await this.checkMRPermission(user, mergeRequest);
     }
 
     mergeRequest.mergeRequestStatus = MergeRequestStatus.Closed;
@@ -326,6 +313,11 @@ export class MergeRequestService {
 
     if (mergeRequest.mergeRequestStatus !== MergeRequestStatus.Conflicted) {
       throw new CustomException('ALREADY_RESOLVED', 'Already resolved', 400);
+    }
+
+    // 提出者或者对对应分支有权限的才可以解决冲突
+    if (mergeRequest.authorId !== user.id) {
+      await this.checkMRPermission(user, mergeRequest);
     }
 
     // 当数据完全使用源代码数据时不需要对源代码进行 commit
@@ -467,17 +459,8 @@ export class MergeRequestService {
       throw new CustomException('IS_NOT_OPENNING', 'merge request is not openning status', 400);
     }
 
-    // 查看合并权限是否满足 Owner 或 maintainer
-    let memberRole;
-    memberRole = await (mergeRequest.mergeRequestSourceType === MergeRequestSourceType.app
-      ? this.appsMembersService.checkUserAppMemberRole(user, mergeRequest.mergeRequestSourceId)
-      : this.componentsMembersService.checkUserComponentMemberRole(
-          user,
-          mergeRequest.mergeRequestSourceId
-        ));
-    if (memberRole !== MemberRole.Owner && memberRole !== MemberRole.Maintainer) {
-      throw new CustomException('Forbidden', 'Only onwer and maintainer can merge the MR', 403);
-    }
+    // 查看合并权限是否满足 Owner 或 maintainer, 或当前分支的 owner
+    await this.checkMRPermission(user, mergeRequest);
 
     const dataSource = await treeDataSources.getDataSource(mergeRequest.targetBranchName);
     const queryRunner = dataSource.createQueryRunner();
@@ -687,6 +670,34 @@ export class MergeRequestService {
         `Branch ${targetBranchName} is not clean, commit changes first please.`,
         404
       );
+    }
+  }
+
+  async checkMRPermission(user: ILoginUser, mergeRequest: MergeRequest) {
+    const targetBranchInfo = mergeRequest.targetBranchName.split('/');
+    if (targetBranchInfo && targetBranchInfo.length < 2) {
+      throw new CustomException(
+        'TARGET BRANCH NAME IS WRONG',
+        `Full target branche name is wrong: ${mergeRequest.targetBranchName}`,
+        400
+      );
+    }
+    // 当前分支为用户分支时可以修改，非用户分支时看是否为 owner 或者 maintainer
+    if (targetBranchInfo[1] !== user.id) {
+      let memberRole;
+      memberRole = await (mergeRequest.mergeRequestSourceType === MergeRequestSourceType.app
+        ? this.appsMembersService.checkUserAppMemberRole(user, mergeRequest.mergeRequestSourceId)
+        : this.componentsMembersService.checkUserComponentMemberRole(
+            user,
+            mergeRequest.mergeRequestSourceId
+          ));
+      if (memberRole !== MemberRole.Owner && memberRole !== MemberRole.Maintainer) {
+        throw new CustomException(
+          'Forbidden',
+          'Only MR creator, Branch owner, App onwer and App maintainer can operate the MR',
+          403
+        );
+      }
     }
   }
 }

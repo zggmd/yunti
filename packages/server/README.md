@@ -56,7 +56,7 @@ docker run --name dolt --restart=always `
 ```bash
 docker exec -it dolt bash
 # 执行下面的命令可以进入 dolt sql shell
-dolt --host 0.0.0.0 --port 3306 -u root -p tenxcloud --no-tls sql
+dolt --host 0.0.0.0 --port 3306 -u root -p yunti --no-tls sql
 ```
 
 使用 dolt sql 初始化数据库：
@@ -64,7 +64,7 @@ dolt --host 0.0.0.0 --port 3306 -u root -p tenxcloud --no-tls sql
 ```bash
 dolt config --global --add user.email "yunti@yuntijs.com"
 dolt config --global --add user.name "yunti"
-dolt --host 0.0.0.0 --port 3306 -u root -p tenxcloud --no-tls sql < /tmp/db/init.sql
+dolt --host 0.0.0.0 --port 3306 -u root -p yunti --no-tls sql < /tmp/db/init.sql
 ```
 
 启动 server：
