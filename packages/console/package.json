@@ -53,11 +53,11 @@
     "@tenx-ui/utils": "^2.3.1",
     "@tenx-ui/yunti-bff-client": "^1.3.3",
     "@umijs/max": "^4.0.90",
-    "@yunti/lowcode-datasource-axios-handler": "^1.0.0",
+    "@yunti/lowcode-datasource-axios-handler": "^1.0.1",
     "@yunti/lowcode-plugin-code-generator": "^2.3.0",
     "@yuntijs/request": "^1.2.0",
     "@yuntijs/ui-lowcode-materials": "^1.3.0",
-    "antd": "^5.8.3",
+    "antd": "^5.15.4",
     "antd-token-previewer": "1.1.0",
     "change-case": "^4.1.2",
     "classnames": "^2.3.2",
@@ -92,7 +92,7 @@
     "sass": "^1.51.0",
     "sass-loader": "^12.6.0"
   },
-  "packageManager": "pnpm@8.12.1",
+  "packageManager": "pnpm@8.15.5",
   "engines": {
     "node": ">=18.12.0",
     "pnpm": ">=8.1.0"

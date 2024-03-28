@@ -1,0 +1,23 @@
+name: 'Check if dependencies changed'
+description: 'Check if the dependencies of a Node.js project have changed'
+# inputs:
+outputs:
+  changed:
+    description: "if dependencies changed"
+    value: ${{ steps.changes.outputs.package }}
+runs:
+  using: "composite"
+  steps:
+    - name: Filter changes
+      uses: dorny/paths-filter@v3
+      id: changes
+      with:
+        filters: |
+          package:
+            - 'package.json'
+            - 'pnpm-lock.yaml'
+            - '.npmrc'
+            - '.pnpmfile.cjs'
+            - 'packages/**/package.json'
+            - 'packages/**/.npmrc'
+            - 'patches/*.patch'

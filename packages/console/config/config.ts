@@ -21,6 +21,10 @@ import routes from './routes';
  * get last commit hash
  */
 const getLastCommitHash = () => {
+  const { GITHUB_SHA } = process.env;
+  if (GITHUB_SHA) {
+    return GITHUB_SHA;
+  }
   try {
     return execSync('git rev-parse HEAD').toString().trim();
   } catch (error) {

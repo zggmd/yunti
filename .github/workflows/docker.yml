@@ -1,0 +1,146 @@
+name: Build docker image
+
+on:
+  push:
+    branches:
+      - alpha
+    tags:
+      - 'v*'
+env:
+  REGISTRY: docker.io
+  BASE_IMAGE_NAME: yuntijs/yunti-base
+  BASE_PRO_IMAGE_NAME: yuntijs/yunti-base-prod
+  DIST_IMAGE_NAME: yuntijs/yunti-dist
+  IMAGE_NAME: yuntijs/yunti
+  DOCKER_USER: yuntijs
+
+jobs:
+  base-image-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check if dependencies changed
+        id: deps
+        uses: "./.github/actions/node-deps-change"
+      - name: Setup QEMU, Buildx and login to the dockerhub
+        if: steps.deps.outputs.changed == 'true'
+        uses: "./.github/actions/setup-docker"
+        with:
+          username: ${{ env.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+          npmtoken: ${{ secrets.PRIVATE_NPM_TOKEN }}
+      - name: Build and push base image
+        if: steps.deps.outputs.changed == 'true'
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: dockerfiles/base.dockerfile
+          platforms: linux/amd64
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.BASE_IMAGE_NAME }}:alpha
+          push: true
+          secret-files: |
+            "npmrc=/tmp/npmrc"
+  base-prod-image-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check if dependencies changed
+        id: deps
+        uses: "./.github/actions/node-deps-change"
+      - name: Setup QEMU, Buildx and login to the dockerhub
+        if: steps.deps.outputs.changed == 'true'
+        uses: "./.github/actions/setup-docker"
+        with:
+          username: ${{ env.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+      - name: Build and push base prod image
+        if: steps.deps.outputs.changed == 'true'
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: dockerfiles/base.prod.dockerfile
+          platforms: linux/amd64,linux/arm64
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.BASE_PRO_IMAGE_NAME }}:alpha
+          push: true
+  dist-image-build:
+    needs:
+      - base-image-build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup QEMU, Buildx and login to the dockerhub
+        uses: "./.github/actions/setup-docker"
+        with:
+          username: ${{ env.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+      - name: Build and push dist image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: dockerfiles/build.dockerfile
+          platforms: linux/amd64
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.DIST_IMAGE_NAME }}:alpha
+          push: true
+          build-args: |
+            GITHUB_SHA=${{ github.sha }}
+  final-image-build:
+    needs:
+      - base-image-build
+      - base-prod-image-build
+      - dist-image-build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set Variable
+        id: set-env
+        run: |
+          TAG=$(git describe --tags --abbrev=0 --match 'v*' 2> /dev/null) || true
+          if [ -z "$TAG" ]; then
+            echo "No tag found, use v0.1.0 as default"
+            TAG=v0.1.0
+          fi
+          echo "TAG=${TAG}" >> $GITHUB_OUTPUT
+          echo "DATE=$(TZ=Asia/Shanghai date +'%Y%m%d')" >> $GITHUB_OUTPUT
+      - name: Show Variable
+        run: echo "varibables ${{ steps.set-env.outputs.TAG }}-${{ steps.set-env.outputs.DATE }}"
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+      - name: Setup QEMU, Buildx and login to the dockerhub
+        uses: "./.github/actions/setup-docker"
+        with:
+          username: ${{ env.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+      - uses: benjlevesque/short-sha@v3.0
+        name: Get short commit sha
+        id: short-sha
+      - name: Build and push
+        id: push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: dockerfiles/Dockerfile
+          platforms: linux/amd64,linux/arm64
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.set-env.outputs.TAG }}-${{ steps.set-env.outputs.DATE }}-${{ steps.short-sha.outputs.sha }}
+            ${{ steps.meta.outputs.tags }}
+          push: true
+

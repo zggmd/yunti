@@ -1,0 +1,40 @@
+name: 'Setup QEMU, Buildx and dockerhub'
+description: 'Setup QEMU, Buildx and login to the dockerhub'
+inputs:
+  username:
+    description: 'username of dockerhub'
+    required: true
+  password:
+    description: 'password of dockerhub'
+    required: true
+  npmtoken:
+    description: 'token of npm'
+    default: ''
+    required: false
+outputs:
+  changed:
+    description: "if dependencies changed"
+    value: ${{ steps.changes.outputs.package }}
+runs:
+  using: "composite"
+  steps:
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v3
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+      with:
+        buildkitd-flags: --debug
+        buildkitd-config-inline: |
+          [worker.oci]
+            max-parallelism = 1
+    - name: Login to the dockerhub Registry
+      uses: docker/login-action@v3
+      with:
+        username: ${{ inputs.username }}
+        password: ${{ inputs.password }}
+    # @Todo: workaround for private npm mirror
+    - name: setting token to npmrc
+      shell: sh
+      if: inputs.npmtoken != ''
+      run: |
+        echo '//dev-npm.k8s.com.cn/:_authToken="${{ inputs.npmtoken }}"' > /tmp/npmrc

@@ -3,7 +3,7 @@ on:
   pull_request:
   push:
     branches:
-      - 'alpha'
+      - '!alpha'
 jobs:
   lint:
     runs-on: ubuntu-latest

@@ -9,7 +9,10 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "dumi build",
+    "build": "concurrently \"npm run build:console\" \"npm run build:server\"",
+    "build:console": "pnpm --filter 'yunti-console' build",
+    "build:docs": "dumi build",
+    "build:server": "pnpm --filter 'yunti-server' build",
     "dev": "concurrently \"npm run dev:console\" \"npm run dev:server\"",
     "dev:console": "pnpm --filter 'yunti-console' dev",
     "dev:docs": "dumi dev",
@@ -23,8 +26,6 @@
     "lint:style": "stylelint --allow-empty-input \"{docs,packages}/**/*.{css,less,js,jsx,ts,tsx}\"",
     "prepare": "husky install",
     "prettier": "prettier -c --write \"**/**\"",
-    "release": "multi-semantic-release",
-    "release:local": "multi-semantic-release --no-ci",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "lint-staged": {
@@ -53,17 +54,16 @@
   "devDependencies": {
     "@types/react": "^17",
     "@types/react-dom": "^17",
-    "@yuntijs/lint": "^1.5.1",
-    "@yuntijs/ui": "^1.0.0-beta.7",
+    "@yuntijs/lint": "^1.5.2",
+    "@yuntijs/ui": "^1.0.0-beta.8",
     "commitlint": "^18",
     "concurrently": "^8.2.2",
     "cross-env": "^7.0.3",
     "dumi": "^2.2.16",
-    "eslint": "^8.52.0",
+    "eslint": "^8",
     "father": "^4.3.8",
     "husky": "^8",
     "lint-staged": "^15",
-    "multi-semantic-release": "^3",
     "prettier": "^3",
     "react": "^17",
     "react-dom": "^17",
@@ -75,7 +75,6 @@
     "ts-node": "^10",
     "typescript": "^5"
   },
-  "packageManager": "pnpm@8.15.5",
   "engines": {
     "node": ">=18.12.0",
     "pnpm": ">=8.1.0"
