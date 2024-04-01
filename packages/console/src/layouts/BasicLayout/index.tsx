@@ -9,7 +9,7 @@ import type { ProLayoutProps } from '@ant-design/pro-layout';
 import { ProLayout } from '@ant-design/pro-layout';
 import type { Route } from '@ant-design/pro-layout/es/typing';
 import { useSdk } from '@tenx-ui/yunti-bff-client';
-import { Link, Outlet } from '@umijs/max';
+import { Link, Outlet, useLocation } from '@umijs/max';
 import { Button, Divider, Dropdown, Space, Tag, Typography } from 'antd';
 import React from 'react';
 
@@ -106,7 +106,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
 
   const sdk = useSdk();
   const userData = sdk.useGetCurrentUser();
-
+  const location = useLocation();
   const {
     title,
     appList = appListDefault,
@@ -123,7 +123,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
     const backEle = (
       <Space className="layout-header-title-space-back">
         <ArrowLeftOutlined />
-        <span>返回</span>
+        <span>{location.pathname.startsWith('/apps') ? '应用列表' : '返回'}</span>
       </Space>
     );
     return (

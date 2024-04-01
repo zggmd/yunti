@@ -58,6 +58,14 @@ const routes = [
             component: 'AppDetailMerge',
           },
           {
+            path: '/apps/:appId/merge/new',
+            component: 'AppDetailMergeNew',
+          },
+          {
+            path: '/apps/:appId/merge/:mergeId',
+            component: 'AppDetailMergeDetail',
+          },
+          {
             path: '/apps/:appId/publish-records',
             component: 'AppPublishRecords',
           },

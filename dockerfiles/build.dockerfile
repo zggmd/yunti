@@ -8,6 +8,7 @@ ADD packages/server /usr/src/app/packages/server
 ADD packages/k8s-client /usr/src/app/packages/k8s-client
 ADD packages/shared-components /usr/src/app/packages/shared-components
 ADD packages/console /usr/src/app/packages/console
+ADD packages/confirm /usr/src/app/packages/confirm
 
 WORKDIR /usr/src/app
 RUN npm run build

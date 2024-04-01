@@ -5,32 +5,26 @@ import React from 'react';
 import {
   Page,
   Drawer,
-  FormilyForm,
-  FormilySelect,
-  FormilyInput,
-  FormilyTextArea,
   Row,
   Col,
-  Tabs,
-  Typography,
   Menu,
   Flex,
   Collapse,
   Divider,
-  Space,
+  Tabs,
+  Typography,
   Button,
+  Space,
   Card,
-  Table,
-  Status,
+  FormilyForm,
+  FormilySelect,
+  FormilyInput,
+  FormilyTextArea,
 } from '@tenx-ui/materials';
 
 import { MonacoDiffEditor } from '@yuntijs/ui-lowcode-materials';
 
-import {
-  TenxIconBranchGit,
-  AntdIconPlusOutlined,
-  AntdIconReloadOutlined,
-} from '@tenx-ui/icon-materials';
+import { TenxIconBranchGit, AntdIconArrowLeftOutlined } from '@tenx-ui/icon-materials';
 
 import { useLocation, matchPath } from '@umijs/max';
 import { DataProvider } from 'shared-components';
@@ -45,7 +39,7 @@ import __$$constants from '../../__constants';
 
 import './index.css';
 
-class AppDetailMerge$$Page extends React.Component {
+class AppDetailMergeNew$$Page extends React.Component {
   get location() {
     return this.props.self?.location;
   }
@@ -76,22 +70,11 @@ class AppDetailMerge$$Page extends React.Component {
 
     this.state = {
       conflict: {},
-      detail: {
-        visible: false,
-        data: {},
-      },
+      diffData: {},
       diffTab: 'commits',
-      drawer: {
-        visible: false,
-        data: {},
-      },
-      MRType: 'openning',
       selected: [],
-    };
-
-    this.mock = {
-      list: [],
-      detail: {},
+      selectedSource: undefined,
+      selectedTarget: undefined,
     };
   }
 
@@ -102,33 +85,6 @@ class AppDetailMerge$$Page extends React.Component {
   $$ = refName => {
     return this._refsManager.getAll(refName);
   };
-
-  _constants() {
-    return {
-      statusList: [
-        {
-          children: '已合并',
-          id: 'Merged',
-          type: 'success',
-        },
-        {
-          children: '待合并',
-          id: 'Openning',
-          type: 'warning',
-        },
-        {
-          children: '已关闭',
-          id: 'Closed',
-          type: 'disabled',
-        },
-        {
-          children: '未知',
-          id: 'no',
-          type: 'disabled',
-        },
-      ],
-    };
-  }
 
   _setDeepValue(value, keyPath, obj) {
     if (!keyPath) {
@@ -153,44 +109,10 @@ class AppDetailMerge$$Page extends React.Component {
     return obj;
   }
 
-  async closeMergeRequest() {
-    const res = await this.utils.bff
-      .closeMergeRequests({
-        id: this.fullDiffData()?.id,
-      })
-      .catch(e => {
-        console.log('e', {
-          ...e,
-        });
-      });
-    if (res?.closeMergeRequests?.id) {
-      this.utils.notification.success({
-        message: '合并请求已关闭',
-      });
-    }
-  }
-
   data() {
     return {
       list: this.props.useGetMergeRequests?.data?.getMergeRequests || [],
     };
-  }
-
-  async doMerge() {
-    const res = await this.utils.bff
-      .mergeRequests({
-        id: this.fullDiffData()?.id,
-      })
-      .catch(e => {
-        console.log('e', {
-          ...e,
-        });
-      });
-    if (res?.mergeRequests?.result === 'ok') {
-      this.utils.notification.success({
-        message: '合并完成',
-      });
-    }
   }
 
   editorData(isConfilct) {
@@ -217,20 +139,7 @@ class AppDetailMerge$$Page extends React.Component {
     if (false) {
       return {};
     }
-    return (
-      (this.state.drawer?.visible ? this.state.drawer?.data?.diffData : this.state.detail?.data) ||
-      {}
-    );
-  }
-
-  getbranches(isSource) {
-    return (
-      this.props.useGetApp?.data?.app?.branches?.map(branch => ({
-        label: branch?.displayName,
-        value: branch?.name,
-        disabled: this.state.drawer.data?.[!isSource ? 'source' : 'target'] === branch?.name,
-      })) || []
-    );
+    return this.state.diffData?.diffData || {};
   }
 
   getCompareNum() {
@@ -239,35 +148,22 @@ class AppDetailMerge$$Page extends React.Component {
     return (data?.dataDiff?.length || 0) + (data?.schemaDiff?.length || 0);
   }
 
-  getConflictNum() {
-    //对比的计数
-    const data = this.fullDiffData()?.conflictData;
-    return (data?.dataConflicts?.length || 0) + (data?.schemaConflicts?.length || 0);
-  }
-
   async getDiff() {
-    if (!this.state.drawer.data.source || !this.state.drawer.data.target) {
+    if (!this.state.selectedSource || !this.state.selectedTarget) {
       return;
     }
     const res = await this.utils.bff.getBranchesDiff({
-      sourceBranch: this.state.drawer.data.source,
-      targetBranch: this.state.drawer.data.target,
+      sourceBranch: this.state.selectedSource,
+      targetBranch: this.state.selectedTarget,
     });
     if (res?.getBranchesDiff?.commits?.length) {
       this.setDeepState(
         {
           diffData: res.getBranchesDiff,
         },
-        'drawer.data'
+        'diffData'
       );
     }
-  }
-
-  getLocationSearch() {
-    const data = JSON.parse(
-      new URL('https://a.com' + this.location.search || '').searchParams.get('_search') || '{}'
-    );
-    return data;
   }
 
   getMenus() {
@@ -324,15 +220,6 @@ class AppDetailMerge$$Page extends React.Component {
     };
   }
 
-  getUsers() {
-    return (
-      this.props.useGetUsers?.data?.users.map(user => ({
-        label: user.name,
-        value: user.id,
-      })) || []
-    );
-  }
-
   initConflictData() {
     return {
       conflictDiffObj: this.state.conflict?.conflictDiffObj || this.editorData().dataDiff,
@@ -340,54 +227,13 @@ class AppDetailMerge$$Page extends React.Component {
     };
   }
 
-  onCloseDetail(event) {
-    this.setDeepState(
-      {
-        visible: false,
-        data: {},
-      },
-      'detail'
-    );
+  onCancle(event) {
+    this.history.go(-1);
   }
 
   onDiffTabChange(activeKey) {
     this.setDeepState({
       diffTab: activeKey,
-    });
-  }
-
-  onDrawerCancle(event) {
-    this.setDeepState(
-      {
-        visible: false,
-      },
-      'drawer'
-    );
-  }
-
-  onDrawerOk(event) {
-    this.form()?.submit(async v => {
-      const res = await this.utils.bff
-        .createMergeRequest({
-          mergeRequestInput: v,
-        })
-        .catch(err => {
-          this.utils.notification.warnings({
-            message: '新建合并请求失败',
-          });
-        });
-      if (res?.createMergeRequest?.id) {
-        this.utils.notification.success({
-          message: '新建合并请求成功',
-        });
-        this.setDeepState(
-          {
-            visible: false,
-          },
-          'drawer'
-        );
-        this.refresh();
-      }
     });
   }
 
@@ -417,82 +263,54 @@ class AppDetailMerge$$Page extends React.Component {
     this.scroll(key);
   }
 
-  onMRTypeChange(key) {
-    this.utils?.changeLocationQuery(this, null, {
-      status: key,
+  onOk(event) {
+    this.form()?.submit(async v => {
+      const res = await this.utils.bff
+        .createMergeRequest({
+          mergeRequestInput: v,
+        })
+        .catch(err => {
+          this.utils.notification.warnings({
+            message: '新建合并请求失败',
+          });
+        });
+      if (res?.createMergeRequest?.id) {
+        this.utils.notification.success({
+          message: '新建合并请求成功',
+        });
+        this.history.push(
+          `/apps/${this.match?.params?.appId}/merge/${res?.createMergeRequest?.id}`
+        );
+      }
     });
-  }
-
-  async onResloveConflict(event) {
-    const data = this.initConflictData();
-    const body = {
-      id: this.fullDiffData()?.id,
-      conflictData: {
-        dataConflicts: data.conflictDiffObj?.map(diff => {
-          let their = diff?.final || diff?.their;
-          if (typeof their === 'string') {
-            their = JSON.parse(their);
-          }
-          return {
-            tableName: diff?.tableName,
-            their,
-          };
-        }),
-        schemaConflicts: data.conflictSchemaObj?.map(diff => {
-          let their = diff?.final || diff?.their;
-          if (typeof their === 'string') {
-            their = JSON.parse(their);
-          }
-          return {
-            tableName: diff?.tableName,
-            their,
-          };
-        }),
-      },
-    };
-    const res = await this.utils.bff.resolveConflict({
-      conflictResolveInput: body,
-    });
-    if (res?.resolveConflict?.result === 'ok') {
-      this.utils.notification.success({
-        message: '解决冲突完成',
-      });
-      this.openDetailDrawer('', {
-        data: {
-          id: this.fullDiffData()?.id,
-        },
-      });
-    }
   }
 
   onSourceChange(value) {
     this.setDeepState(
       {
-        source: value,
+        selectedSource: value,
       },
-      'drawer.data',
+      null,
       this.getDiff
     );
-  }
-
-  onTabChange(v) {
-    if (v === 'branch') {
-      this.appHelper.history?.replace(`/apps/${this.match?.params?.appId}/branches`);
-    }
   }
 
   onTargetChange(value) {
     this.setDeepState(
       {
-        target: value,
+        selectedTarget: value,
       },
-      'drawer.data',
+      null,
       this.getDiff
     );
   }
 
-  async openDetailDrawer(event, data) {
-    this.appHelper.history?.push(`/apps/${this.match?.params?.appId}/merge/${data?.data?.id}`);
+  openMergeDrawer() {
+    this.setState({
+      drawer: {
+        visible: true,
+      },
+    });
   }
 
   parseDiffData(obj = {}) {
@@ -501,12 +319,6 @@ class AppDetailMerge$$Page extends React.Component {
     } catch (e) {
       obj.toString();
     }
-  }
-
-  refresh() {
-    this.utils?.changeLocationQuery(this, null, {
-      _: new Date().getTime(),
-    });
   }
 
   scroll(key) {
@@ -523,10 +335,6 @@ class AppDetailMerge$$Page extends React.Component {
     setTimeout(() => {
       // console.log('new state:', this.state)
     }, 200);
-  }
-
-  toNewMerge() {
-    this.history.push(`/apps/${this.match?.params?.appId}/merge/new`);
   }
 
   componentDidMount() {}
@@ -546,231 +354,8 @@ class AppDetailMerge$$Page extends React.Component {
           title="新建合并请求"
           width="75%"
         >
-          <FormilyForm
-            __component_name="FormilyForm"
-            componentProps={{
-              colon: false,
-              labelAlign: 'left',
-              labelCol: 4,
-              layout: 'horizontal',
-              wrapperCol: 20,
-            }}
-            formHelper={{ autoFocus: true }}
-            ref={this._refsManager.linkRef('merge_form')}
-          >
-            <FormilySelect
-              __component_name="FormilySelect"
-              componentProps={{
-                'x-component-props': {
-                  _sdkSwrGetFunc: {},
-                  allowClear: true,
-                  disabled: false,
-                  onChange: function () {
-                    return this.onSourceChange.apply(
-                      this,
-                      Array.prototype.slice.call(arguments).concat([])
-                    );
-                  }.bind(this),
-                  placeholder: '请选择源分支',
-                },
-              }}
-              decoratorProps={{ 'x-decorator-props': { labelEllipsis: true } }}
-              fieldProps={{
-                '_unsafe_MixedSetter_enum_select': 'ExpressionSetter',
-                'enum': __$$eval(() => this.getbranches(true)),
-                'name': 'source_branch',
-                'required': true,
-                'title': '源分支',
-                'x-validator': [],
-              }}
-            />
-            <FormilySelect
-              __component_name="FormilySelect"
-              componentProps={{
-                'x-component-props': {
-                  _sdkSwrGetFunc: {},
-                  allowClear: true,
-                  disabled: false,
-                  onChange: function () {
-                    return this.onTargetChange.apply(
-                      this,
-                      Array.prototype.slice.call(arguments).concat([])
-                    );
-                  }.bind(this),
-                  placeholder: '请选择目标分支',
-                },
-              }}
-              decoratorProps={{ 'x-decorator-props': { labelEllipsis: true } }}
-              fieldProps={{
-                '_unsafe_MixedSetter_enum_select': 'ExpressionSetter',
-                'enum': __$$eval(() => this.getbranches()),
-                'name': 'target_branch',
-                'required': true,
-                'title': '目标分支',
-                'x-validator': [],
-              }}
-            />
-            <FormilyInput
-              __component_name="FormilyInput"
-              componentProps={{ 'x-component-props': { placeholder: '请输入标题' } }}
-              decoratorProps={{ 'x-decorator-props': { labelEllipsis: true } }}
-              fieldProps={{
-                'description': '',
-                'name': 'title',
-                'required': true,
-                'title': '标题',
-                'x-validator': [],
-              }}
-            />
-            <FormilyTextArea
-              __component_name="FormilyTextArea"
-              componentProps={{ 'x-component-props': { placeholder: '请输入描述' } }}
-              decoratorProps={{ 'x-decorator-props': { labelEllipsis: true, tooltip: '' } }}
-              fieldProps={{
-                'name': 'description',
-                'required': true,
-                'title': '描述',
-                'x-component': 'Input.TextArea',
-                'x-validator': [],
-              }}
-            />
-            <FormilySelect
-              __component_name="FormilySelect"
-              componentProps={{
-                'x-component-props': {
-                  _sdkSwrGetFunc: {},
-                  allowClear: false,
-                  disabled: false,
-                  placeholder: '请选择经办人',
-                },
-              }}
-              decoratorProps={{ 'x-decorator-props': { labelEllipsis: true } }}
-              fieldProps={{
-                '_unsafe_MixedSetter_enum_select': 'ExpressionSetter',
-                'enum': __$$eval(() => this.getUsers()),
-                'name': 'assignee_id',
-                'required': true,
-                'title': '经办人',
-                'x-validator': [],
-              }}
-            />
-          </FormilyForm>
           <Row __component_name="Row" wrap={true}>
-            <Col __component_name="Col" span={24}>
-              <Tabs
-                __component_name="Tabs"
-                activeKey={__$$eval(() => this.state.diffTab)}
-                destroyInactiveTabPane="true"
-                items={[
-                  {
-                    _unsafe_MixedSetter_label_select: 'VariableSetter',
-                    children: __$$evalArray(() => this.fullDiffData()?.commits || []).map(
-                      (commit, commitIndex) =>
-                        (__$$context => (
-                          <Row __component_name="Row" wrap={true}>
-                            <Col __component_name="Col" span={24}>
-                              <Row
-                                __component_name="Row"
-                                gutter={[null, 0]}
-                                justify="start"
-                                wrap={true}
-                              >
-                                <Col __component_name="Col" span={24}>
-                                  <Row __component_name="Row" wrap={false}>
-                                    <Col __component_name="Col" flex="auto">
-                                      <Typography.Text
-                                        __component_name="Typography.Text"
-                                        disabled={false}
-                                        ellipsis={true}
-                                        strong={false}
-                                        style={{ fontSize: '14px' }}
-                                        type="colorTextBase"
-                                      >
-                                        {__$$eval(() => commit.message || '-')}
-                                      </Typography.Text>
-                                    </Col>
-                                    <Col __component_name="Col" flex="270px">
-                                      <Typography.Text
-                                        __component_name="Typography.Text"
-                                        copyable={__$$eval(() => commit.hash || '')}
-                                        disabled={false}
-                                        ellipsis={true}
-                                        strong={false}
-                                        style={{ fontSize: '' }}
-                                      >
-                                        {__$$eval(() => commit.hash || '-')}
-                                      </Typography.Text>
-                                    </Col>
-                                  </Row>
-                                </Col>
-                                <Col __component_name="Col" span={24}>
-                                  <Row __component_name="Row" wrap={true}>
-                                    <Col __component_name="Col">
-                                      <Typography.Text
-                                        __component_name="Typography.Text"
-                                        disabled={false}
-                                        ellipsis={true}
-                                        strong={false}
-                                        style={{ fontSize: '' }}
-                                      >
-                                        {__$$eval(() => commit.committer)}
-                                      </Typography.Text>
-                                    </Col>
-                                    <Col __component_name="Col">
-                                      <Typography.Text
-                                        __component_name="Typography.Text"
-                                        disabled={false}
-                                        ellipsis={true}
-                                        strong={false}
-                                        style={{ fontSize: '' }}
-                                        type="colorTextTertiary"
-                                      >
-                                        authored
-                                      </Typography.Text>
-                                    </Col>
-                                  </Row>
-                                </Col>
-                              </Row>
-                            </Col>
-                            <Col
-                              __component_name="Col"
-                              span={24}
-                              style={{
-                                borderBottomColor: '#f2f2f2',
-                                borderBottomStyle: 'solid',
-                                borderBottomWidth: '1px',
-                              }}
-                            />
-                          </Row>
-                        ))(__$$createChildContext(__$$context, { commit, commitIndex }))
-                    ),
-                    key: 'commits',
-                    label: __$$eval(() => `Commits(${this.fullDiffData()?.commits?.length || 0})`),
-                  },
-                  {
-                    _unsafe_MixedSetter_label_select: 'VariableSetter',
-                    hidden: false,
-                    key: 'compare',
-                    label: __$$eval(() => `对比(${this.getCompareNum(this.editorData())})`),
-                  },
-                  {
-                    _unsafe_MixedSetter_label_select: 'VariableSetter',
-                    key: 'conflict',
-                    label: __$$eval(() => `解决冲突(${this.getConflictNum()})`),
-                  },
-                ]}
-                onChange={function () {
-                  return this.onDiffTabChange.apply(
-                    this,
-                    Array.prototype.slice.call(arguments).concat([])
-                  );
-                }.bind(this)}
-                size="default"
-                style={{ marginTop: '0px' }}
-                tabPosition="top"
-                type="line"
-              />
-            </Col>
+            <Col __component_name="Col" span={24} />
             <Col __component_name="Col" span={24}>
               {!!__$$eval(
                 () => this.state.diffTab === 'compare' || this.state.diffTab === 'conflict'
@@ -888,43 +473,7 @@ class AppDetailMerge$$Page extends React.Component {
               __component_name="Col"
               span={24}
               style={{ display: 'flex', justifyContent: 'flex-end', paddingRight: '32px' }}
-            >
-              <Space __component_name="Space" align="center" direction="horizontal">
-                <Button
-                  __component_name="Button"
-                  block={false}
-                  danger={false}
-                  disabled={false}
-                  ghost={false}
-                  onClick={function () {
-                    return this.onDrawerCancle.apply(
-                      this,
-                      Array.prototype.slice.call(arguments).concat([])
-                    );
-                  }.bind(this)}
-                  shape="default"
-                >
-                  取消
-                </Button>
-                <Button
-                  __component_name="Button"
-                  block={false}
-                  danger={false}
-                  disabled={false}
-                  ghost={false}
-                  onClick={function () {
-                    return this.onDrawerOk.apply(
-                      this,
-                      Array.prototype.slice.call(arguments).concat([])
-                    );
-                  }.bind(this)}
-                  shape="default"
-                  type="primary"
-                >
-                  确定
-                </Button>
-              </Space>
-            </Col>
+            />
             <Col
               __component_name="Col"
               flex="auto"
@@ -1342,6 +891,13 @@ class AppDetailMerge$$Page extends React.Component {
             </Row>
           </Drawer>
         )}
+        <Button.Back
+          __component_name="Button.Back"
+          name="合并列表"
+          path={__$$eval(() => `/apps/${this.match?.params?.appId}/merge`)}
+          title="新建合并请求"
+          type="ghost"
+        />
         <Card
           __component_name="Card"
           actions={[]}
@@ -1349,228 +905,464 @@ class AppDetailMerge$$Page extends React.Component {
           hoverable={false}
           loading={false}
           size="default"
-          style={{}}
+          style={{ height: '100%', marginTop: '8px' }}
+          title=""
           type="default"
         >
-          <Tabs
-            __component_name="Tabs"
-            activeKey=""
-            defaultActiveKey="merge"
-            destroyInactiveTabPane="true"
-            items={[
-              { key: 'branch', label: '分支管理' },
-              {
-                children: (
-                  <Row __component_name="Row" gutter={[0, 0]} wrap={true}>
-                    <Col __component_name="Col" span={24}>
-                      <Row __component_name="Row" gutter={[0, 0]} wrap={true}>
-                        <Col __component_name="Col" span={24}>
-                          <Row __component_name="Row" wrap={true}>
-                            <Col __component_name="Col" span={24}>
-                              <Tabs
-                                __component_name="Tabs"
-                                activeKey={__$$eval(
-                                  () => this.getLocationSearch()?.status || 'Openning'
-                                )}
-                                defaultActiveKey=""
-                                destroyInactiveTabPane="true"
-                                items={[
-                                  { key: 'Openning', label: '待合并' },
-                                  { key: 'Merged', label: '已合并' },
-                                  { key: 'Closed', label: '已关闭' },
-                                ]}
-                                onChange={function () {
-                                  return this.onMRTypeChange.apply(
-                                    this,
-                                    Array.prototype.slice.call(arguments).concat([])
-                                  );
-                                }.bind(this)}
-                                size="default"
-                                tabBarExtraContent={
-                                  <Space align="center" direction="horizontal">
-                                    <Button
-                                      __component_name="Button"
-                                      block={false}
-                                      danger={false}
-                                      disabled={false}
-                                      ghost={false}
-                                      icon={
-                                        <AntdIconPlusOutlined __component_name="AntdIconPlusOutlined" />
-                                      }
-                                      onClick={function () {
-                                        return this.toNewMerge.apply(
-                                          this,
-                                          Array.prototype.slice.call(arguments).concat([])
-                                        );
-                                      }.bind(this)}
-                                      shape="default"
-                                      size="middle"
-                                      type="primary"
-                                    >
-                                      新建合并请求
-                                    </Button>
-                                    <Button
-                                      __component_name="Button"
-                                      block={false}
-                                      danger={false}
-                                      disabled={false}
-                                      ghost={false}
-                                      icon={
-                                        <AntdIconReloadOutlined
-                                          __component_name="AntdIconReloadOutlined"
-                                          style={{ marginRight: '3px' }}
-                                        />
-                                      }
-                                      loading={false}
-                                      onClick={function () {
-                                        return this.refresh.apply(
-                                          this,
-                                          Array.prototype.slice.call(arguments).concat([])
-                                        );
-                                      }.bind(this)}
-                                      shape="default"
-                                    >
-                                      {this.i18n('i18n-cz07vq08') /* 刷新 */}
-                                    </Button>
-                                  </Space>
-                                }
-                                tabBarGutter={33}
-                                tabPosition="top"
-                                type="line"
-                              />
-                            </Col>
-                          </Row>
-                          <Table
-                            __component_name="Table"
-                            columns={[
+          <FormilyForm
+            __component_name="FormilyForm"
+            componentProps={{
+              colon: false,
+              labelAlign: 'left',
+              labelCol: 4,
+              layout: 'horizontal',
+              wrapperCol: 20,
+            }}
+            formHelper={{ autoFocus: true }}
+            ref={this._refsManager.linkRef('merge_form')}
+          >
+            <Row __component_name="Row" justify="space-between" wrap={false}>
+              <Col __component_name="Col">
+                <Typography.Text
+                  __component_name="Typography.Text"
+                  disabled={false}
+                  ellipsis={true}
+                  strong={false}
+                  style={{
+                    color: '#ff4d4f',
+                    fontSize: '12px',
+                    marginInlineEnd: '4px',
+                    paddingRight: '3px',
+                  }}
+                >
+                  *
+                </Typography.Text>
+                <Typography.Text
+                  __component_name="Typography.Text"
+                  disabled={false}
+                  ellipsis={true}
+                  strong={false}
+                  style={{ fontSize: '' }}
+                >
+                  分支
+                </Typography.Text>
+              </Col>
+              <Col __component_name="Col" span={20}>
+                <Row __component_name="Row" wrap={true}>
+                  <Col __component_name="Col" span={11}>
+                    <FormilySelect
+                      __component_name="FormilySelect"
+                      componentProps={{
+                        'x-component-props': {
+                          _sdkSwrGetFunc: {
+                            func: __$$eval(() => this.utils.bff.getApp),
+                            label: 'displayName',
+                            params: [
                               {
-                                dataIndex: 'title',
-                                ellipsis: { showTitle: false },
-                                key: 'title',
-                                title: '标题',
+                                _unsafe_MixedSetter_value_select: 'ExpressionSetter',
+                                key: 'id',
+                                value: __$$eval(() => this.match?.params?.appId),
                               },
-                              { dataIndex: 'id', key: 'id', title: '序号' },
+                            ],
+                            resKey: __$$eval(() => ['app', 'branches']),
+                            value: 'name',
+                          },
+                          allowClear: true,
+                          disabled: false,
+                          onChange: function () {
+                            return this.onTargetChange.apply(
+                              this,
+                              Array.prototype.slice.call(arguments).concat([])
+                            );
+                          }.bind(this),
+                          placeholder: '请选择目标分支',
+                          showSearch: true,
+                        },
+                      }}
+                      decoratorProps={{
+                        'x-decorator-props': { labelEllipsis: true, layout: 'horizontal' },
+                      }}
+                      fieldProps={{
+                        '_unsafe_MixedSetter_enum_select': 'ArraySetter',
+                        'enum': [],
+                        'name': 'target_branch',
+                        'required': true,
+                        'title': '',
+                        'x-validator': [],
+                      }}
+                    />
+                  </Col>
+                  <Col __component_name="Col" span={1} style={{ textAlign: 'center' }}>
+                    <AntdIconArrowLeftOutlined __component_name="AntdIconArrowLeftOutlined" />
+                  </Col>
+                  <Col __component_name="Col" span={12}>
+                    <FormilySelect
+                      __component_name="FormilySelect"
+                      componentProps={{
+                        'x-component-props': {
+                          _sdkSwrGetFunc: {
+                            func: __$$eval(() => this.utils.bff.getApp),
+                            label: 'displayName',
+                            params: [
                               {
-                                dataIndex: 'mergeRequestStatus',
-                                key: 'mergeRequestStatus',
-                                render: (text, record, index) =>
-                                  (__$$context => (
-                                    <Status
-                                      __component_name="Status"
-                                      id={__$$eval(() => record.mergeRequestStatus || 'no')}
-                                      types={__$$eval(() => __$$context._constants().statusList)}
-                                    />
-                                  ))(__$$createChildContext(__$$context, { text, record, index })),
-                                title: '请求状态',
+                                _unsafe_MixedSetter_value_select: 'ExpressionSetter',
+                                key: 'id',
+                                value: __$$eval(() => this.match?.params?.appId),
                               },
-                              {
-                                dataIndex: __$$eval(() => ['author', 'name']),
-                                key: 'author',
-                                title: '创建人',
-                              },
-                              {
-                                dataIndex: __$$eval(() => ['assignee', 'name']),
-                                key: '',
-                                sorter: false,
-                                title: '经办人',
-                              },
-                              {
-                                dataIndex: 'createAt',
-                                key: 'createAt',
-                                render: (text, record, index) =>
-                                  (__$$context => (
-                                    <Typography.Time
-                                      __component_name="Typography.Time"
-                                      format=""
-                                      relativeTime={true}
-                                      time={__$$eval(() => text)}
-                                    />
-                                  ))(__$$createChildContext(__$$context, { text, record, index })),
-                                title: '创建时间',
-                              },
-                              {
-                                dataIndex: 'updateAt',
-                                key: 'updateAt',
-                                render: (text, record, index) =>
-                                  (__$$context => (
-                                    <Typography.Time
-                                      __component_name="Typography.Time"
-                                      format=""
-                                      relativeTime={true}
-                                      time={__$$eval(() => text)}
-                                    />
-                                  ))(__$$createChildContext(__$$context, { text, record, index })),
-                                title: '更新时间',
-                              },
-                              {
-                                dataIndex: 'action',
-                                key: 'action',
-                                render: (text, record, index) =>
-                                  (__$$context => (
-                                    <Button
-                                      __component_name="Button"
-                                      block={false}
-                                      danger={false}
-                                      disabled={false}
-                                      ghost={false}
-                                      onClick={function () {
-                                        return this.openDetailDrawer.apply(
+                            ],
+                            resKey: __$$eval(() => ['app', 'branches']),
+                            value: 'name',
+                          },
+                          allowClear: true,
+                          disabled: false,
+                          onChange: function () {
+                            return this.onSourceChange.apply(
+                              this,
+                              Array.prototype.slice.call(arguments).concat([])
+                            );
+                          }.bind(this),
+                          placeholder: '请选择源分支',
+                          showSearch: true,
+                        },
+                      }}
+                      decoratorProps={{
+                        'x-decorator-props': { labelEllipsis: true, layout: 'horizontal' },
+                      }}
+                      fieldProps={{
+                        '_unsafe_MixedSetter_enum_select': 'ArraySetter',
+                        'enum': [],
+                        'name': 'source_branch',
+                        'required': true,
+                        'title': '',
+                        'x-validator': [],
+                      }}
+                    />
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
+            <FormilyInput
+              __component_name="FormilyInput"
+              componentProps={{ 'x-component-props': { placeholder: '请输入标题' } }}
+              decoratorProps={{ 'x-decorator-props': { labelEllipsis: true } }}
+              fieldProps={{
+                'description': '',
+                'name': 'title',
+                'required': true,
+                'title': '标题',
+                'x-validator': [],
+              }}
+            />
+            <FormilyTextArea
+              __component_name="FormilyTextArea"
+              componentProps={{ 'x-component-props': { placeholder: '请输入描述' } }}
+              decoratorProps={{ 'x-decorator-props': { labelEllipsis: true, tooltip: '' } }}
+              fieldProps={{
+                'name': 'description',
+                'required': true,
+                'title': '描述',
+                'x-component': 'Input.TextArea',
+                'x-validator': [],
+              }}
+            />
+            <FormilySelect
+              __component_name="FormilySelect"
+              componentProps={{
+                'x-component-props': {
+                  _sdkSwrGetFunc: {
+                    func: __$$eval(() => this.utils.bff.getUsers),
+                    label: 'name',
+                    resKey: __$$eval(() => ['users']),
+                    value: 'id',
+                  },
+                  allowClear: false,
+                  disabled: false,
+                  placeholder: '请选择经办人',
+                  showSearch: true,
+                },
+              }}
+              decoratorProps={{ 'x-decorator-props': { labelEllipsis: true } }}
+              fieldProps={{
+                '_unsafe_MixedSetter_enum_select': 'ArraySetter',
+                'enum': [],
+                'name': 'assignee_id',
+                'required': true,
+                'title': '经办人',
+                'x-validator': [],
+              }}
+            />
+          </FormilyForm>
+          <Row __component_name="Row" wrap={true}>
+            <Col __component_name="Col" span={24}>
+              <Tabs
+                __component_name="Tabs"
+                activeKey={__$$eval(() => this.state.diffTab)}
+                destroyInactiveTabPane="true"
+                items={[
+                  {
+                    _unsafe_MixedSetter_label_select: 'VariableSetter',
+                    children: (
+                      <Flex
+                        __component_name="Flex"
+                        style={{
+                          display: 'block',
+                          maxHeight: 'calc(100vh - 519px)',
+                          overflowX: 'hidden',
+                          overflowY: 'auto',
+                        }}
+                      >
+                        {__$$evalArray(() => this.fullDiffData()?.commits || []).map(
+                          (commit, commitIndex) =>
+                            (__$$context => (
+                              <Row __component_name="Row" style={{}} wrap={true}>
+                                <Col __component_name="Col" span={24}>
+                                  <Row
+                                    __component_name="Row"
+                                    gutter={[null, 0]}
+                                    justify="start"
+                                    wrap={true}
+                                  >
+                                    <Col __component_name="Col" span={24}>
+                                      <Row __component_name="Row" wrap={false}>
+                                        <Col __component_name="Col" flex="auto">
+                                          <Typography.Text
+                                            __component_name="Typography.Text"
+                                            disabled={false}
+                                            ellipsis={true}
+                                            strong={false}
+                                            style={{ fontSize: '14px' }}
+                                            type="colorTextBase"
+                                          >
+                                            {__$$eval(() => commit.message || '-')}
+                                          </Typography.Text>
+                                        </Col>
+                                        <Col __component_name="Col" flex="270px">
+                                          <Typography.Text
+                                            __component_name="Typography.Text"
+                                            copyable={__$$eval(() => commit.hash || '')}
+                                            disabled={false}
+                                            ellipsis={true}
+                                            strong={false}
+                                            style={{ fontSize: '' }}
+                                          >
+                                            {__$$eval(() => commit.hash || '-')}
+                                          </Typography.Text>
+                                        </Col>
+                                      </Row>
+                                    </Col>
+                                    <Col __component_name="Col" span={24}>
+                                      <Row __component_name="Row" wrap={true}>
+                                        <Col __component_name="Col">
+                                          <Typography.Text
+                                            __component_name="Typography.Text"
+                                            disabled={false}
+                                            ellipsis={true}
+                                            strong={false}
+                                            style={{ fontSize: '' }}
+                                          >
+                                            {__$$eval(() => commit.committer)}
+                                          </Typography.Text>
+                                        </Col>
+                                        <Col __component_name="Col">
+                                          <Typography.Text
+                                            __component_name="Typography.Text"
+                                            disabled={false}
+                                            ellipsis={true}
+                                            strong={false}
+                                            style={{ fontSize: '' }}
+                                            type="colorTextTertiary"
+                                          >
+                                            authored
+                                          </Typography.Text>
+                                        </Col>
+                                      </Row>
+                                    </Col>
+                                  </Row>
+                                </Col>
+                                <Col
+                                  __component_name="Col"
+                                  span={24}
+                                  style={{
+                                    borderBottomColor: '#f2f2f2',
+                                    borderBottomStyle: 'solid',
+                                    borderBottomWidth: '1px',
+                                  }}
+                                />
+                              </Row>
+                            ))(__$$createChildContext(__$$context, { commit, commitIndex }))
+                        )}
+                      </Flex>
+                    ),
+                    key: 'commits',
+                    label: __$$eval(() => `Commits(${this.fullDiffData()?.commits?.length || 0})`),
+                  },
+                  {
+                    _unsafe_MixedSetter_label_select: 'VariableSetter',
+                    hidden: false,
+                    key: 'compare',
+                    label: __$$eval(() => `对比(${this.getCompareNum(this.editorData())})`),
+                  },
+                ]}
+                onChange={function () {
+                  return this.onDiffTabChange.apply(
+                    this,
+                    Array.prototype.slice.call(arguments).concat([])
+                  );
+                }.bind(this)}
+                size="default"
+                style={{ marginTop: '0px' }}
+                tabPosition="top"
+                type="line"
+              />
+            </Col>
+            <Col
+              __component_name="Col"
+              span={24}
+              style={{
+                display: 'block',
+                maxHeight: 'calc(100vh - 519px)',
+                overflowX: 'hidden',
+                overflowY: 'auto',
+              }}
+            >
+              {!!__$$eval(
+                () => this.state.diffTab === 'compare' || this.state.diffTab === 'conflict'
+              ) && (
+                <Row __component_name="Row" justify="space-between" wrap={false}>
+                  <Col __component_name="Col" flex="250px">
+                    <Menu
+                      defaultOpenKeys={[]}
+                      defaultSelectedKeys={[]}
+                      forceSubMenuRender={false}
+                      inlineCollapsed={false}
+                      inlineIndent={0}
+                      items={__$$eval(() => this.getMenus().menuItems)}
+                      mode="inline"
+                      multiple={false}
+                      onClick={function () {
+                        return this.onMenuClick.apply(
+                          this,
+                          Array.prototype.slice.call(arguments).concat([])
+                        );
+                      }.bind(this)}
+                      openKeys={[]}
+                      selectable={true}
+                      selectedKeys={__$$eval(() => this.state.selected)}
+                      subMenuCloseDelay={0}
+                      subMenuOpenDelay={0}
+                      theme="light"
+                      triggerSubMenuAction="hover"
+                    />
+                  </Col>
+                  <Col __component_name="Col" flex="auto" style={{}}>
+                    <Flex
+                      __component_name="Flex"
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        maxHeight: '600px',
+                        overflowY: 'auto',
+                        width: '100%',
+                      }}
+                    >
+                      {__$$evalArray(() => this.getMenus().diffList).map((diff, diffIndex) =>
+                        (__$$context => (
+                          <Flex
+                            __component_name="Flex"
+                            key={null}
+                            ref={this._refsManager.linkRef('[object Object]')}
+                            rootClassName={__$$eval(() => diff.key)}
+                          >
+                            <Collapse
+                              __component_name="Collapse"
+                              defaultActiveKey={__$$eval(() => diff.key)}
+                              expandIconPosition="right"
+                              ghost={false}
+                              items={[
+                                {
+                                  _unsafe_MixedSetter_children_select: 'SlotSetter',
+                                  _unsafe_MixedSetter_label_select: 'VariableSetter',
+                                  children: (
+                                    <MonacoDiffEditor
+                                      __component_name="MonacoDiffEditor"
+                                      contextmenu={true}
+                                      height="200px"
+                                      language="json"
+                                      minimapEnabled={false}
+                                      onChange={function () {
+                                        return this.onEditorChange.apply(
                                           this,
                                           Array.prototype.slice.call(arguments).concat([
                                             {
-                                              data: record,
+                                              diff: diff,
+                                              diffIndex: diffIndex,
                                             },
                                           ])
                                         );
                                       }.bind(__$$context)}
-                                      shape="default"
-                                      type="link"
-                                    >
-                                      查看详情
-                                    </Button>
-                                  ))(__$$createChildContext(__$$context, { text, record, index })),
-                                title: this.i18n('i18n-uel9pjrj') /* 操作 */,
-                              },
-                            ]}
-                            dataSource={__$$eval(() => this.data().list)}
-                            loading={__$$eval(
-                              () =>
-                                this.props.useGetMergeRequests?.isLoading ||
-                                this.props.useGetMergeRequests?.isValidating
-                            )}
-                            pagination={{
-                              current: __$$eval(() => this.state.repoCurrent),
-                              pageSize: 10,
-                              pagination: { pageSize: 10 },
-                              showQuickJumper: false,
-                              showSizeChanger: false,
-                              simple: false,
-                              size: 'default',
-                              total: __$$eval(() => this.data().list?.length),
-                            }}
-                            rowKey="id"
-                            scroll={{ scrollToFirstRowOnChange: true }}
-                            showHeader={true}
-                            size="default"
-                            style={{ marginTop: '-0px' }}
-                          />
-                        </Col>
-                      </Row>
-                    </Col>
-                  </Row>
-                ),
-                key: 'merge',
-                label: '合并请求',
-              },
-            ]}
-            onTabClick={function () {
-              return this.onTabChange.apply(this, Array.prototype.slice.call(arguments).concat([]));
-            }.bind(this)}
-            size="large"
-            style={{ marginTop: '-20px' }}
-            tabPosition="top"
-            type="line"
-          />
+                                      original={__$$eval(() =>
+                                        __$$context.parseDiffData(diff.diff.our)
+                                      )}
+                                      readOnly={__$$eval(
+                                        () => __$$context.state.diffTab === 'compare'
+                                      )}
+                                      supportFullScreen={true}
+                                      value={__$$eval(() =>
+                                        __$$context.parseDiffData(diff.diff.their)
+                                      )}
+                                      version="0.45.0"
+                                      width="100%"
+                                    />
+                                  ),
+                                  key: __$$eval(() => diff.key),
+                                  label: __$$eval(() => diff.label),
+                                },
+                              ]}
+                              style={{ width: '100%' }}
+                            />
+                          </Flex>
+                        ))(__$$createChildContext(__$$context, { diff, diffIndex }))
+                      )}
+                    </Flex>
+                  </Col>
+                </Row>
+              )}
+            </Col>
+          </Row>
+          <Space
+            __component_name="Space"
+            align="center"
+            direction="horizontal"
+            style={{ bottom: '0', marginBottom: '8px', marginTop: '8px', position: 'absolute' }}
+          >
+            <Button
+              __component_name="Button"
+              block={false}
+              danger={false}
+              disabled={false}
+              ghost={false}
+              onClick={function () {
+                return this.onCancle.apply(this, Array.prototype.slice.call(arguments).concat([]));
+              }.bind(this)}
+              shape="default"
+            >
+              取消
+            </Button>
+            <Button
+              __component_name="Button"
+              block={false}
+              danger={false}
+              disabled={false}
+              ghost={false}
+              onClick={function () {
+                return this.onOk.apply(this, Array.prototype.slice.call(arguments).concat([]));
+              }.bind(this)}
+              shape="default"
+              type="primary"
+            >
+              确定
+            </Button>
+          </Space>
         </Card>
       </Page>
     );
@@ -1580,7 +1372,7 @@ class AppDetailMerge$$Page extends React.Component {
 const PageWrapper = (props = {}) => {
   const location = useLocation();
   const history = getUnifiedHistory();
-  const match = matchPath({ path: '/apps/:appId/merge' }, location.pathname);
+  const match = matchPath({ path: '/apps/:appId/merge/new' }, location.pathname);
   history.match = match;
   history.query = qs.parse(location.search);
   const appHelper = {
@@ -1640,7 +1432,7 @@ const PageWrapper = (props = {}) => {
         },
       ]}
       render={dataProps => (
-        <AppDetailMerge$$Page {...props} {...dataProps} self={self} appHelper={appHelper} />
+        <AppDetailMergeNew$$Page {...props} {...dataProps} self={self} appHelper={appHelper} />
       )}
     />
   );

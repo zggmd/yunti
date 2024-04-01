@@ -61,6 +61,7 @@
     "antd-token-previewer": "1.1.0",
     "change-case": "^4.1.2",
     "classnames": "^2.3.2",
+    "confirm": "workspace:*",
     "dayjs": "^1.11.7",
     "graphql": "^16.6.0",
     "graphql-request": "^5.2.0",
