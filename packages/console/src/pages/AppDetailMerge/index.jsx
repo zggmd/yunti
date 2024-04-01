@@ -122,6 +122,16 @@ class AppDetailMerge$$Page extends React.Component {
           type: 'disabled',
         },
         {
+          children: '草稿',
+          id: 'Draft',
+          type: 'warning',
+        },
+        {
+          children: '冲突',
+          id: 'Conflicted',
+          type: 'error',
+        },
+        {
           children: '未知',
           id: 'no',
           type: 'disabled',

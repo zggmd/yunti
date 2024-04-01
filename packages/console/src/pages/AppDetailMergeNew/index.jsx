@@ -1059,7 +1059,7 @@ class AppDetailMergeNew$$Page extends React.Component {
               decoratorProps={{ 'x-decorator-props': { labelEllipsis: true, tooltip: '' } }}
               fieldProps={{
                 'name': 'description',
-                'required': true,
+                'required': false,
                 'title': '描述',
                 'x-component': 'Input.TextArea',
                 'x-validator': [],
