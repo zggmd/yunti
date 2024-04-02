@@ -2,6 +2,7 @@
 
 /* eslint-disable unicorn/no-array-callback-reference */
 import { Injectable, Logger } from '@nestjs/common';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 import { FindManyOptions, Like, QueryRunner } from 'typeorm';
 
 import { Branch } from '@/common/entities/git/branches.entity';
@@ -13,7 +14,13 @@ import { Log, PaginatedLog } from '@/common/entities/git/log.entity';
 import { Status } from '@/common/entities/git/status.entity';
 import { Tag } from '@/common/entities/git/tags.entity';
 import treeDataSources from '@/common/tree-data-sources';
-import { RELEASE_BRANCH_PREFIX, TREE_DEFAULT, YUNTI_SERVER_COMMITTER } from '@/common/utils';
+import {
+  NEW_GIT_COMMIT,
+  RELEASE_BRANCH_PREFIX,
+  TREE_DEFAULT,
+  YUNTI_SERVER_COMMITTER,
+} from '@/common/utils';
+import { GitCommitEvent } from '@/git/models/git-commit-event.model';
 import { DataDiff, DiffData, SchemaDiff } from '@/merge-requests/models/merge-request-detail.model';
 import { ILoginUser } from '@/types';
 
@@ -43,6 +50,8 @@ export interface CommitOptions extends CommitNtOptions {
 @Injectable()
 export class GitService {
   logger = new Logger('GitService');
+
+  constructor(private readonly eventEmitter: EventEmitter2) {}
 
   getCommitRepository = (tree: string) => treeDataSources.getRepository<Commit>(tree, Commit);
 
@@ -350,6 +359,7 @@ order by p.date desc;`);
       });
 
       await queryRunner.commitTransaction();
+      this.eventEmitter.emit(NEW_GIT_COMMIT, new GitCommitEvent(tree, options));
       return res;
     } catch (error) {
       this.logger.error('commit failed', error);

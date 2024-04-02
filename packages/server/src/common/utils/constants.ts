@@ -29,3 +29,6 @@ export const YUNTI_SERVER_COMMITTER = 'yunti-server <yunti-server@tenxcloud.com>
 /** 默认树 */
 export const TREE_DEFAULT = 'main';
 export const RELEASE_BRANCH_PREFIX = 'release-';
+
+/** git 提交成功后事件触发 */
+export const NEW_GIT_COMMIT = 'NEW_GIT_COMMIT';

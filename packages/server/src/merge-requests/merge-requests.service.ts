@@ -1,4 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
+import { OnEvent } from '@nestjs/event-emitter';
 import { isEqual } from 'lodash';
 import { QueryRunner } from 'typeorm';
 
@@ -8,9 +9,10 @@ import { MemberRole } from '@/common/models/member-role.enum';
 import { MergeRequestSourceType } from '@/common/models/merge-request-source-type.enum';
 import { MergeRequestStatus } from '@/common/models/merge-request-status.enum';
 import treeDataSources from '@/common/tree-data-sources';
-import { CustomException, genNanoid } from '@/common/utils';
+import { CustomException, NEW_GIT_COMMIT, TREE_DEFAULT, genNanoid } from '@/common/utils';
 import { ComponentsMembersService } from '@/components-members/components-members.service';
 import { GitService } from '@/git/git.service';
+import { GitCommitEvent } from '@/git/models/git-commit-event.model';
 import { ILoginUser } from '@/types';
 
 import { ConflictResolveInput } from './dto/conflict-resolve.input';
@@ -28,19 +30,7 @@ const OUR_PRE_FIX = 'our_';
 const THEIR_PRE_FIX = 'their_';
 const PRIMARY_KEY = 'PRI';
 
-export interface CommitNtOptions {
-  /** 提交者，不传则为系统账户 */
-  committer?: ILoginUser;
-  /** 相关表 */
-  tables: string[];
-  /** 信息 */
-  message: string;
-}
-
-export interface CommitOptions extends CommitNtOptions {
-  /** sql 执行器 */
-  queryRunner: QueryRunner;
-}
+const TABLES_MR_MANAGED = ['apps', 'pages', 'components'];
 
 @Injectable()
 export class MergeRequestService {
@@ -535,9 +525,7 @@ export class MergeRequestService {
           }
           sql += ');';
           await queryRunner.query(sql);
-          sql = `CALL dolt_add("-A")`;
-          await queryRunner.query(sql);
-          sql = `CALL DOLT_COMMIT('-m', 'Merge branch ${mergeRequest.sourceBranchName} for resolve conflict');`;
+          sql = `CALL DOLT_COMMIT('-Am', 'Merge branch ${mergeRequest.sourceBranchName} for resolve conflict');`;
           await queryRunner.query(sql);
           mergeRequest.mergeRequestStatus = MergeRequestStatus.Merged;
         } else {
@@ -633,8 +621,12 @@ export class MergeRequestService {
       mergeRequest.conflictDiffSchema = JSON.stringify(confilctSchemaList);
     }
 
-    if (mergeRequest.conflictDiffData || mergeRequest.conflictDiffSchema) {
+    if (confilctDataList.length > 0 || confilctSchemaList.length > 0) {
       mergeRequest.mergeRequestStatus = MergeRequestStatus.Conflicted;
+    } else {
+      mergeRequest.mergeRequestStatus = MergeRequestStatus.Openning;
+      mergeRequest.conflictDiffSchema = '';
+      mergeRequest.conflictDiffData = '';
     }
 
     sql = `CALL DOLT_CHECKOUT('${mergeRequest.targetBranchName}');`;
@@ -699,5 +691,48 @@ export class MergeRequestService {
         );
       }
     }
+  }
+
+  async refreshMergeRequest(user: ILoginUser, sourceBranchName: string) {
+    const mergeRequestRepository = await this.getMergeRequestRepository();
+    const mergeRequests = await mergeRequestRepository.find({
+      where: [
+        { sourceBranchName, mergeRequestStatus: MergeRequestStatus.Openning },
+        { sourceBranchName, mergeRequestStatus: MergeRequestStatus.Conflicted },
+        { targetBranchName: sourceBranchName, mergeRequestStatus: MergeRequestStatus.Openning },
+        { targetBranchName: sourceBranchName, mergeRequestStatus: MergeRequestStatus.Conflicted },
+      ],
+    });
+    for (const mergeRequest of mergeRequests) {
+      const dataSource = await treeDataSources.getDataSource(mergeRequest.targetBranchName);
+      const queryRunner = dataSource.createQueryRunner();
+      try {
+        await queryRunner.connect();
+        await queryRunner.startTransaction();
+        await this.getConflictInfo(mergeRequest, queryRunner);
+        await queryRunner.rollbackTransaction();
+        mergeRequest.updaterId = user.id;
+        await mergeRequestRepository.save(mergeRequest);
+      } catch (error) {
+        await queryRunner.rollbackTransaction();
+        throw error;
+      } finally {
+        await queryRunner.release();
+      }
+    }
+  }
+
+  @OnEvent(NEW_GIT_COMMIT)
+  async gitCommitRefreshMR(payload: GitCommitEvent) {
+    // 当分支为 main 主分支时，不涉及 MR 状态更新
+    if (TREE_DEFAULT === payload.getTree()) {
+      return;
+    }
+    // 当非管理事务表时，也不涉及 MR 状态更新
+    if (TABLES_MR_MANAGED.some(tableName => payload.includeTableName(tableName))) {
+      return;
+    }
+
+    await this.refreshMergeRequest(payload.getUser(), payload.getTree());
   }
 }
