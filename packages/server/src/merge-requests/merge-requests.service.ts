@@ -728,11 +728,9 @@ export class MergeRequestService {
     if (TREE_DEFAULT === payload.getTree()) {
       return;
     }
-    // 当非管理事务表时，也不涉及 MR 状态更新
+    // 只有 commit 包含管理事务表时，才涉及 MR 状态更新
     if (TABLES_MR_MANAGED.some(tableName => payload.includeTableName(tableName))) {
-      return;
+      await this.refreshMergeRequest(payload.getUser(), payload.getTree());
     }
-
-    await this.refreshMergeRequest(payload.getUser(), payload.getTree());
   }
 }
