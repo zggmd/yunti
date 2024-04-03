@@ -92,6 +92,14 @@ input AppCommitsOptions {
   q: String
 }
 
+input AppI18nExtractInput {
+  """应用 ID"""
+  appId: String!
+
+  """需要提取国际化文案的分支名"""
+  branch: String!
+}
+
 """应用成员"""
 type AppMember {
   """应用"""
@@ -679,10 +687,10 @@ input MergeRequestInput {
   """合并说明"""
   description: String
 
-  """冲突表名"""
+  """原分支"""
   source_branch: String!
 
-  """冲突表名"""
+  """目标分支"""
   target_branch: String!
 
   """合并 title"""
@@ -751,6 +759,12 @@ type Mutation {
 
   """修复应用的 namespace 字段"""
   appFixNamespace(id: String!, namespace: String!): App!
+
+  """提取应用中的中文文案为国际化变量，并将改动内容提交为 merge request 到当前分支"""
+  appI18nExtract(
+    """参数信息"""
+    input: AppI18nExtractInput!
+  ): Branch!
 
   """添加应用成员"""
   appMemberAdd(appMember: AddAppMemberInput!): AppMember!

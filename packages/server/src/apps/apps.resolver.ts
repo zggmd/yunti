@@ -9,6 +9,7 @@ import { AppMember } from '@/common/entities/apps-members.entity';
 import { App } from '@/common/entities/apps.entity';
 import { Branch } from '@/common/entities/git/branches.entity';
 import { PaginatedCommits } from '@/common/entities/git/commits.entity';
+import { MergeRequest } from '@/common/entities/git/merge-request.entity';
 import { PublishChannel } from '@/common/entities/publish-channels.entity';
 import { PaginatedPublishRecords } from '@/common/entities/publish-records.entity';
 import { MemberRole } from '@/common/models/member-role.enum';
@@ -24,6 +25,7 @@ import { ILoginUser } from '@/types';
 
 import { UpdateSchemaI18nArgs } from '../common/dto/update-schema-i18n.args';
 import { AppsService } from './apps.service';
+import { AppI18nExtractInput } from './dtos/app-i18n-extract.input';
 import { CheckoutAppNewBranch } from './dtos/checkout-app-new-branch.input';
 import { NewAppInput } from './dtos/new-app.input';
 import { UpdateAppInput } from './dtos/update-app.input';
@@ -174,5 +176,16 @@ export class AppsResolver {
     options: AppCommitsOptions
   ): Promise<PaginatedCommits> {
     return this.gitService.listAppPaginatedCommits(app.tree || tree, app.id, options);
+  }
+
+  @Mutation(() => Branch, {
+    description: '提取应用中的中文文案为国际化变量，并将改动内容提交为 merge request 到当前分支',
+  })
+  async appI18nExtract(
+    @LoginUser() loginUser: ILoginUser,
+    @Args('input', { description: '参数信息' }) input: AppI18nExtractInput
+  ): Promise<MergeRequest> {
+    const res = await this.appsService.appI18nExtract(loginUser, input);
+    return res;
   }
 }

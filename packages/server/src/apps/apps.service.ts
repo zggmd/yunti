@@ -5,11 +5,13 @@ import {
 } from '@alilc/lowcode-types';
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { ConfigType } from '@nestjs/config';
+import { extractI18n } from '@yuntijs/lowcode-i18n-extract';
 import { flatten, merge, unionWith } from 'lodash';
 
 import { AppsMembersService } from '@/apps-members/apps-members.service';
 import { AppMember } from '@/common/entities/apps-members.entity';
 import { App, I18nUsage } from '@/common/entities/apps.entity';
+import { Page } from '@/common/entities/pages.entity';
 import { MemberRole } from '@/common/models/member-role.enum';
 import treeDataSources from '@/common/tree-data-sources';
 import {
@@ -23,11 +25,13 @@ import {
 import { ComponentsVersionsService } from '@/components-versions/components-versions.service';
 import serverConfig from '@/config/server.config';
 import { GitService } from '@/git/git.service';
+import { MergeRequestService } from '@/merge-requests/merge-requests.service';
 import { sortPackages } from '@/packages/utils';
 import { PagesService } from '@/pages/pages.service';
 import { ILoginUser } from '@/types';
 
 import { UpdateSchemaI18nArgs } from '../common/dto/update-schema-i18n.args';
+import { AppI18nExtractInput } from './dtos/app-i18n-extract.input';
 import { CheckoutAppNewBranch } from './dtos/checkout-app-new-branch.input';
 import { NewAppInput } from './dtos/new-app.input';
 import { UpdateAppInput } from './dtos/update-app.input';
@@ -42,7 +46,8 @@ export class AppsService {
     private readonly gitService: GitService,
     private readonly appsMembersService: AppsMembersService,
     private readonly pagesService: PagesService,
-    private readonly componentsVersionsService: ComponentsVersionsService
+    private readonly componentsVersionsService: ComponentsVersionsService,
+    private readonly mergeRequestService: MergeRequestService
   ) {}
   logger = new Logger('AppsService');
 
@@ -464,5 +469,52 @@ export class AppsService {
     }
     await this.gitService.DOLT_BRANCH(['-D', name]);
     return true;
+  }
+
+  async appI18nExtract(user: ILoginUser, input: AppI18nExtractInput) {
+    const { branch, appId } = input;
+    const statusList = await this.gitService.listStatus(branch);
+    if (statusList.length > 0) {
+      throw new CustomException('COMMIT_CHANGES_FIRST', 'please commit your changes first', 400);
+    }
+    // ~ 1. 获取 app 完整的 schema (包含所有页面)
+    const app = await this.getAppById(branch, user, appId);
+    const fullSchema = await this.getAppFullSchema(branch, user, app);
+    // ~ 2. 提取文案
+    const { matches, schema: schemaWithI18n } = extractI18n(fullSchema);
+    // ~ 3. 创建分支
+    const i18nBranch = await this.checkoutNewBranchForApp(user, {
+      appId,
+      name: `i18n-extract-${Date.now()}`,
+      sourceName: branch,
+    });
+    // ~ 4. 提交提取国际化文案后的 schema 相关改动
+    const savePromises: Promise<any>[] = [
+      this.updateAppI18n(branch, user, { id: appId, i18n: schemaWithI18n.i18n }),
+    ];
+    for (const page of app.pages) {
+      const content: Page['content'] = Object.assign({}, page.content, {
+        componentsTree: schemaWithI18n.componentsTree.find(ct => ct.id === page.id),
+      });
+      savePromises.push(
+        this.pagesService.updatePage(i18nBranch.name, user, { id: page.id, content })
+      );
+    }
+    await Promise.all(savePromises);
+    await this.gitService.commitNt(i18nBranch.name, {
+      committer: user,
+      tables: [Page.tableName],
+      message: 'update i18n by @yuntijs/lowcode-i18n-extract',
+    });
+    // ~ 5. 提交 merge request
+    const branchDisplayName = this.gitService.getBranchDisplayName(appId, branch);
+    return this.mergeRequestService.createMergeRequest(user, {
+      source_branch: i18nBranch.name,
+      target_branch: branch,
+      assignee_id: user.id,
+      title: `[一键国际化] 分支 ${app.name}/${user.name}/${branchDisplayName} 共提取 ${matches.length} 处文案`,
+      description: `共提取 ${matches.length} 处文案 (同一个函数或表达式中的文案计为 1 处)，
+确认文案提取无误后即可 merge，重点关注下无需提取的中文常量或默认值等`,
+    });
   }
 }

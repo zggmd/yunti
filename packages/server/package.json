@@ -59,6 +59,7 @@
     "@nestjs/typeorm": "^10.0.1",
     "@nestjs/websockets": "^10.2.5",
     "@yuntijs/k8s-client": "workspace:*",
+    "@yuntijs/lowcode-i18n-extract": "^1.1.2",
     "apollo-server-errors": "^3.3.1",
     "bing-translate-api": "^2.9.2",
     "body-parser": "^1.20.2",

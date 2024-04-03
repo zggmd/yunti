@@ -2,10 +2,10 @@ import { InputType } from '@nestjs/graphql';
 
 @InputType({ description: '合并请求申请内容' })
 export class MergeRequestInput {
-  /** 冲突表名 */
+  /** 原分支 */
   source_branch: string;
 
-  /** 冲突表名 */
+  /** 目标分支 */
   target_branch: string;
 
   /** 合并人 */

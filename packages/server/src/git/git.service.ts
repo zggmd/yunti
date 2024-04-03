@@ -177,6 +177,11 @@ export class GitService {
     };
   }
 
+  getBranchDisplayName(id: string, name: string) {
+    const [, ...branchName] = name.replace(`${id}/`, '').split('/');
+    return branchName.join('/');
+  }
+
   async listBranches(options?: FindManyOptions<Branch>): Promise<Branch[]> {
     const branchesRepository = await this.getBranchesRepository();
     return branchesRepository.find(options);
