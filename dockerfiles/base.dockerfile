@@ -12,11 +12,7 @@ COPY package.json /usr/src/app/
 COPY pnpm-lock.yaml /usr/src/app/
 COPY pnpm-workspace.yaml /usr/src/app/
 COPY .npmrc /usr/src/app/
-ADD packages/shared-components /usr/src/app/packages/shared-components
-ADD packages/confirm /usr/src/app/packages/confirm
-ADD packages/k8s-client /usr/src/app/packages/k8s-client
-COPY packages/server/package.json /usr/src/app/packages/server/
-COPY packages/console/package.json /usr/src/app/packages/console/
+ADD packages /usr/src/app/packages
 
 RUN npm i pnpm -g
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store \
