@@ -61,7 +61,7 @@ Contributions of all types are more than welcome, if you are interested in contr
 
 #### 📝 License
 
-Copyright © 2024 \[YuntiJS]\[profile-link]. <br />
+Copyright © 2024 [YuntiJS][profile-link]. <br />
 This project is [MIT](./LICENSE) licensed.
 
 <!-- LINK GROUP -->
@@ -89,3 +89,4 @@ This project is [MIT](./LICENSE) licensed.
 [github-stars-shield]: https://img.shields.io/github/stars/yuntijs/yunti?color=ffcb47&labelColor=black&style=flat-square
 [pr-welcome-link]: https://github.com/yuntijs/yunti/pulls
 [pr-welcome-shield]: https://img.shields.io/badge/☁️_pr_welcome-%E2%86%92-ffcb47?labelColor=black&style=for-the-badge
+[profile-link]: https://github.com/yuntijs
