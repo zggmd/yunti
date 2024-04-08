@@ -1215,16 +1215,7 @@ class AppDetailMergeNew$$Page extends React.Component {
                 type="line"
               />
             </Col>
-            <Col
-              __component_name="Col"
-              span={24}
-              style={{
-                display: 'block',
-                maxHeight: 'calc(100vh - 519px)',
-                overflowX: 'hidden',
-                overflowY: 'auto',
-              }}
-            >
+            <Col __component_name="Col" span={24} style={{ display: 'block' }}>
               {!!__$$eval(
                 () => this.state.diffTab === 'compare' || this.state.diffTab === 'conflict'
               ) && (
@@ -1260,7 +1251,7 @@ class AppDetailMergeNew$$Page extends React.Component {
                       style={{
                         display: 'flex',
                         flexDirection: 'column',
-                        maxHeight: '600px',
+                        maxHeight: 'calc(100vh - 519px)',
                         overflowY: 'auto',
                         width: '100%',
                       }}
@@ -1286,7 +1277,7 @@ class AppDetailMergeNew$$Page extends React.Component {
                                     <MonacoDiffEditor
                                       __component_name="MonacoDiffEditor"
                                       contextmenu={true}
-                                      height="200px"
+                                      height="550px"
                                       language="json"
                                       minimapEnabled={false}
                                       onChange={function () {
@@ -1301,14 +1292,22 @@ class AppDetailMergeNew$$Page extends React.Component {
                                         );
                                       }.bind(__$$context)}
                                       original={__$$eval(() =>
-                                        __$$context.parseDiffData(diff.diff.our)
+                                        __$$context.parseDiffData(
+                                          diff.diff.tableName === 'pages'
+                                            ? diff.diff.our.content
+                                            : diff.diff.our
+                                        )
                                       )}
                                       readOnly={__$$eval(
                                         () => __$$context.state.diffTab === 'compare'
                                       )}
                                       supportFullScreen={true}
                                       value={__$$eval(() =>
-                                        __$$context.parseDiffData(diff.diff.their)
+                                        __$$context.parseDiffData(
+                                          diff.diff.tableName === 'pages'
+                                            ? diff.diff.their.content
+                                            : diff.diff.their
+                                        )
                                       )}
                                       version="0.45.0"
                                       width="100%"

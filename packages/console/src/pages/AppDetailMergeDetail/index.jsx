@@ -339,7 +339,10 @@ class AppDetailMergeDetail$$Page extends React.Component {
     if (diff.key.startsWith('diff-table')) {
       conflict.conflictDiffObj[diffIndex] = {
         ...conflict.conflictDiffObj[diffIndex],
-        final: input,
+        final: {
+          ...diff.diff.their,
+          content: input,
+        },
       };
     }
     if (diff.key.startsWith('diff-schema')) {
@@ -745,7 +748,7 @@ class AppDetailMergeDetail$$Page extends React.Component {
                       style={{
                         display: 'flex',
                         flexDirection: 'column',
-                        maxHeight: '600px',
+                        maxHeight: 'calc(100vh - 519px)',
                         overflowY: 'auto',
                         width: '100%',
                       }}
@@ -760,6 +763,7 @@ class AppDetailMergeDetail$$Page extends React.Component {
                           >
                             <Collapse
                               __component_name="Collapse"
+                              bordered={false}
                               defaultActiveKey={__$$eval(() => diff.key)}
                               expandIconPosition="right"
                               ghost={false}
@@ -771,8 +775,9 @@ class AppDetailMergeDetail$$Page extends React.Component {
                                     <MonacoDiffEditor
                                       __component_name="MonacoDiffEditor"
                                       contextmenu={true}
-                                      height="200px"
+                                      height="550px"
                                       language="json"
+                                      lineNumbers="on"
                                       minimapEnabled={false}
                                       onChange={function () {
                                         return this.onEditorChange.apply(
@@ -786,14 +791,23 @@ class AppDetailMergeDetail$$Page extends React.Component {
                                         );
                                       }.bind(__$$context)}
                                       original={__$$eval(() =>
-                                        __$$context.parseDiffData(diff.diff.our)
+                                        __$$context.parseDiffData(
+                                          diff.diff.tableName === 'pages'
+                                            ? diff.diff.our.content
+                                            : diff.diff.our
+                                        )
                                       )}
                                       readOnly={__$$eval(
                                         () => __$$context.state.diffTab === 'compare'
                                       )}
                                       supportFullScreen={true}
+                                      theme="vs"
                                       value={__$$eval(() =>
-                                        __$$context.parseDiffData(diff.diff.their)
+                                        __$$context.parseDiffData(
+                                          diff.diff.tableName === 'pages'
+                                            ? diff.diff.their.content
+                                            : diff.diff.their
+                                        )
                                       )}
                                       version="0.45.0"
                                       width="100%"
