@@ -4,7 +4,7 @@ import { isEqual } from 'lodash';
 import { QueryRunner } from 'typeorm';
 
 import { AppsMembersService } from '@/apps-members/apps-members.service';
-import { MergeRequest } from '@/common/entities/git/merge-request.entity';
+import { MergeRequest } from '@/common/entities/merge-request.entity';
 import { MemberRole } from '@/common/models/member-role.enum';
 import { MergeRequestSourceType } from '@/common/models/merge-request-source-type.enum';
 import { MergeRequestStatus } from '@/common/models/merge-request-status.enum';
@@ -32,6 +32,8 @@ const PRIMARY_KEY = 'PRI';
 
 const TABLES_MR_MANAGED = ['apps', 'pages', 'components'];
 
+const DEFAULT_OPTIONS = { delSourceBranch: 0 };
+
 @Injectable()
 export class MergeRequestService {
   constructor(
@@ -56,8 +58,8 @@ export class MergeRequestService {
 
     const registedMR = await mergeRequestRepository.findOne({
       where: {
-        targetBranchName: mergeRequestInput.target_branch,
-        sourceBranchName: mergeRequestInput.source_branch,
+        targetBranchName: mergeRequestInput.targetBranch,
+        sourceBranchName: mergeRequestInput.sourceBranch,
         mergeRequestStatus: MergeRequestStatus.Openning,
       },
     });
@@ -66,23 +68,24 @@ export class MergeRequestService {
     }
 
     const diffCommits = await this.gitService.DOLT_DIFF(
-      mergeRequestInput.target_branch,
-      mergeRequestInput.source_branch
+      mergeRequestInput.targetBranch,
+      mergeRequestInput.sourceBranch
     );
     if (diffCommits.length === 0) {
       throw new CustomException('NO CHANGES', 'No changes', 404);
     }
-    const typeId = mergeRequestInput.target_branch.split('/')[0];
+    const typeId = mergeRequestInput.targetBranch.split('/')[0];
     let type;
     type = typeId.startsWith('app') ? 'app' : 'component';
 
     const mergeRequestData = new MergeRequest();
     mergeRequestData.authorId = user.id;
-    mergeRequestData.assigneeId = mergeRequestInput.assignee_id;
-    mergeRequestData.sourceBranchName = mergeRequestInput.source_branch;
-    mergeRequestData.targetBranchName = mergeRequestInput.target_branch;
+    mergeRequestData.assigneeId = mergeRequestInput.assigneeId;
+    mergeRequestData.sourceBranchName = mergeRequestInput.sourceBranch;
+    mergeRequestData.targetBranchName = mergeRequestInput.targetBranch;
     mergeRequestData.title = mergeRequestInput.title;
     mergeRequestData.description = mergeRequestInput.description;
+    mergeRequestData.options = mergeRequestInput.options || DEFAULT_OPTIONS;
     mergeRequestData.mergeRequestSourceType = type;
     mergeRequestData.mergeRequestSourceId = typeId;
 
@@ -120,11 +123,12 @@ export class MergeRequestService {
     }
     if (mergeRequestQueryParam.componentId) {
       where = {
-        mergeRequestSourceId: mergeRequestQueryParam.appId,
+        mergeRequestSourceId: mergeRequestQueryParam.componentId,
       };
     }
 
     if (mergeRequestQueryParam.status) {
+      if (!where) where = {};
       where.mergeRequestStatus = mergeRequestQueryParam.status;
     } else {
       where = [
@@ -183,6 +187,7 @@ export class MergeRequestService {
     mergeRequestDetail.mergeUser = mergeRequest.mergeUser;
     mergeRequestDetail.title = mergeRequest.title;
     mergeRequestDetail.description = mergeRequest.description;
+    mergeRequestDetail.options = mergeRequest.options || DEFAULT_OPTIONS;
     mergeRequestDetail.mergeCommitSha = mergeRequest.mergeCommitSha;
     mergeRequestDetail.sourceBranch = mergeRequest.sourceBranch;
     mergeRequestDetail.sourceBranchName = mergeRequest.sourceBranchName;
@@ -197,7 +202,9 @@ export class MergeRequestService {
     mergeRequestDetail.conflictData.dataConflicts = null;
     try {
       mergeRequestDetail.conflictData.dataConflicts =
-        (mergeRequest.conflictDiffData && JSON.parse(mergeRequest.conflictDiffData.toString())) ||
+        (mergeRequest.conflictDiffData &&
+          mergeRequest.conflictDiffData.toString() &&
+          JSON.parse(mergeRequest.conflictDiffData.toString())) ||
         null;
     } catch (error) {
       this.logger.error(error);
@@ -219,15 +226,25 @@ export class MergeRequestService {
     mergeRequestDetail.createAt = mergeRequest.createAt;
     mergeRequestDetail.updateAt = mergeRequest.updateAt;
 
-    mergeRequestDetail.commits = await this.gitService.DOLT_DIFF(
-      mergeRequest.targetBranchName,
-      mergeRequest.sourceBranchName
-    );
+    // 两个分支可能已经被删，没有数据
+    try {
+      mergeRequestDetail.commits = await this.gitService.DOLT_DIFF(
+        mergeRequest.targetBranchName,
+        mergeRequest.sourceBranchName
+      );
+    } catch (error) {
+      this.logger.warn(error);
+    }
 
-    mergeRequestDetail.diffData = await this.gitService.getDiffBranchData(
-      mergeRequest.targetBranchName,
-      mergeRequest.sourceBranchName
-    );
+    // 两个分支可能已经被删，没有数据
+    try {
+      mergeRequestDetail.diffData = await this.gitService.getDiffBranchData(
+        mergeRequest.targetBranchName,
+        mergeRequest.sourceBranchName
+      );
+    } catch (error) {
+      this.logger.warn(error);
+    }
     return mergeRequestDetail;
   }
 
@@ -537,9 +554,14 @@ export class MergeRequestService {
       }
 
       await mergeRequestRepository.save(mergeRequest);
-      await (mergeRequest.mergeRequestStatus.valueOf() === MergeRequestStatus.Conflicted.valueOf()
-        ? queryRunner.rollbackTransaction()
-        : queryRunner.commitTransaction());
+      if (mergeRequest.mergeRequestStatus.valueOf() === MergeRequestStatus.Conflicted.valueOf()) {
+        await queryRunner.rollbackTransaction();
+      } else {
+        await queryRunner.commitTransaction();
+        if (mergeRequest.options && mergeRequest.options.delSourceBranch === 1) {
+          await this.gitService.DOLT_BRANCH(['-D', mergeRequest.sourceBranchName]);
+        }
+      }
     } catch (error) {
       this.logger.error(error);
       await queryRunner.rollbackTransaction();

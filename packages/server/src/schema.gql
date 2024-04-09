@@ -554,7 +554,7 @@ type MergeRequest {
   assigneeId: String
 
   """创建人"""
-  author: User!
+  author: User
 
   """创建人 id"""
   authorId: String!
@@ -582,6 +582,9 @@ type MergeRequest {
 
   """最终合并人 id"""
   mergeUserId: String
+
+  """合并请求其他属性"""
+  options: JSON
 
   """合并源分支"""
   sourceBranch: Branch
@@ -612,7 +615,7 @@ type MergeRequestDetail {
   assigneeId: String
 
   """创建人"""
-  author: User!
+  author: User
 
   """创建人 id"""
   authorId: String!
@@ -650,6 +653,9 @@ type MergeRequestDetail {
   """最终合并人 id"""
   mergeUserId: String
 
+  """合并请求其他属性"""
+  options: JSON
+
   """合并源分支"""
   sourceBranch: Branch
   sourceBranchName: String!
@@ -682,16 +688,19 @@ type MergeRequestDiff {
 """合并请求申请内容"""
 input MergeRequestInput {
   """合并人"""
-  assignee_id: String!
+  assigneeId: String!
 
   """合并说明"""
   description: String
 
+  """页面内容"""
+  options: JSON
+
   """原分支"""
-  source_branch: String!
+  sourceBranch: String!
 
   """目标分支"""
-  target_branch: String!
+  targetBranch: String!
 
   """合并 title"""
   title: String

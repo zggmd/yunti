@@ -180,8 +180,9 @@ CREATE TABLE `merge_requests` (
   `target_branch` varchar(100) COMMENT '合并目标分支',
   `title` varchar(200) NOT NULL COMMENT '标题，非空',
   `description` text COMMENT '描述',
+  `options` json COMMENT '合并请求选项，delSourBranch: 0 为 不删除源分支，1为删除源分支，默认为不删除',
   `updater_id` varchar(16) COMMENT '修改合并请求本身的用户 id，可以是创建人，也可以是项目管理',
-  `merge_status` enum('Openning','Merged','Closed','Draft','Conflicted') NOT NULL DEFAULT '1' COMMENT 'Openning: 等待合并,Merged：已合并，Closed：已关闭，Draft：draft , Conflicted: 有冲突',
+  `merge_status` enum('Openning','Merged','Closed','Draft','Conflicted') NOT NULL DEFAULT 'Openning' COMMENT 'Openning: 等待合并,Merged：已合并，Closed：已关闭，Draft：draft , Conflicted: 有冲突',
   `source_type` enum('app','component') COMMENT 'app：app 代码合并请求, component: component 代码合并请求',
   `source_object_id` varchar(16) NOT NULL COMMENT 'app id, 或者 components id',
   `merge_error` text COMMENT '合并错误信息',
@@ -203,6 +204,7 @@ CREATE TABLE `merge_requests` (
   CONSTRAINT `merge_requests_FK_2` FOREIGN KEY (`merge_user_id`) REFERENCES `users` (`id`),
   CONSTRAINT `merge_requests_FK_3` FOREIGN KEY (`updater_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_bin;
+-- ALTER TABLE yunti.merge_requests ADD `options` json COMMENT '合并请求选项，delSourBranch: 0 为 不删除源分支，1为删除源分支，默认为不删除';
 
 -- 初始化 dolt schema
 CALL DOLT_ADD(

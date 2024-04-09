@@ -1,7 +1,7 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 
 import { Commit } from '@/common/entities/git/commits.entity';
-import { MergeRequest } from '@/common/entities/git/merge-request.entity';
+import { MergeRequest } from '@/common/entities/merge-request.entity';
 
 @ObjectType({ description: '冲突对比数据' })
 export class DiffDataBase {

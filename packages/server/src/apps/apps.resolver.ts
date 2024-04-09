@@ -9,7 +9,7 @@ import { AppMember } from '@/common/entities/apps-members.entity';
 import { App } from '@/common/entities/apps.entity';
 import { Branch } from '@/common/entities/git/branches.entity';
 import { PaginatedCommits } from '@/common/entities/git/commits.entity';
-import { MergeRequest } from '@/common/entities/git/merge-request.entity';
+import { MergeRequest } from '@/common/entities/merge-request.entity';
 import { PublishChannel } from '@/common/entities/publish-channels.entity';
 import { PaginatedPublishRecords } from '@/common/entities/publish-records.entity';
 import { MemberRole } from '@/common/models/member-role.enum';

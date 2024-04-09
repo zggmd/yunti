@@ -1,8 +1,7 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 
 import { LoginUser } from '@/common/decorators/login-user.decorator';
-import { MergeRequest } from '@/common/entities/git/merge-request.entity';
-import { GitService } from '@/git/git.service';
+import { MergeRequest } from '@/common/entities/merge-request.entity';
 import { ILoginUser } from '@/types';
 
 import { ConflictResolveInput } from './dto/conflict-resolve.input';
@@ -13,10 +12,7 @@ import { MergeRequestDetail, MergeRequestDiff } from './models/merge-request-det
 
 @Resolver(() => MergeRequest)
 export class MergeRequestResolver {
-  constructor(
-    private readonly gitService: GitService,
-    private readonly mergeRequestService: MergeRequestService
-  ) {}
+  constructor(private readonly mergeRequestService: MergeRequestService) {}
 
   @Mutation(() => MergeRequest)
   async createMergeRequest(

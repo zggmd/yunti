@@ -10,10 +10,11 @@ import {
 } from 'typeorm';
 
 import { MergeRequestSourceType } from '@/common/models/merge-request-source-type.enum';
+import { Options } from '@/merge-requests/dto/merge-request.options';
 
-import { MergeRequestStatus } from '../../models/merge-request-status.enum';
-import { User } from '../users.entity';
-import { Branch } from './branches.entity';
+import { MergeRequestStatus } from '../models/merge-request-status.enum';
+import { Branch } from './git/branches.entity';
+import { User } from './users.entity';
 
 const tableName = 'merge_requests';
 
@@ -32,8 +33,8 @@ export class MergeRequest {
   authorId: string;
 
   /** 创建人 */
-  @Field(() => User, { description: '创建人', nullable: false })
-  @ManyToOne(() => User)
+  @Field(() => User, { description: '创建人', nullable: true })
+  @ManyToOne(() => User, { nullable: true })
   @JoinColumn({ name: 'author_id' })
   author?: User;
 
@@ -72,8 +73,6 @@ export class MergeRequest {
   sourceBranchName: string;
 
   /** 合并源分支 */
-  @Field(() => Branch, { description: '合并源分支', nullable: true })
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @ManyToOne(() => Branch)
   @JoinColumn({ name: 'source_branch' })
   sourceBranch?: Branch;
@@ -82,8 +81,6 @@ export class MergeRequest {
   targetBranchName: string;
 
   /** 目标分支 */
-  @Field(() => Branch, { description: '目标分支', nullable: true })
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @ManyToOne(() => Branch)
   @JoinColumn({ name: 'target_branch' })
   targetBranch?: Branch;
@@ -93,6 +90,10 @@ export class MergeRequest {
 
   @Column({ name: 'description', length: 2000, nullable: true })
   description?: string;
+
+  @Field(() => JSON, { description: '合并请求其他属性' })
+  @Column({ name: 'options', type: 'json', nullable: true })
+  options?: Options;
 
   /** MR 状态 */
   @Field(() => MergeRequestStatus, { description: 'MR 状态', nullable: false })

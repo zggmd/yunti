@@ -509,9 +509,9 @@ export class AppsService {
     // ~ 5. 提交 merge request
     const branchDisplayName = this.gitService.getBranchDisplayName(appId, branch);
     return this.mergeRequestService.createMergeRequest(user, {
-      source_branch: i18nBranch.name,
-      target_branch: branch,
-      assignee_id: user.id,
+      sourceBranch: i18nBranch.name,
+      targetBranch: branch,
+      assigneeId: user.id,
       title: `[一键国际化] 分支 ${app.name}/${user.name}/${branchDisplayName} 共提取 ${matches.length} 处文案`,
       description: `共提取 ${matches.length} 处文案 (同一个函数或表达式中的文案计为 1 处)，
 确认文案提取无误后即可 merge，重点关注下无需提取的中文常量或默认值等`,

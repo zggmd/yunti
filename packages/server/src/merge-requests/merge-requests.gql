@@ -1,11 +1,11 @@
 # 创建合并分支请求
 mutation createMergeRequest($mergeRequestInput: MergeRequestInput!) {
   createMergeRequest(mergeRequestParam: $mergeRequestInput) {
-    id,
     sourceBranchName,
     targetBranchName,
     title,
     description,
+    options,
     mergeRequestStatus,
     createAt,
     updateAt,
@@ -65,6 +65,7 @@ query getMergeRequests($searchParam: MergeRequestSearchInput!) {
     mergeRequestSourceId,
     title,
     description,
+    options,
     mergeRequestStatus,
     createAt,
     updateAt,
@@ -135,6 +136,7 @@ query getDetailMergeRequest($id: Float!) {
     mergeRequestSourceId,
     title,
     description,
+    options,
     mergeRequestStatus,
     createAt,
     updateAt,
