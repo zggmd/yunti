@@ -1,0 +1,63 @@
+name: BFF SDK Gen Tests/Push
+
+on:
+  push:
+    branches:
+      - 'alpha'
+  pull_request:
+    branches: [alpha]
+
+jobs:
+  gen-bff-sdk:
+    env:
+      GRL_SDK_TEST_ONLY: true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dorny/paths-filter@v3
+        id: changes
+        with:
+          filters: |
+            gql:
+              - 'packages/server/src/**/*.gql'
+
+      - name: Setup Node.js v20.x
+        if: steps.changes.outputs.gql == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install pnpm v8.x
+        if: steps.changes.outputs.gql == 'true'
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install deps
+        if: steps.changes.outputs.gql == 'true'
+        run: |
+          rm -rf packages/confirm
+          rm -rf packages/console
+          rm -rf packages/shared-components
+          pnpm install --frozen-lockfile --ignore-scripts
+
+      - name: Setting token to npmrc
+        if: ( github.event_name == 'push' && steps.changes.outputs.gql == 'true' )
+        run: |
+          echo '//registry.npmjs.org/:_authToken="${{ secrets.NPM_TOKEN }}"' >> ~/.npmrc
+
+      - name: Set variable on Merge pull request
+        if: github.event_name == 'push'
+        run: |
+          echo "GRL_SDK_TEST_ONLY=false" >> $GITHUB_ENV
+
+      - name: Gen bff sdk
+        if: steps.changes.outputs.gql == 'true'
+        run: .github/scripts/gen-bff-sdk.sh
+        env:
+          GRL_SDK_TEST_ONLY: ${{ env.GRL_SDK_TEST_ONLY }}
+
+      - name: debug
+        if: failure()
+        uses: mxschmitt/action-tmate@v3

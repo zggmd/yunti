@@ -1,6 +1,8 @@
 # 当前 server 的默认配置
 # ⚠⚠ 修改不会实时生效，需要重启 server，开发时也一样 ⚠⚠
 web:
+  # server 的 hostname
+  hostname: 0.0.0.0
   # server 端口
   port: 8034
 # 日志配置

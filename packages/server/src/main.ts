@@ -65,7 +65,7 @@ async function bootstrap() {
 
   app.use(LoggerMiddleware);
 
-  await app.listen(SERVER_CONFIG.web.port);
+  await app.listen(SERVER_CONFIG.web.port, SERVER_CONFIG.web.hostname);
 
   // eslint-disable-next-line no-console
   console.log(`bff-server is running on: ${await app.getUrl()}`);
