@@ -587,11 +587,9 @@ type MergeRequest {
   options: JSON
 
   """合并源分支"""
-  sourceBranch: Branch
   sourceBranchName: String!
 
   """目标分支"""
-  targetBranch: Branch
   targetBranchName: String!
   targetCommitSha: String
   title: String!
@@ -657,11 +655,9 @@ type MergeRequestDetail {
   options: JSON
 
   """合并源分支"""
-  sourceBranch: Branch
   sourceBranchName: String!
 
   """目标分支"""
-  targetBranch: Branch
   targetBranchName: String!
   targetCommitSha: String
   title: String!

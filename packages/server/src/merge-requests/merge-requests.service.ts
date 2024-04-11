@@ -143,8 +143,6 @@ export class MergeRequestService {
       where,
       relations: {
         author: true,
-        sourceBranch: true,
-        targetBranch: true,
         assignee: true,
       },
       order: {
@@ -168,8 +166,6 @@ export class MergeRequestService {
       },
       relations: {
         author: true,
-        sourceBranch: true,
-        targetBranch: true,
         assignee: true,
       },
     });
@@ -189,9 +185,7 @@ export class MergeRequestService {
     mergeRequestDetail.description = mergeRequest.description;
     mergeRequestDetail.options = mergeRequest.options || DEFAULT_OPTIONS;
     mergeRequestDetail.mergeCommitSha = mergeRequest.mergeCommitSha;
-    mergeRequestDetail.sourceBranch = mergeRequest.sourceBranch;
     mergeRequestDetail.sourceBranchName = mergeRequest.sourceBranchName;
-    mergeRequestDetail.targetBranch = mergeRequest.targetBranch;
     mergeRequestDetail.targetBranchName = mergeRequest.targetBranchName;
     mergeRequestDetail.targetCommitSha = mergeRequest.targetCommitSha;
     mergeRequestDetail.mergeError = mergeRequest.mergeError;

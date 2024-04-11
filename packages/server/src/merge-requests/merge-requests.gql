@@ -48,19 +48,7 @@ query getMergeRequests($searchParam: MergeRequestSearchInput!) {
       name
     },
     sourceBranchName,
-    sourceBranch {
-      hash,
-      message,
-      name,
-      date,
-    },
     targetBranchName,
-    targetBranch {
-      hash,
-      message,
-      name,
-      date,
-    }
     mergeRequestSourceType,
     mergeRequestSourceId,
     title,
@@ -88,19 +76,7 @@ query getDetailMergeRequest($id: Float!) {
       name
     },
     sourceBranchName,
-    sourceBranch {
-      hash,
-      message,
-      name,
-      date
-    },
     targetBranchName,
-    targetBranch {
-      hash,
-      message,
-      name,
-      date
-    },
     commits {
       hash,
       committer,

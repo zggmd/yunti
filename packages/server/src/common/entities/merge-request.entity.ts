@@ -13,7 +13,6 @@ import { MergeRequestSourceType } from '@/common/models/merge-request-source-typ
 import { Options } from '@/merge-requests/dto/merge-request.options';
 
 import { MergeRequestStatus } from '../models/merge-request-status.enum';
-import { Branch } from './git/branches.entity';
 import { User } from './users.entity';
 
 const tableName = 'merge_requests';
@@ -69,21 +68,13 @@ export class MergeRequest {
   @JoinColumn({ name: 'updater_id' })
   updater?: User;
 
+  /** 合并源分支 */
   @Column({ name: 'source_branch' })
   sourceBranchName: string;
 
-  /** 合并源分支 */
-  @ManyToOne(() => Branch)
-  @JoinColumn({ name: 'source_branch' })
-  sourceBranch?: Branch;
-
+  /** 目标分支 */
   @Column({ name: 'target_branch' })
   targetBranchName: string;
-
-  /** 目标分支 */
-  @ManyToOne(() => Branch)
-  @JoinColumn({ name: 'target_branch' })
-  targetBranch?: Branch;
 
   @Column({ name: 'title', length: 200 })
   title: string;
