@@ -1,7 +1,7 @@
 import { IPublicTypeAssetsJson, IPublicTypeRemoteComponentDescription } from '@alilc/lowcode-types';
 import { BuildOutlined, WalletOutlined } from '@ant-design/icons';
 import FormHelper from '@tenx-ui/form-helper';
-import { sdk } from '@tenx-ui/yunti-bff-client';
+import { sdk } from '@yuntijs/yunti-bff-sdk';
 import { Form, Input, Modal, Radio, Select, Space, Typography } from 'antd';
 import React, { useEffect, useMemo, useState } from 'react';
 

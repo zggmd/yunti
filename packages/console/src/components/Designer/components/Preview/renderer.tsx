@@ -1,7 +1,7 @@
 import ReactRenderer from '@alilc/lowcode-react-renderer';
 import { IRendererProps } from '@alilc/lowcode-renderer-core/lib/types';
-import { GetAppQuery } from '@tenx-ui/yunti-bff-client';
 import { matchPath } from '@umijs/max';
+import { GetAppQuery } from '@yuntijs/yunti-bff-sdk';
 import { MemoryHistory } from 'history';
 import React, { createElement, useCallback } from 'react';
 

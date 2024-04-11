@@ -1,6 +1,6 @@
 import { common, event, project, skeleton } from '@alilc/lowcode-engine';
-import { GetPageQuery, useSdk } from '@tenx-ui/yunti-bff-client';
 import { history, matchRoutes, useMatch } from '@umijs/max';
+import { GetPageQuery, useSdk } from '@yuntijs/yunti-bff-sdk';
 import { Button, Empty, Spin } from 'antd';
 import { MemoryHistory } from 'history';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';

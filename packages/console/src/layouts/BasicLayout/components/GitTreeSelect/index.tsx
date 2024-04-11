@@ -1,5 +1,5 @@
 import { BranchesOutlined } from '@ant-design/icons';
-import { GetAppQuery, GetGitBranchesAndTagsQuery } from '@tenx-ui/yunti-bff-client';
+import { GetAppQuery, GetGitBranchesAndTagsQuery } from '@yuntijs/yunti-bff-sdk';
 import { Select, Space } from 'antd';
 import React, { useState } from 'react';
 

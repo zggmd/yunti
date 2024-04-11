@@ -5,7 +5,7 @@ import {
   IPublicTypeProjectSchema,
   IPublicTypeReference,
 } from '@alilc/lowcode-types';
-import { UpdateAppMutation, UpdateComponentMutation } from '@tenx-ui/yunti-bff-client';
+import { UpdateAppMutation, UpdateComponentMutation } from '@yuntijs/yunti-bff-sdk';
 import React from 'react';
 
 import type { ConstantsSchema, UtilsSchema } from './plugins/plugin-app-helper';

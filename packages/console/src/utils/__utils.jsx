@@ -4,7 +4,7 @@ import { notification } from '@tenx-ui/materials';
 
 import { getAuthData, setAuthData, removeAuthData, isTokenExpired } from '@tenx-ui/auth-utils';
 
-import { sdk as bff, initSdkWithHooks, errorsHandler } from '@tenx-ui/yunti-bff-client';
+import { sdk as bff, initSdkWithHooks, errorsHandler } from '@yuntijs/yunti-bff-sdk';
 
 import moment from 'moment';
 

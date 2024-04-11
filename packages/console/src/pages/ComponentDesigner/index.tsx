@@ -1,6 +1,6 @@
 import { common, skeleton } from '@alilc/lowcode-engine';
-import { useSdk } from '@tenx-ui/yunti-bff-client';
 import { useMatch } from '@umijs/max';
+import { useSdk } from '@yuntijs/yunti-bff-sdk';
 import { Button, Empty, Spin } from 'antd';
 import React, { useEffect, useMemo, useState } from 'react';
 

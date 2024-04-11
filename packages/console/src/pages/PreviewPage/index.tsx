@@ -1,5 +1,5 @@
-import { useSdk } from '@tenx-ui/yunti-bff-client';
 import { useLocation } from '@umijs/max';
+import { useSdk } from '@yuntijs/yunti-bff-sdk';
 import { Empty } from 'antd';
 import qs from 'query-string';
 import React, { useMemo } from 'react';

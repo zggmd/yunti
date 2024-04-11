@@ -1,8 +1,8 @@
 import { Box } from '@alifd/next';
 import { common, event, project } from '@alilc/lowcode-engine';
 import { SettingOutlined } from '@ant-design/icons';
-import { useSdk } from '@tenx-ui/yunti-bff-client';
-import { GetCurrentUserQuery } from '@tenx-ui/yunti-bff-client/dist/esm/sdk';
+import { useSdk } from '@yuntijs/yunti-bff-sdk';
+import { GetCurrentUserQuery } from '@yuntijs/yunti-bff-sdk/dist/esm/sdk';
 import {
   Collapse,
   Dropdown,

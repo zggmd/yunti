@@ -8,8 +8,8 @@ import {
 import type { ProLayoutProps } from '@ant-design/pro-layout';
 import { ProLayout } from '@ant-design/pro-layout';
 import type { Route } from '@ant-design/pro-layout/es/typing';
-import { useSdk } from '@tenx-ui/yunti-bff-client';
 import { Link, Outlet, useLocation } from '@umijs/max';
+import { useSdk } from '@yuntijs/yunti-bff-sdk';
 import { Button, Divider, Dropdown, Space, Tag, Typography } from 'antd';
 import React from 'react';
 

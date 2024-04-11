@@ -1,6 +1,6 @@
 import { project } from '@alilc/lowcode-engine';
 import { IPublicEnumTransformStage } from '@alilc/lowcode-types';
-import { initSdk } from '@tenx-ui/yunti-bff-client';
+import { initSdk } from '@yuntijs/yunti-bff-sdk';
 import { message } from 'antd';
 
 import { DesignerProjectSchema, injectSchema } from '@/components/Designer';

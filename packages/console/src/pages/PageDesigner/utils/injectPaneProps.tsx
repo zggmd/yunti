@@ -1,6 +1,6 @@
 import { IPublicTypeAssetsJson, IPublicTypeI18nMap } from '@alilc/lowcode-types';
-import { initSdk, useSdk } from '@tenx-ui/yunti-bff-client';
 import { history, matchPath, useMatch } from '@umijs/max';
+import { initSdk, useSdk } from '@yuntijs/yunti-bff-sdk';
 import { isEmpty } from 'lodash';
 import React, { useMemo } from 'react';
 

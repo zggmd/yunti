@@ -3,8 +3,8 @@
  */
 import { skeleton } from '@alilc/lowcode-engine';
 import { AppstoreOutlined } from '@ant-design/icons';
-import { useSdk } from '@tenx-ui/yunti-bff-client';
 import { useMatch } from '@umijs/max';
+import { useSdk } from '@yuntijs/yunti-bff-sdk';
 import { Button } from 'antd';
 import React from 'react';
 

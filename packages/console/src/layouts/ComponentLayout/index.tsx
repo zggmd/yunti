@@ -7,8 +7,8 @@ import {
   TagsOutlined,
   UsergroupAddOutlined,
 } from '@ant-design/icons';
-import { useSdk } from '@tenx-ui/yunti-bff-client';
 import { Link, useLocation, useMatch } from '@umijs/max';
+import { useSdk } from '@yuntijs/yunti-bff-sdk';
 import React from 'react';
 
 import BasicLayout, { BasicLayoutProps } from '../BasicLayout';

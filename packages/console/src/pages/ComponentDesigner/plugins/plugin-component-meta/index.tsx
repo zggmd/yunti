@@ -1,7 +1,7 @@
 import { IPublicModelPluginContext } from '@alilc/lowcode-types';
 import { BranchesOutlined, BuildOutlined } from '@ant-design/icons';
-import { useSdk } from '@tenx-ui/yunti-bff-client';
 import { useMatch } from '@umijs/max';
+import { useSdk } from '@yuntijs/yunti-bff-sdk';
 import { Avatar, Space, Tag, Typography, theme } from 'antd';
 import React from 'react';
 

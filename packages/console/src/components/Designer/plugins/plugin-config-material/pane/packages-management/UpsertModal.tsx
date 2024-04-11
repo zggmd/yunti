@@ -1,7 +1,7 @@
 import { IPublicTypeAssetsJson } from '@alilc/lowcode-types';
 import { DeleteOutlined, LinkOutlined, PlusOutlined, RobotOutlined } from '@ant-design/icons';
 import FormHelper from '@tenx-ui/form-helper';
-import { GetPackageDetailQuery, sdk } from '@tenx-ui/yunti-bff-client';
+import { GetPackageDetailQuery, sdk } from '@yuntijs/yunti-bff-sdk';
 import {
   Alert,
   Button,

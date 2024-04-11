@@ -2,7 +2,7 @@ import { config, material, project } from '@alilc/lowcode-engine';
 import { filterPackages } from '@alilc/lowcode-plugin-inject';
 import { IPublicModelPluginContext } from '@alilc/lowcode-types';
 import { BlockOutlined } from '@ant-design/icons';
-import { initSdk } from '@tenx-ui/yunti-bff-client';
+import { initSdk } from '@yuntijs/yunti-bff-sdk';
 import * as React from 'react';
 
 import { default as saveAsBlock } from './action';

@@ -1,7 +1,7 @@
 import { IPublicModelPluginContext } from '@alilc/lowcode-types';
 import { BranchesOutlined, DownOutlined, RightOutlined } from '@ant-design/icons';
-import { GetAppQuery, useSdk } from '@tenx-ui/yunti-bff-client';
 import { history, useMatch } from '@umijs/max';
+import { GetAppQuery, useSdk } from '@yuntijs/yunti-bff-sdk';
 import { Dropdown, MenuProps, Space, Typography } from 'antd';
 import React, { useEffect, useState } from 'react';
 

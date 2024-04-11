@@ -1,8 +1,8 @@
 import { project } from '@alilc/lowcode-engine';
 import { ThunderboltOutlined } from '@ant-design/icons';
 import { Typography } from '@tenx-ui/materials';
-import { GetComponentQuery, useSdk } from '@tenx-ui/yunti-bff-client';
 import { useMatch } from '@umijs/max';
+import { GetComponentQuery, useSdk } from '@yuntijs/yunti-bff-sdk';
 import { Button, Input, Space, Table, Tooltip } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import React, { useState } from 'react';

@@ -1,7 +1,7 @@
 import { project } from '@alilc/lowcode-engine';
 import { IPublicEnumTransformStage } from '@alilc/lowcode-types';
-import { GetAppQuery, GetPageQuery, initSdk } from '@tenx-ui/yunti-bff-client';
 import { matchPath } from '@umijs/max';
+import { GetAppQuery, GetPageQuery, initSdk } from '@yuntijs/yunti-bff-sdk';
 import cloneDeep from 'lodash/cloneDeep';
 
 import { DesignerProjectSchema, injectSchema } from '@/components/Designer';

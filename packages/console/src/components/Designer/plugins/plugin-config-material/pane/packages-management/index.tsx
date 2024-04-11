@@ -1,7 +1,7 @@
 import { material } from '@alilc/lowcode-engine';
 import { IPublicTypeAssetsJson } from '@alilc/lowcode-types';
 import { DeleteOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons';
-import { sdk } from '@tenx-ui/yunti-bff-client';
+import { sdk } from '@yuntijs/yunti-bff-sdk';
 import { Button, Input, Popconfirm, Space, Typography } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { Table } from 'antd/lib';

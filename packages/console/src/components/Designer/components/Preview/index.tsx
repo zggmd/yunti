@@ -1,7 +1,7 @@
 import { injectComponents } from '@alilc/lowcode-plugin-inject';
 import { IPublicTypeAssetsJson, IPublicTypeRootSchema } from '@alilc/lowcode-types';
 import ProCard from '@ant-design/pro-card';
-import { GetAppQuery } from '@tenx-ui/yunti-bff-client';
+import { GetAppQuery } from '@yuntijs/yunti-bff-sdk';
 import { Alert, Spin, theme as antdTheme } from 'antd';
 import { set } from 'lodash';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
