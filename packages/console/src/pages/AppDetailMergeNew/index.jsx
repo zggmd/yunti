@@ -20,6 +20,7 @@ import {
   FormilySelect,
   FormilyInput,
   FormilyTextArea,
+  FormilySwitch,
 } from '@tenx-ui/materials';
 
 import { MonacoDiffEditor } from '@yuntijs/ui-lowcode-materials';
@@ -265,6 +266,16 @@ class AppDetailMergeNew$$Page extends React.Component {
 
   onOk(event) {
     this.form()?.submit(async v => {
+      v = {
+        sourceBranch: v.sourceBranch,
+        targetBranch: v.targetBranch,
+        title: v.title,
+        description: v.description,
+        assigneeId: v.assigneeId,
+        options: JSON.stringify({
+          delSourceBranch: v.delSourceBranch ? 1 : 0,
+        }),
+      };
       const res = await this.utils.bff
         .createMergeRequest({
           mergeRequestInput: v,
@@ -272,6 +283,7 @@ class AppDetailMergeNew$$Page extends React.Component {
         .catch(err => {
           this.utils.notification.warnings({
             message: '新建合并请求失败',
+            description: err.toString(),
           });
         });
       if (res?.createMergeRequest?.id) {
@@ -905,7 +917,7 @@ class AppDetailMergeNew$$Page extends React.Component {
           hoverable={false}
           loading={false}
           size="default"
-          style={{ height: '100%', marginTop: '8px' }}
+          style={{ height: 'calc(100% -8px)', marginTop: '8px' }}
           title=""
           type="default"
         >
@@ -985,11 +997,12 @@ class AppDetailMergeNew$$Page extends React.Component {
                       fieldProps={{
                         '_unsafe_MixedSetter_enum_select': 'ArraySetter',
                         'enum': [],
-                        'name': 'target_branch',
+                        'name': 'targetBranch',
                         'required': true,
                         'title': '',
                         'x-validator': [],
                       }}
+                      style={{ marginLeft: '-3px' }}
                     />
                   </Col>
                   <Col __component_name="Col" span={1} style={{ textAlign: 'center' }}>
@@ -1031,7 +1044,7 @@ class AppDetailMergeNew$$Page extends React.Component {
                       fieldProps={{
                         '_unsafe_MixedSetter_enum_select': 'ArraySetter',
                         'enum': [],
-                        'name': 'source_branch',
+                        'name': 'sourceBranch',
                         'required': true,
                         'title': '',
                         'x-validator': [],
@@ -1077,6 +1090,7 @@ class AppDetailMergeNew$$Page extends React.Component {
                   },
                   allowClear: false,
                   disabled: false,
+                  optionFilterProp: 'label',
                   placeholder: '请选择经办人',
                   showSearch: true,
                 },
@@ -1085,9 +1099,19 @@ class AppDetailMergeNew$$Page extends React.Component {
               fieldProps={{
                 '_unsafe_MixedSetter_enum_select': 'ArraySetter',
                 'enum': [],
-                'name': 'assignee_id',
+                'name': 'assigneeId',
                 'required': true,
                 'title': '经办人',
+                'x-validator': [],
+              }}
+            />
+            <FormilySwitch
+              __component_name="FormilySwitch"
+              componentProps={{ 'x-component-props': { disabled: false, loading: false } }}
+              decoratorProps={{ 'x-decorator-props': { labelEllipsis: true } }}
+              fieldProps={{
+                'name': 'delSourceBranch',
+                'title': '合并后删除源分支',
                 'x-validator': [],
               }}
             />
@@ -1251,7 +1275,7 @@ class AppDetailMergeNew$$Page extends React.Component {
                       style={{
                         display: 'flex',
                         flexDirection: 'column',
-                        maxHeight: 'calc(100vh - 519px)',
+                        maxHeight: 'calc(100vh - 500px)',
                         overflowY: 'auto',
                         width: '100%',
                       }}

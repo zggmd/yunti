@@ -563,13 +563,6 @@ class AppDetailMergeDetail$$Page extends React.Component {
                             () => `目标分支：${this.state.detail?.data?.targetBranch?.name || '-'}`
                           )}
                         </Typography.Text>
-                        <Divider
-                          __component_name="Divider"
-                          dashed={false}
-                          defaultOpen={false}
-                          mode="default"
-                          type="vertical"
-                        />
                         <Typography.Text
                           __component_name="Typography.Text"
                           disabled={false}
@@ -584,6 +577,34 @@ class AppDetailMergeDetail$$Page extends React.Component {
                         >
                           {__$$eval(() => `描述：${this.state.detail?.data?.description || '-'}`)}
                         </Typography.Text>
+                        <Typography.Text
+                          __component_name="Typography.Text"
+                          disabled={false}
+                          ellipsis={{
+                            tooltip: {
+                              _unsafe_MixedSetter_title_select: 'VariableSetter',
+                              title: __$$eval(() => this.state.detail?.data?.description),
+                            },
+                          }}
+                          strong={false}
+                          style={{ fontSize: '', width: '400px' }}
+                        >
+                          {__$$eval(
+                            () =>
+                              `合并时删除源分支：${
+                                this.state.detail?.data?.options?.delSourceBranch === 1
+                                  ? '是'
+                                  : '否'
+                              }`
+                          )}
+                        </Typography.Text>
+                        <Divider
+                          __component_name="Divider"
+                          dashed={false}
+                          defaultOpen={false}
+                          mode="default"
+                          type="vertical"
+                        />
                       </Space>
                     </Col>
                   </Row>
