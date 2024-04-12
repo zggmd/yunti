@@ -4,7 +4,8 @@ import { notification } from '@tenx-ui/materials';
 
 import { getAuthData, setAuthData, removeAuthData, isTokenExpired } from '@tenx-ui/auth-utils';
 
-import { sdk as bff, initSdkWithHooks, errorsHandler } from '@yuntijs/yunti-bff-sdk';
+import * as yuntiSDK from '@yuntijs/yunti-bff-sdk';
+import { sdk as bff } from '@yuntijs/yunti-bff-sdk';
 
 import moment from 'moment';
 
@@ -17,6 +18,8 @@ import _dayjs from 'dayjs';
 import dayjsRelativeTime from 'dayjs/plugin/relativeTime';
 
 import { isURL as isUrl } from 'validator';
+
+import qs from 'query-string';
 
 import { createRef } from 'react';
 
@@ -75,7 +78,14 @@ utils.sleep = function __sleep() {
 }.apply(utils);
 export const sleep = utils.sleep;
 
-utils.initSdkWithHooks = initSdkWithHooks;
+/** 初始化包含 hooks 的 sdk */
+utils.initSdkWithHooks = function __initSdkWithHooks() {
+  return (options = {}) => {
+    const { url, requestConfig, tree } = options;
+    return this.initSdkBase({ withHooks: true, url, requestConfig, tree });
+  };
+}.apply(utils);
+export const initSdkWithHooks = utils.initSdkWithHooks;
 
 /** 根据 id prefix 获取当前 tree */
 utils.getTreeById = function __getTreeById() {
@@ -102,7 +112,7 @@ utils.getSdkById = function __getSdkById() {
     const responseMiddleware = response => {
       const errors = response.errors || response.response?.errors;
       if (errors) {
-        this.errorsHandler(errors);
+        this.yuntiSDK.errorsHandler(errors);
       }
     };
     const tree = this.getTreeById(id);
@@ -115,8 +125,6 @@ utils.getSdkById = function __getSdkById() {
   };
 }.apply(utils);
 export const getSdkById = utils.getSdkById;
-
-utils.errorsHandler = errorsHandler;
 
 utils.u4aBff = u4aBff;
 
@@ -338,6 +346,50 @@ utils.collectionSortKeys = function collectionSortKeys(value, isDeep = true) {
 }.bind(utils);
 export const collectionSortKeys = utils.collectionSortKeys;
 
+utils.yuntiSDK = yuntiSDK;
+
+utils.qs = qs;
+
+/** 初始化 sdk */
+utils.initSdkBase = function __initSdkBase() {
+  return (options = {}) => {
+    const { url: _url, withHooks, requestConfig, tree } = options;
+
+    let url = _url || this.yuntiSDK.endpoint;
+    const [host, search] = url.split('?');
+    const query = this.qs.parse(search);
+    if (tree) {
+      query.tree = tree;
+    }
+    if (Object.keys(query).length > 0) {
+      url = `${host}?${qs.stringify(query)}`;
+    }
+
+    const newClient = this.yuntiSDK.initGraphQLClient(url, requestConfig);
+    // 注意：切记 SWR 缓存的唯一依据是 key，一切变量都需要放到 key 中，否则即使是不同的 client，key 相同的话，
+    // 也会以第一次调用产生的实例进行数据请求
+    const newSdk = withHooks ? this.yuntiSDK.getSdkWithHooks(newClient, tree) : getSdk(newClient);
+    return newSdk;
+  };
+}.apply(utils);
+export const initSdkBase = utils.initSdkBase;
+
+/** 根据 id prefix 获取 sdk */
+utils.setTree = function __setTree() {
+  return (id, tree, sessionOnly = false) => {
+    const TREES_KEY = 'yunti_trees';
+    const trees = JSON.parse(
+      window.sessionStorage.getItem(TREES_KEY) || window.localStorage.getItem(TREES_KEY) || '{}'
+    );
+
+    trees[id] = tree;
+    window.sessionStorage.setItem(TREES_KEY, JSON.stringify(trees));
+    !sessionOnly && window.localStorage.setItem(TREES_KEY, JSON.stringify(trees));
+    return tree;
+  };
+}.apply(utils);
+export const setTree = utils.setTree;
+
 export class RefsManager {
   constructor() {
     this.refInsStore = {};
@@ -381,22 +433,6 @@ export class RefsManager {
 }
 utils.RefsManager = RefsManager;
 
-/** 根据 id prefix 获取 sdk */
-utils.setTree = function __setTree() {
-  return (id, tree, sessionOnly = false) => {
-    const TREES_KEY = 'yunti_trees';
-    const trees = JSON.parse(
-      window.sessionStorage.getItem(TREES_KEY) || window.localStorage.getItem(TREES_KEY) || '{}'
-    );
-
-    trees[id] = tree;
-    window.sessionStorage.setItem(TREES_KEY, JSON.stringify(trees));
-    !sessionOnly && window.localStorage.setItem(TREES_KEY, JSON.stringify(trees));
-    return tree;
-  };
-}.apply(utils);
-export const setTree = utils.setTree;
-
 export default {
   bff,
 
@@ -428,11 +464,7 @@ export default {
 
   getSdkById,
 
-  errorsHandler,
-
   u4aBff,
-
-  setTree,
 
   getPublishType,
 
@@ -457,4 +489,12 @@ export default {
   isUrl,
 
   collectionSortKeys,
+
+  yuntiSDK,
+
+  qs,
+
+  initSdkBase,
+
+  setTree,
 };

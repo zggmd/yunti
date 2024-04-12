@@ -1,7 +1,7 @@
 import { IPublicTypeAssetsJson } from '@alilc/lowcode-types';
 import { DeleteOutlined, LinkOutlined, PlusOutlined, RobotOutlined } from '@ant-design/icons';
 import FormHelper from '@tenx-ui/form-helper';
-import { GetPackageDetailQuery, sdk } from '@yuntijs/yunti-bff-sdk';
+import type { GetPackageDetailQuery } from '@yuntijs/yunti-bff-sdk';
 import {
   Alert,
   Button,
@@ -20,6 +20,7 @@ import { debounce } from 'lodash';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { LowCodePackage, PaneInjectProps } from '@/components/Designer/type';
+import { sdk } from '@/utils';
 
 const { Paragraph } = Typography;
 

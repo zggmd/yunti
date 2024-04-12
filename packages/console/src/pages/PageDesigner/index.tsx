@@ -1,13 +1,13 @@
 import { common, event, project, skeleton } from '@alilc/lowcode-engine';
 import { history, matchRoutes, useMatch } from '@umijs/max';
-import { GetPageQuery, useSdk } from '@yuntijs/yunti-bff-sdk';
+import type { GetPageQuery } from '@yuntijs/yunti-bff-sdk';
 import { Button, Empty, Spin } from 'antd';
 import { MemoryHistory } from 'history';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { initPlugins } from '@/components/Designer/plugins';
 import { message } from '@/layouts';
-import { getTreeById } from '@/utils';
+import { getTreeById, useSdk } from '@/utils';
 
 import { PluginIsInited, useAppHelper } from '../../components/Designer';
 import registerPlugins from './plugins';

@@ -1,8 +1,7 @@
 import { Box } from '@alifd/next';
 import { common, event, project } from '@alilc/lowcode-engine';
 import { SettingOutlined } from '@ant-design/icons';
-import { useSdk } from '@yuntijs/yunti-bff-sdk';
-import { GetCurrentUserQuery } from '@yuntijs/yunti-bff-sdk/dist/esm/sdk';
+import type { GetCurrentUserQuery } from '@yuntijs/yunti-bff-sdk';
 import {
   Collapse,
   Dropdown,
@@ -16,6 +15,8 @@ import {
   notification,
 } from 'antd';
 import * as React from 'react';
+
+import { useSdk } from '@/utils';
 
 import { SaveAsBlock } from '../action/index';
 import { Block, CATEGORY_MAP, checkBlockAPI, getBlockName } from '../common';

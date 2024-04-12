@@ -4,11 +4,11 @@
 import { skeleton } from '@alilc/lowcode-engine';
 import { AppstoreOutlined } from '@ant-design/icons';
 import { useMatch } from '@umijs/max';
-import { useSdk } from '@yuntijs/yunti-bff-sdk';
 import { Button } from 'antd';
 import React from 'react';
 
 import { LAYOUT_ACTIONS } from '@/pages/PageDesigner/plugins';
+import { useSdk } from '@/utils';
 
 import BasicLayout, { BasicLayoutProps } from '../BasicLayout';
 

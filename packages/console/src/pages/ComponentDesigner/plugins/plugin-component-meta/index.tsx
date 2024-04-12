@@ -1,7 +1,6 @@
 import { IPublicModelPluginContext } from '@alilc/lowcode-types';
 import { BranchesOutlined, BuildOutlined } from '@ant-design/icons';
 import { useMatch } from '@umijs/max';
-import { useSdk } from '@yuntijs/yunti-bff-sdk';
 import { Avatar, Space, Tag, Typography, theme } from 'antd';
 import React from 'react';
 
@@ -10,7 +9,7 @@ import {
   PaneInjectProps,
   PluginRegisterOptions,
 } from '@/components/Designer';
-import { getTreeNames } from '@/utils';
+import { getTreeNames, useSdk } from '@/utils';
 
 import styles from './index.less';
 

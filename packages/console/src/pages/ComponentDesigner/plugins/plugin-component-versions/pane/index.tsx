@@ -2,13 +2,13 @@ import { project } from '@alilc/lowcode-engine';
 import { ThunderboltOutlined } from '@ant-design/icons';
 import { Typography } from '@tenx-ui/materials';
 import { useMatch } from '@umijs/max';
-import { GetComponentQuery, useSdk } from '@yuntijs/yunti-bff-sdk';
+import type { GetComponentQuery } from '@yuntijs/yunti-bff-sdk';
 import { Button, Input, Space, Table, Tooltip } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import React, { useState } from 'react';
 
 import { message } from '@/layouts';
-import { TREE_DEFAULT, getTreeById } from '@/utils';
+import { TREE_DEFAULT, getTreeById, useSdk } from '@/utils';
 
 import { saveSchema } from '../../../utils';
 import ReleaseModal from './ReleaseModal';

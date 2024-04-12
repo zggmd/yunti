@@ -1,4 +1,4 @@
-import { GetComponentQuery } from '@yuntijs/yunti-bff-sdk';
+import type { GetComponentQuery } from '@yuntijs/yunti-bff-sdk';
 import { Form, Input, Modal, Switch } from 'antd';
 import React, { useState } from 'react';
 

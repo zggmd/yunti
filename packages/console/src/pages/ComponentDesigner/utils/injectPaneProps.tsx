@@ -1,12 +1,11 @@
 import { IPublicTypeAssetsJson, IPublicTypeI18nMap } from '@alilc/lowcode-types';
 import { history, matchPath, useMatch } from '@umijs/max';
-import { initSdk, useSdk } from '@yuntijs/yunti-bff-sdk';
 import { isEmpty } from 'lodash';
 import React, { useMemo } from 'react';
 
 import { GitCommitPaneInjectProps } from '@/components/Designer/plugins';
 import { PreviewModalInjectProps } from '@/components/Designer/plugins/plugin-preview/components/PreviewModal';
-import { getTreeById } from '@/utils';
+import { getTreeById, initSdk, useSdk } from '@/utils';
 
 import { PaneInjectProps, PaneInjectPropsKeys } from '../../../components/Designer/type';
 

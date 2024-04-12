@@ -1,12 +1,12 @@
 import { project } from '@alilc/lowcode-engine';
 import { IPublicEnumTransformStage } from '@alilc/lowcode-types';
 import { matchPath } from '@umijs/max';
-import { GetAppQuery, GetPageQuery, initSdk } from '@yuntijs/yunti-bff-sdk';
+import type { GetAppQuery, GetPageQuery } from '@yuntijs/yunti-bff-sdk';
 import cloneDeep from 'lodash/cloneDeep';
 
 import { DesignerProjectSchema, injectSchema } from '@/components/Designer';
 import { message } from '@/layouts';
-import { getTreeById } from '@/utils';
+import { getTreeById, initSdk } from '@/utils';
 
 export const saveSchema = async () => {
   const { appId, pageId } =

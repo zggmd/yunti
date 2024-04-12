@@ -12,7 +12,7 @@
 import { defineConfig } from '@umijs/max';
 import { execSync } from 'child_process';
 
-import { PREFIX_CLS } from '../src/utils';
+import { PREFIX_CLS } from '../src/utils/constants';
 import antd from './antd';
 import { publicPath } from './public-path';
 import routes from './routes';

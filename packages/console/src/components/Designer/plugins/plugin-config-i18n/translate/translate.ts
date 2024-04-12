@@ -1,5 +1,4 @@
 import request from '@yuntijs/request';
-import { sdk } from '@yuntijs/yunti-bff-sdk';
 import crypto from 'crypto';
 
 const TRANSLATE_TAG = '{TRANSLATE_TAG}';

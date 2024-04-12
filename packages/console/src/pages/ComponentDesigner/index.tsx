@@ -1,12 +1,11 @@
 import { common, skeleton } from '@alilc/lowcode-engine';
 import { useMatch } from '@umijs/max';
-import { useSdk } from '@yuntijs/yunti-bff-sdk';
 import { Button, Empty, Spin } from 'antd';
 import React, { useEffect, useMemo, useState } from 'react';
 
 import { initPlugins } from '@/components/Designer/plugins';
 import { message } from '@/layouts';
-import { getTreeById } from '@/utils';
+import { getTreeById, useSdk } from '@/utils';
 
 import { PluginIsInited, useAppHelper } from '../../components/Designer';
 import registerPlugins from './plugins';

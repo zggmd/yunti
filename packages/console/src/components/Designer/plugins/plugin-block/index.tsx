@@ -2,8 +2,9 @@ import { config, material, project } from '@alilc/lowcode-engine';
 import { filterPackages } from '@alilc/lowcode-plugin-inject';
 import { IPublicModelPluginContext } from '@alilc/lowcode-types';
 import { BlockOutlined } from '@ant-design/icons';
-import { initSdk } from '@yuntijs/yunti-bff-sdk';
 import * as React from 'react';
+
+import { initSdk } from '@/utils';
 
 import { default as saveAsBlock } from './action';
 import { Block } from './common';

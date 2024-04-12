@@ -9,8 +9,9 @@ import {
   UsergroupAddOutlined,
 } from '@ant-design/icons';
 import { Link, useMatch } from '@umijs/max';
-import { useSdk } from '@yuntijs/yunti-bff-sdk';
 import React from 'react';
+
+import { useSdk } from '@/utils';
 
 import BasicLayout, { BasicLayoutProps } from '../BasicLayout';
 

@@ -1,11 +1,11 @@
 import { IPublicModelPluginContext } from '@alilc/lowcode-types';
 import { BranchesOutlined, DownOutlined, RightOutlined } from '@ant-design/icons';
 import { history, useMatch } from '@umijs/max';
-import { GetAppQuery, useSdk } from '@yuntijs/yunti-bff-sdk';
+import type { GetAppQuery } from '@yuntijs/yunti-bff-sdk';
 import { Dropdown, MenuProps, Space, Typography } from 'antd';
 import React, { useEffect, useState } from 'react';
 
-import { TREE_DEFAULT, getTreeById, getTreeNames } from '@/utils';
+import { TREE_DEFAULT, getTreeById, getTreeNames, useSdk } from '@/utils';
 
 import styles from './index.less';
 

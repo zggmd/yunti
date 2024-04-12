@@ -1,10 +1,9 @@
 import { useLocation } from '@umijs/max';
-import { useSdk } from '@yuntijs/yunti-bff-sdk';
 import { Empty } from 'antd';
 import qs from 'query-string';
 import React, { useMemo } from 'react';
 
-import { getTreeById } from '@/utils';
+import { getTreeById, useSdk } from '@/utils';
 
 import Preview from '../../components/Designer/components/Preview';
 import { buildProjectSchemaFromAppAndPage } from '../PageDesigner/utils';

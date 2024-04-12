@@ -1,10 +1,9 @@
 import { project } from '@alilc/lowcode-engine';
 import { IPublicEnumTransformStage } from '@alilc/lowcode-types';
-import { initSdk } from '@yuntijs/yunti-bff-sdk';
 import { message } from 'antd';
 
 import { DesignerProjectSchema, injectSchema } from '@/components/Designer';
-import { getTreeById } from '@/utils';
+import { getTreeById, initSdk } from '@/utils';
 
 interface SaveSchemaProps {
   success?: () => void;

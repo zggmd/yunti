@@ -8,8 +8,9 @@ import {
   UsergroupAddOutlined,
 } from '@ant-design/icons';
 import { Link, useLocation, useMatch } from '@umijs/max';
-import { useSdk } from '@yuntijs/yunti-bff-sdk';
 import React from 'react';
+
+import { useSdk } from '@/utils';
 
 import BasicLayout, { BasicLayoutProps } from '../BasicLayout';
 import GitTreeSelect from '../BasicLayout/components/GitTreeSelect';
