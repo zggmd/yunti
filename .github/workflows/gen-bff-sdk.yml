@@ -60,6 +60,7 @@ jobs:
           GRL_SDK_TEST_ONLY: ${{ env.GRL_SDK_TEST_ONLY }}
           HOOKS_EXTRA_PARAM: tree
           HOOKS_EXTRA_PARAM_DEFAULT_VALUE: main
+          SDK_RELEASE_TYPE: ${{ env.SDK_RELEASE_TYPE }}
 
       - name: debug
         if: failure()
