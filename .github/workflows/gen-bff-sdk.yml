@@ -21,6 +21,7 @@ jobs:
           filters: |
             gql:
               - 'packages/server/src/**/*.gql'
+              - '.github/scripts/gen-bff-sdk.sh'
 
       - name: Setup Node.js v20.x
         if: steps.changes.outputs.gql == 'true'
@@ -57,6 +58,8 @@ jobs:
         run: .github/scripts/gen-bff-sdk.sh
         env:
           GRL_SDK_TEST_ONLY: ${{ env.GRL_SDK_TEST_ONLY }}
+          HOOKS_EXTRA_PARAM: tree
+          HOOKS_EXTRA_PARAM_DEFAULT_VALUE: main
 
       - name: debug
         if: failure()
